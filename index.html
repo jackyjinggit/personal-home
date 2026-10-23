@@ -100,6 +100,7 @@
   .button:focus-visible { outline: 2px solid var(--accent-300); outline-offset: 2px; }
 
   .tags { margin: var(--space-4) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-1); }
+  .tags .tag-primary { background: var(--accent-600); border-color: var(--accent-600); color: #fff; font-weight: 500; }
   .tags span {
     display: inline-block;
     background: #fff;
@@ -183,6 +184,65 @@
 
   .toc li { margin: var(--space-2) 0; }
 
+  /* === 足迹时间线 + 项目三段式 · 2026-10-24 · 真源：产出/个人主页足迹与项目展现_方案_2026-10-24.md === */
+  .thesis {
+    background: var(--accent-50);
+    border-left: 4px solid var(--accent-600);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .thesis p { font-size: var(--text-md); margin: 0 0 var(--space-3); color: var(--ink-800); }
+  .thesis p:last-child { margin-bottom: 0; }
+
+  .timeline { position: relative; margin: var(--space-6) 0 0; padding-left: var(--space-8); }
+  .timeline::before {
+    content: ""; position: absolute; left: 9px; top: 10px; bottom: 10px;
+    width: 2px; background: var(--accent-200);
+  }
+  .tl-item { position: relative; margin-bottom: var(--space-6); }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: calc(var(--space-8) * -1 + 3px); top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--accent-400);
+  }
+  .tl-item.tl-now::before { background: var(--accent-600); border-color: var(--accent-600); }
+  .tl-when { font-size: var(--text-xs); color: var(--accent-800); font-weight: 600; letter-spacing: 0.04em; }
+  .tl-what { font-size: var(--text-lg); font-weight: 600; margin: 2px 0 var(--space-1); color: var(--ink-900); }
+  .tl-turn { font-size: var(--text-sm); color: var(--ink-700); margin: 0 0 var(--space-2); }
+  .tl-turn strong { color: var(--accent-800); }
+  .tl-why { font-size: var(--text-sm); color: var(--sub); margin: 0; }
+
+  .proj { margin-bottom: var(--space-6); }
+  .proj:last-child { margin-bottom: 0; }
+  .proj-name { font-size: var(--text-lg); font-weight: 600; color: var(--ink-900); margin: 0 0 var(--space-1); }
+  .proj-one { font-size: var(--text-sm); color: var(--sub); margin: 0 0 var(--space-3); }
+  .proj-row {
+    display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--space-3);
+    align-items: start;
+    margin-bottom: var(--space-2); font-size: var(--text-sm); line-height: 1.6;
+  }
+  .proj-row:last-child { margin-bottom: 0; }
+  .proj-k {
+    white-space: nowrap;
+    color: var(--accent-800); font-weight: 600; font-size: var(--text-xs);
+    letter-spacing: 0.03em; padding-top: 2px;
+  }
+  .proj-v { color: var(--ink-700); min-width: 0; overflow-wrap: anywhere; }
+  .proj-v a { overflow-wrap: anywhere; }
+
+  details.inbuilding { margin-top: var(--space-4); }
+  details.inbuilding > summary {
+    cursor: pointer; font-size: var(--text-sm); color: var(--ink-700);
+    padding: var(--space-3) var(--space-4); background: var(--ink-100);
+    border-radius: var(--radius-md); list-style: none;
+  }
+  details.inbuilding > summary::-webkit-details-marker { display: none; }
+  details.inbuilding > summary::before { content: "▸ "; color: var(--ink-500); }
+  details.inbuilding[open] > summary::before { content: "▾ "; }
+  details.inbuilding .card { margin-top: var(--space-3); }
+
   footer {
     border-top: 1px solid var(--line);
     margin-top: var(--space-12);
@@ -194,7 +254,19 @@
   @media (max-width: 600px) {
     h1 { font-size: var(--text-xl); }
     .lede { font-size: var(--text-base); }
-    body { line-height: 1.65; }
+    body { line-height: 1.65; padding-left: var(--space-3); padding-right: var(--space-3); }
+    nav { margin-left: calc(var(--space-3) * -1); margin-right: calc(var(--space-3) * -1); padding-left: var(--space-3); padding-right: var(--space-3); }
+    .proj-row { display: block; }
+    .proj-k { display: block; margin-bottom: 2px; }
+    .proj-v { overflow-wrap: anywhere; word-break: break-word; }
+    .proj-v a { word-break: break-all; }
+    li a, p a, .card a, td a { overflow-wrap: anywhere; word-break: break-word; }
+    .card li { overflow-wrap: anywhere; }
+    .tl-item::before { left: calc(var(--space-8) * -1 + 1px); }
+    nav ul { gap: 0; }
+    nav a { padding: var(--space-1) var(--space-2); font-size: var(--text-xs); }
+    .thesis { padding: var(--space-4); }
+    .thesis p { font-size: var(--text-base); }
   }
 </style>
 </head>
@@ -203,6 +275,7 @@
 <nav>
   <ul>
     <li><a href="#home">首页</a></li>
+    <li><a href="#journey">足迹</a></li>
     <li><a href="#hackathon">黑客松</a></li>
     <li><a href="#research">研究</a></li>
     <li><a href="#data">数据</a></li>
@@ -215,11 +288,72 @@
 </nav>
 
 <section id="home">
-  <h1>蒋平 · 黑客松领队 · 数字游民 · 独立研究者</h1>
-  <p class="subtitle">独立研究者 · 人机协作（HAI）方向 <span class="status">HAI 白皮书作者</span> <span class="stamp">FEE 提出者</span></p>
-  <p class="lede">数字游民 + 独立研究者，方向为<strong>人机协作（HAI）</strong>与<strong>协议驱动共生系统</strong>。提出 HAI 协作类别与 FEE（反谄臣效应），著有《HAI 协作行业白皮书》，以自我民族志方法记录人机深度协作实践。</p>
+  <h1>蒋平 · 独立研究者 · AI 协作方法论</h1>
+  <p class="subtitle">人机协作（HAI）方向 <span class="status">HAI 白皮书作者</span> <span class="stamp">FEE 提出者</span></p>
+  <p class="lede">一个独立研究者，把「AI 到底该怎么和人一起干活」这一个问题，从<strong>踩坑</strong>做到<strong>方法论</strong>、从<strong>方法论</strong>做到<strong>工具</strong>、从<strong>工具</strong>做到<strong>产品</strong>。</p>
+  <div class="thesis">
+    <p><strong>我在解决什么</strong></p>
+    <p>1. AI 很会附和——它让你觉得都对，然后你的判断被一点点磨平（FEE 反谄臣效应，已量化）。</p>
+    <p>2. 深度协作没有护栏——多轮、多窗口、长周期协作会悄悄失控，缺的不是更强的模型，是一层认知校准。</p>
+    <p>3. 协作过程不可见——没有人能说清「这三个月到底发生了什么」，于是没人能复核、没人敢复用。</p>
+    <p>4. 一个人做不完的事太多——但组队就意味着交出方向，所以工具和协议才是杠杆。</p>
+  </div>
   <div class="tags">
-    <span>黑客松领队</span><span>数字游民</span><span>独立研究</span><span>HAI 协作</span><span>FEE 反谄臣效应</span><span>协议驱动共生</span><span>自我民族志</span>
+    <span class="tag-primary">独立研究者</span><span class="tag-primary">AI 协作方法论</span><span class="tag-primary">从业者自建者</span>
+    <span>HAI 协作</span><span>FEE 反谄臣效应</span><span>自我民族志</span>
+  </div>
+</section>
+
+<hr>
+
+<section id="journey">
+  <h2>足迹</h2>
+  <p class="muted">不是一份履历表，是五次跃迁——每一次，都是被一个真实问题推着走的。</p>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-when">2026 · 4 月</div>
+      <div class="tl-what">把 AI 当日用工位</div>
+      <p class="tl-turn">写长文、跑批处理、维护知识库、做分发——<strong>三个月后账单比直觉更诚实</strong>：AI 费率的下降是算术题，不是情绪。</p>
+      <p class="tl-why">这一阶段的产物是后来所有方法论的<strong>数据底座</strong>：~130 亿 token / ~8 万轮真实协作，不是读出来的，是用出来的。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 · 8 月 5 日</div>
+      <div class="tl-what">把问题说出去：扶手不够</div>
+      <p class="tl-turn">写《给 AI 工作台的一封公开信：能力够了，扶手呢？》——<strong>第一次发现有人在评论区真的在问「那怎么办」</strong>。</p>
+      <p class="tl-why">由此开出专栏《AI 协作的认知结构研究》，把「谗臣效应」从中文互联网词汇变成一个可量化的研究对象（FEE）。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 · 9 月</div>
+      <div class="tl-what">把病做成药：看山 copilot</div>
+      <p class="tl-turn">做了很久的「先把自己的轨迹看清，再决定下一步」<strong>手工做成了工具</strong>，以参赛项目身份参加知乎黑客松（赛题项目名「创作校准引擎」）。</p>
+      <p class="tl-why"><strong>这是第一次从「说问题的人」变成「做工具的人」</strong>——也是第一次被别人拿去用。演示用合成账号，真实数据走官方只读授权，密钥只留本机。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 · 10 月</div>
+      <div class="tl-what">体系成立：白皮书 + 论文</div>
+      <p class="tl-turn">《HAI 协作行业白皮书》v1.2 定稿并经时间戳认证；FEE 预印本在 OSF 存档（节点 6jdhm）——<strong>从个人经验变成可被引用的方法</strong>。</p>
+      <p class="tl-why">白皮书用自我民族志方法记录协作实践，提出 HAI 协作作为独立于 HCI 的新类别，并给出三年路线。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 · 10 月 17 日</div>
+      <div class="tl-what">从一个人做，到组队交付</div>
+      <p class="tl-turn">Monad Blitz V3 收尾日 36 小时内，<strong>同时组织 4 个项目全部落地 MVP</strong>——治理层、证据层、创意层、信任层，方法论一致，各自都能演示。</p>
+      <p class="tl-why">这验证了一件事：<strong>方法论一致时，组队不是妥协，是放大</strong>。之后带 5 人队打 GDPS 暨 IEIC（SkillBridge 跨本体技能库）。</p>
+    </div>
+
+    <div class="tl-item tl-now">
+      <div class="tl-when">2026 · 10 月 24 日 · 现在</div>
+      <div class="tl-what">第一条真营收线 + 开放核心</div>
+      <p class="tl-turn">思印客 Silnk 官网上线（自助打印统一管理）；仁谱（renpu）以 AGPL-3.0-only 开源——<strong>把开放核心送进真实交易通道</strong>。</p>
+      <p class="tl-why">下一步：让开放核心负责获客，让闭源增值层负责变现，两条路各走各的、不混在一条链上。</p>
+    </div>
+
   </div>
 </section>
 
@@ -271,45 +405,80 @@
   </div>
 
   <h3>近期作品</h3>
-  <table>
-    <tr><th>项目</th><th>方向</th><th>角色</th><th>链接</th></tr>
-    <tr>
-      <td><strong>Silnk（思印客）</strong></td>
-      <td>自助打印统一管理平台（CUPS / 工控机 / 4G），MVP 两天冲刺</td>
-      <td>founder</td>
-      <td><a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a></td>
-    </tr>
-    <tr>
-      <td><strong>AgentGuard（Monad Blitz V3 带队项目）</strong></td>
-      <td>AI Agent 受限预算 + 治理层（Monad × X402 链上支付）</td>
-      <td>founder</td>
-      <td><span class="muted">赛后补链</span></td>
-    </tr>
-    <tr>
-      <td><strong>CrossCheck · 双模型报告与链上证据</strong></td>
-      <td>链下双模型审核 + 链上 SHA-256 证据 + 篡改自检验</td>
-      <td>founder</td>
-      <td><a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">演示 ↗</a></td>
-    </tr>
-    <tr>
-      <td><strong>创想集 AUREUM</strong></td>
-      <td><em>Monad Blitz 关联项目</em></td>
-      <td>founder</td>
-      <td><a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">演示 ↗</a><br><a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">源码 ↗</a></td>
-    </tr>
-    <tr>
-      <td><strong>⻅账 · AI Agent 组织的链上信任层</strong></td>
-      <td><span class="muted">概念阶段，代码仓建设中</span></td>
-      <td>founder</td>
-      <td><span class="muted">赛后补链</span></td>
-    </tr>
-    <tr>
-      <td><strong>AI 大赛 #1/#2/#3</strong></td>
-      <td>安全攻防 / 幻觉治理 / 多模态审核（i 厦门）</td>
-      <td>参赛</td>
-      <td><a href="https://ai.xm.gov.cn" target="_blank" rel="noopener">赛事页 ↗</a></td>
-    </tr>
-  </table>
+  <p class="muted">每个项目都回答同一个问题：<strong>它替谁解决了什么？</strong></p>
+
+  <div class="card proj">
+    <p class="proj-name">思印客 Silnk <span class="status">已上线</span></p>
+    <p class="proj-one">自助打印机的统一管家</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">高校与园区里散落的自助打印机——没有后台、无法远程管理、坏了没人知道，只能靠人蹲点。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">打通 CUPS + 工控机 + 4G，把「设备在不在、能不能打、故障怎么报」收进一个后台。MVP 两天冲刺完成。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a> · <a href="sentinel-v07/index.html">AI 守门人演示页 ↗</a>（PII 印前审核）</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">看山 copilot <span class="badge gray">知乎黑客松参赛</span></p>
+    <p class="proj-one">创作者的内容复盘工具</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">创作者手里有数据，却不知道哪篇内容在留人、主页转化卡在哪一步。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">拉公开数据 → 算留人曲线 → 定位两个拐点 → 输出主页诊断。演示用合成账号（页面明确标注「演示数据（非真实）」，无需登录即可出结论）；跑自己的号走官方只读授权，Access Secret 只留本机、不进前端。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v">知乎黑客松参赛项目 · <a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">前端仓库 ↗</a> · 相关自述见知乎专栏</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">仁谱 renpu <span class="status">已开源 · AGPL-3.0-only</span></p>
+    <p class="proj-one">本地人脉关系图谱引擎</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">通讯录里躺着几百个联系人，但没人说得清谁是谁的人、哪条关系是真是假。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API，纯 Python 零编译——<strong>数据不出本机</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><span class="muted">仓库公开中（发布后即挂链）</span> · AGPL-3.0-only，开放核心可自由使用与再分发（署名义务除外）· 15 子命令 CLI / 本地 API 8877</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">SkillBridge <span class="badge green">参赛中</span></p>
+    <p class="proj-one">跨本体的 Agent 技能库</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">同一套机器人作业技能，换一台机器就要重写一遍——硬件型号越杂，重复劳动越贵。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">一套 Python Skill 从 sim2real 到任意真机零改动迁移；15 个 ROS2 接口包编译通过（140 msg + 93 srv）+ 16 项官方能力映射层 + 15 个 Skill 绑定。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v">GDPS 2026 暨 IEIC 国际具身智能技能大赛（上海张江 · 2026-10-23—25）· <strong>真机联调受现场硬件配置限制（缺网关 / 电池）</strong>，同步推进仿真与展示双线</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">CrossCheck · 双模型报告与链上证据 <span class="badge">已交付</span></p>
+    <p class="proj-one">让报告可被验证</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">报告出了，没人能证明它没被改过——尤其是 AI 生成的报告。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">链下双模型交叉审核 + 链上 SHA-256 存证 + 篡改自检验，证据可独立复算。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">live demo ↗</a> · <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">源码 ↗</a>（联合 owner）</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">AgentGuard <span class="badge">已交付</span></p>
+    <p class="proj-one">给 Agent 的花钱装上边界</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">Agent 能自主花钱，但没有预算上限，等于替它开了张无限额度的卡。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">受限预算 + 治理层，结合 Monad × X402 链上支付，把「能花多少、花在哪儿」变成可审计的约束。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v">Monad Blitz V3 带队项目 · <span class="muted">赛后补链</span></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">创想集 AUREUM <span class="badge">已交付</span></p>
+    <p class="proj-one">把零散想法收成可展示的作品集</p>
+    <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">独立开发者手里有一堆半成品idea，但它们散在各处，永远无法被别人一眼看懂。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">Monad Blitz 关联项目，做成统一入口与展示层（联合 owner）。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">演示 ↗</a> · <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">源码 ↗</a></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">AI 大赛 #1 / #2 / #3（i 厦门）<span class="badge green">参赛中</span></p>
+    <p class="proj-one">三条赛道连续提交</p>
+    <div class="proj-row"><span class="proj-k">方向</span><span class="proj-v">#1 安全攻防 · #2 幻觉挑战 · #3 多模态审核——三条线都指向同一个问题：AI 输出的可信边界在哪。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://ai.xm.gov.cn" target="_blank" rel="noopener">赛事页 ↗</a></span></div>
+  </div>
+
+  <details class="inbuilding">
+    <summary>在建中（1 项）</summary>
+    <div class="card proj">
+      <p class="proj-name">⻅账 · AI Agent 组织的链上信任层</p>
+      <p class="proj-one">让 Agent 之间的协作可结算、可追责</p>
+      <div class="proj-row"><span class="proj-k">谁的什么问题</span><span class="proj-v">多个 Agent 协作时，贡献无法度量、承诺无法追责、账目无处可查。</span></div>
+      <div class="proj-row"><span class="proj-k">状态</span><span class="proj-v"><span class="muted">概念阶段，代码仓建设中 · 赛后补链</span></span></div>
+    </div>
+  </details>
 </section>
 
 <hr>
@@ -387,6 +556,7 @@
     </div>
   </div>
   <p class="muted">数据来源：客户端用量统计 + 网页端 export；<a href="https://github.com/jackyjinggit">GitHub</a> / <a href="https://gitee.com/jacky_jiang_gitee">Gitee</a> 双同步</p>
+  <p class="muted">这些数字<strong>不是成就，是样本量</strong>——FEE 的量化、协作协议的迭代、白皮书的方法论基础，都建立在这些真实轮次之上。一个没有真实使用量的方法论，只是纸面主张。</p>
 </section>
 
 <hr>
@@ -406,6 +576,11 @@
       <h3>kanshan-frontend（看山前端）</h3>
       <p><em>Owner: @jackyjinggit · 跨项目前端组件库.</em> Silnk 等项目的 UI / UX 资产底座。</p>
       <p class="muted"><a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">Repository ↗</a></p>
+    </div>
+    <div class="card">
+      <h3>renpu（仁谱）</h3>
+      <p><em>Owner: @jackyjinggit · 本地人脉关系图谱引擎 · AGPL-3.0-only.</em> 本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API；纯 Python 零编译，<strong>数据不出本机</strong>。</p>
+      <p class="muted">Repository 仓库公开中（发布后即挂链）</p>
     </div>
     <div class="card">
       <h3>personal-home（个人主页）</h3>
@@ -466,7 +641,7 @@
 
 <footer>
   <p>作者保留所有权利。白皮书发布前已通过联合信任可信时间戳认证。</p>
-  <p>最后更新：2026-10-24（GDPS 2026 暨 IEIC 灵机一动参赛条目上线 · AI 守门人 v0.7 演示页）</p>
+  <p>最后更新：2026-10-24（新增「足迹」节与项目三段式改写 · 标签收敛 + 我在解决什么）</p>
 </footer>
 
 </body>
