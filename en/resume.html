@@ -271,6 +271,18 @@
     /* 底部 footer 收窄 */
     footer p { margin-bottom: 2pt; }
   }
+
+  /* === A4 打印收口 (2026-10-25) === */
+  /* 根因：Edge headless 默认 US Letter (215.9x279.4mm)，比 A4 矮 17.6mm，
+     「单页填充」样式按 Letter 标定 → 速览卡溢出到第 2 页。
+     修正：显式声明 A4 纸张 + 保留背景色（否则卡片底色丢失）。 */
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
 </style>
 </head>
 <body>
