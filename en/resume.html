@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jacky Jiang · Resume</title>
-<meta name="description" content="Jacky Jiang — independent researcher, HAI (Human-AI Collaboration) direction, founder of multiple open-source projects across self-service printing, on-chain accounting, and AI security/audit.">
+<meta name="description" content="Jacky Jiang — independent researcher, HAI (Human-AI Collaboration) direction, hackathon team lead, founder of multiple open-source projects across self-service printing, on-chain accounting, and AI security/audit.">
 <meta name="author" content="Jacky Jiang">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Jacky Jiang · Resume">
-<meta property="og:description" content="Independent researcher. HAI direction. Open-source founder.">
+<meta property="og:description" content="Independent researcher · HAI direction · Hackathon team lead · Open-source founder">
 <style>
-  /* === Design Tokens · v0.1 · 2026-10-17 === */
+  /* === Design Tokens · v0.1 · 2026-10-17（同源） === */
   :root {
     --accent-50: #e8f0fe; --accent-100: #d2e3fc; --accent-200: #aecbfa; --accent-300: #8ab4f8;
     --accent-400: #669df6; --accent-500: #4285f4; --accent-600: #1a73e8; --accent-700: #1967d2;
@@ -81,7 +81,6 @@
   .muted { color: var(--sub); font-size: var(--text-sm); }
   ul li { margin: var(--space-2) 0; }
 
-  /* === Journey timeline + project rows · 2026-10-24 === */
   .thesis {
     background: var(--accent-50);
     border-left: 4px solid var(--accent-600);
@@ -129,6 +128,31 @@
   .proj-v { color: var(--ink-700); min-width: 0; overflow-wrap: anywhere; }
   .proj-v a { overflow-wrap: anywhere; }
 
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-3);
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .kpi {
+    background: #fff; border-radius: var(--radius-md);
+    padding: var(--space-4); box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--accent-500);
+  }
+  .kpi-n {
+    font-size: var(--text-2xl); font-weight: 700; color: var(--accent-700);
+    line-height: 1.1; letter-spacing: -0.01em;
+  }
+  .kpi-l { font-size: var(--text-xs); color: var(--ink-600); margin-top: 4px; line-height: 1.5; }
+  .kpi-s { font-size: var(--text-xs); color: var(--ink-500); margin-top: 2px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-2) 0 0; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill);
+    background: var(--accent-50); color: var(--accent-800);
+    font-size: var(--text-xs); border: 1px solid var(--accent-200);
+  }
+
   details.inbuilding { margin-top: var(--space-4); }
   details.inbuilding > summary {
     cursor: pointer; font-size: var(--text-sm); color: var(--ink-700);
@@ -155,21 +179,113 @@
     .proj-v a { word-break: break-all; }
     .tl-item::before { left: calc(var(--space-8) * -1 + 1px); }
   }
+
+  /* === 打印（A4 PDF 友好） === */
+  @media print {
+    body { background: #fff; padding: 0; font-size: 11pt; line-height: 1.6; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; margin-top: 18pt; }
+    h3 { font-size: 12pt; }
+    .card { box-shadow: none; border: 1px solid var(--line); padding: 10pt 12pt; break-inside: avoid; }
+    .thesis { break-inside: avoid; }
+    .tl-item { break-inside: avoid; }
+    .proj { break-inside: avoid; margin-bottom: 12pt; }
+    .kpi { box-shadow: none; border: 1px solid var(--line); border-top: 3px solid var(--accent-500); break-inside: avoid; }
+    hr { margin: 12pt 0; }
+    a { color: var(--ink-800); }
+    details.inbuilding > summary { background: var(--ink-100); }
+    section { padding: 4pt 0; }
+  }
+
+  /* === 评委版打印收紧：控制在 3 页内 === */
+  @media print {
+    body { font-size: 9.6pt; line-height: 1.45; }
+    h1 { font-size: 17pt; margin-bottom: 4pt; }
+    h2 { font-size: 12pt; margin: 12pt 0 4pt; }
+    h3 { font-size: 10pt; }
+    p { margin: 0 0 5pt; }
+    .subtitle { font-size: 9pt; margin-bottom: 6pt; }
+    .muted { font-size: 8.4pt; }
+    .thesis { padding: 8pt 10pt; margin: 6pt 0 8pt; }
+    .thesis p { font-size: 9.4pt; margin: 0 0 3pt; }
+    .kpis { grid-template-columns: repeat(3, 1fr); gap: 5pt; margin: 6pt 0 8pt; }
+    .kpi { padding: 6pt 8pt; }
+    .kpi-n { font-size: 13pt; }
+    .kpi-l { font-size: 7.6pt; margin-top: 1pt; }
+    .kpi-s { font-size: 7.2pt; }
+    .timeline { padding-left: 20pt; }
+    .tl-item { margin-bottom: 8pt; }
+    .tl-when { font-size: 7.8pt; }
+    .tl-what { font-size: 10.5pt; margin: 0 0 1pt; }
+    .tl-turn, .tl-why { font-size: 8.6pt; margin-bottom: 2pt; }
+    .card { padding: 7pt 9pt; margin: 5pt 0; }
+    .proj { margin-bottom: 7pt; }
+    .proj-name { font-size: 10.5pt; margin-bottom: 1pt; }
+    .proj-one { font-size: 8.6pt; margin-bottom: 3pt; }
+    .proj-row { font-size: 8.6pt; margin-bottom: 1.5pt; grid-template-columns: 68pt 1fr; gap: 5pt; }
+    .proj-k { font-size: 7.8pt; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 5pt; }
+    .grid .card { margin: 0; padding: 6pt 8pt; }
+    .grid .card p { font-size: 8.2pt; }
+    hr { margin: 8pt 0; }
+    section { padding: 2pt 0; }
+    footer { margin-top: 10pt; padding-top: 6pt; font-size: 8.4pt; }
+    /* 打印时展开可折叠区块（评委要看到全部） */
+    details.inbuilding { display: block; }
+    details.inbuilding > summary { display: none; }
+    details.inbuilding .card { margin-top: 4pt; }
+    /* 「研究与方法」与「使用量」压成两栏 */
+    #research, #numbers, #repos { break-inside: auto; }
+  }
+
+  /* === 评委版打印精简：研究区两列 + 隐藏非核心 === */
+  @media print {
+    /* 研究与方法 4 卡 → 两列 */
+    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5pt; }
+    .research-grid .card { margin: 0; break-inside: avoid; }
+    /* 文学研究对评委非核心 → 打印时隐藏（网页版仍可见） */
+    .print-hide { display: none !important; }
+    /* 技术栈 6 卡 → 三列（更紧凑） */
+    .stack-grid { grid-template-columns: repeat(3, 1fr); gap: 5pt; }
+    .stack-grid .card { padding: 5pt 7pt; }
+    .stack-grid .card p { font-size: 7.6pt; line-height: 1.4; }
+    .stack-grid .card h3 { font-size: 8.6pt; margin-bottom: 2pt; }
+  }
+
+  /* === 评委版最终收紧 === */
+  @media print {
+    /* 在建中的概念项目：打印时折叠（评委要看的已交付项目才展开） */
+    details.inbuilding { display: block; }
+    details.inbuilding > summary {
+      display: block; font-size: 8.6pt; font-weight: 600; color: var(--ink-600);
+      background: var(--ink-100); padding: 4pt 6pt; border-radius: 3pt;
+    }
+    details.inbuilding > summary::before { content: ""; }
+    details.inbuilding .card { display: none; }
+    /* 使用量区压紧 */
+    #numbers .kpis { grid-template-columns: repeat(4, 1fr); }
+    #numbers .kpi-s { display: none; }
+    /* GitHub 区：两卡并排已做，再紧一档 */
+    #repos .card { padding: 5pt 7pt; }
+    #repos .card p { font-size: 8pt; }
+    /* 底部 footer 收窄 */
+    footer p { margin-bottom: 2pt; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <p class="muted" style="text-align: right; margin-bottom: var(--space-4);">🌐 <strong>English</strong> · <a href="../" hreflang="zh-CN" lang="zh-CN">中文主页</a></p>
+  <p class="muted" style="text-align: right; margin-bottom: var(--space-4);">🌐 <strong>English</strong> · <a href="../resume.html" hreflang="zh-CN" lang="zh-CN">中文简历</a> · <a href="../index.html">Homepage</a></p>
   <h1>Jacky Jiang</h1>
-  <p class="subtitle">Independent Researcher · AI Collaboration Methodology · Open to Remote Collaboration</p>
+  <p class="subtitle">Independent Researcher · AI Collaboration Methodology · Hackathon Team Lead · Open-Source Founder</p>
   <p>One independent researcher, taking a single question — <strong>how should AI actually work alongside people</strong> — from lived failure, to methodology, to tools, to shipped products.</p>
   <div class="thesis">
     <p><strong>What I'm working on</strong></p>
-    <p>1. AI flatters. It tells you everything you thought was right, and your judgment erodes a little each time (FEE · Flattering-Echo Effect — now quantified).</p>
-    <p>2. Deep collaboration has no handrail. Long, multi-window, multi-month work drifts quietly. What's missing isn't a stronger model — it's a layer of cognitive calibration.</p>
-    <p>3. Collaboration is invisible. Nobody can say what actually happened over three months, so nobody can audit it, and nobody can reuse it.</p>
-    <p>4. One person can't do everything. But teaming up means giving up direction — which is why tools and protocols are the real leverage.</p>
+    <p>1. <strong>AI flatters.</strong> It tells you everything you thought was right, and your judgment erodes a little each time (FEE · Flattering-Echo Effect — now quantified).</p>
+    <p>2. <strong>Deep collaboration has no handrail.</strong> Long, multi-window, multi-month work drifts quietly. What's missing isn't a stronger model — it's a layer of cognitive calibration.</p>
+    <p>3. <strong>Collaboration is invisible.</strong> Nobody can say what actually happened over three months, so nobody can audit it, and nobody can reuse it.</p>
+    <p>4. <strong>One person can't do everything.</strong> But teaming up means giving up direction — which is why tools and protocols are the real leverage.</p>
   </div>
   <p class="muted">
     GitHub: <a href="https://github.com/jackyjinggit" target="_blank" rel="noopener">@jackyjinggit</a>
@@ -179,17 +295,58 @@
 
 <hr>
 
+<section id="evidence">
+  <h2>Thirty-Second Brief</h2>
+  <p class="muted">If you only have 30 seconds — these six numbers are the entire hard evidence I can offer.</p>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-n">36 hours</div>
+      <div class="kpi-l">4 projects organized</div>
+      <div class="kpi-s">Monad Blitz V3 closing day · all landed MVPs</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">5-person</div>
+      <div class="kpi-l">Team lead at GDPS / IEIC</div>
+      <div class="kpi-s">200+ entries · 9 tracks · 23 events</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">13B</div>
+      <div class="kpi-l">tokens · ~80k real turns</div>
+      <div class="kpi-s">Since Apr 2026 · the data substrate</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">2 days</div>
+      <div class="kpi-l">MVP sprint to production</div>
+      <div class="kpi-s">Silnk · self-service printing, now live</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">15 cmds</div>
+      <div class="kpi-l">Renpu CLI + local API</div>
+      <div class="kpi-s">Pure Python, zero compilation · AGPL-3.0-only</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">233 APIs</div>
+      <div class="kpi-l">ROS2 msg 140 + srv 93</div>
+      <div class="kpi-s">15 interface packages compiled · SkillBridge</div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
 <section id="summary">
-  <h2>Summary</h2>
-  <p>Independent researcher focused on Human-AI Collaboration (HAI) and protocol-driven symbiotic systems. Author of the <strong>HAI Collaboration Industry White Paper</strong> (v1.0rc, CC BY-NC-SA 4.0, timestamp-authenticated). Originator of <strong>FEE · Flattering-Echo Effect</strong>, a systematic distortion that makes models amplify a user's pre-existing judgments — published on OSF as a preprint.</p>
-  <p>Founding engineer across multiple open-source projects that take the same HAI methodology into bounded hackathon execution. Self-ethnographer of one year+ structured human-AI collaboration practice.</p>
+  <h2>What I Am</h2>
+  <p>Independent researcher focused on Human-AI Collaboration (HAI) and protocol-driven symbiotic systems. Author of the <strong>HAI Collaboration Industry White Paper</strong> (v1.0rc, CC BY-NC-SA 4.0, timestamp-authenticated). Originator of <strong>FEE · Flattering-Echo Effect</strong> — a systematic distortion that makes models amplify a user's pre-existing judgments — published on OSF as a preprint (node 6jdhm).</p>
+  <p>Founding engineer across multiple open-source projects that take the same HAI methodology into <strong>bounded, demoable delivery</strong>: unified self-service printing, on-chain accountable settlement, multimodal security audit. Self-ethnographer of one year+ of structured human-AI collaboration practice.</p>
+  <p class="muted">Research side writes the methodology; practice side turns it into something that runs. Same job, two ends.</p>
 </section>
 
 <hr>
 
 <section id="journey">
-  <h2>Journey</h2>
-  <p class="muted">Not a résumé list — five leaps, each pushed by a real problem I hit.</p>
+  <h2>Five Leaps</h2>
+  <p class="muted">Not a résumé list — each leap was pushed by a real problem I hit.</p>
 
   <div class="timeline">
 
@@ -229,10 +386,10 @@
     </div>
 
     <div class="tl-item tl-now">
-      <div class="tl-when">24 October 2026 · now</div>
-      <div class="tl-what">First real revenue line + an open core</div>
-      <p class="tl-turn">Silnk went live (unified self-service printing management); Renpu was open-sourced under AGPL-3.0-only — <strong>putting an open core into a real transaction channel</strong>.</p>
-      <p class="tl-why">Next: let the open core do customer acquisition, let the closed value-add layer do monetization, and keep the two paths separate rather than mixed in one chain.</p>
+      <div class="tl-when">25 October 2026 · now</div>
+      <div class="tl-what">First real revenue line + an open core + two events closed</div>
+      <p class="tl-turn">Silnk went live (unified self-service printing management); Renpu was open-sourced under AGPL-3.0-only — <strong>putting an open core into a real transaction channel</strong>. In the same week, two tracks at once: a 5-person team at GDPS &amp; IEIC (SkillBridge) and a 3-person team at MoonStone DreamUP (Silnk · AI + Hardware track · three self-built hardware layers · 210 pytest cases passing), roadshow and Q&amp;A completed.</p>
+      <p class="tl-why">Next: let the open core do customer acquisition, let the closed value-add layer do monetization, and keep the two paths separate rather than mixed in one chain. Where on-device integration was limited by venue hardware, it is stated plainly — <strong>evidence strength is itself persuasive</strong>.</p>
     </div>
 
   </div>
@@ -245,11 +402,27 @@
   <p class="muted">Each one answers the same question: <strong>whose problem does it solve?</strong></p>
 
   <div class="card proj">
-    <p class="proj-name">Silnk（思印客） <span class="muted">live</span></p>
+    <p class="proj-name">Silnk（思印客） <span class="muted">live</span> <span class="muted">MoonStone entry</span></p>
     <p class="proj-one">The single control plane for self-service printers</p>
-    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Scattered self-service printers on campus and in industrial parks — no backend, no remote management, nobody notices when one breaks.</span></div>
-    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Unified CUPS + IPC + 4G stack so "is it online, can it print, how do I report a fault" lives in one dashboard. MVP in a 2-day sprint.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a> · <a href="../sentinel-v07/index.html">AI sentinel demo ↗</a> (PII pre-print audit)</span></div>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Scattered self-service printers on campus and in industrial parks — no backend, no remote management, nobody notices when one breaks. One layer deeper: <strong>misprints are only caught after the fact, wrong pickups can't be proven, and source files sit on the machine indefinitely</strong>.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Turned "upload → pre-check → pricing → payment → print → pickup → delete" into one <strong>auditable</strong> chain; <strong>three self-built hardware layers</strong>: Tuya T5AI pickup screen (serial: real status / paper level / pickup code, with touch confirmation back) · D-Robotics RDK X5 paper-output vision detection · zero-config onboarding for legacy printers (graphical wizard + 4-digit pairing code, approval issues a local token).</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a> · <a href="https://jackyjinggit.github.io/personal-home/sentinel-v07/index.html">AI sentinel demo ↗</a> (PII pre-print audit) · <strong>210 pytest cases passing</strong> · MoonStone DreamUP hackathon (Shanghai · 2026-10-23—25 · 3-person team · AI + Hardware track · roadshow and Q&amp;A completed)</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">SkillBridge <span class="muted">in progress</span></p>
+    <p class="proj-one">A cross-embodiment Agent skill library</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">The same robot job skill has to be rewritten for every new machine — the more hardware you mix, the more that repetition costs.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">One Python Skill that migrates from sim2real to any physical embodiment with zero code changes; <strong>15 ROS2 interface packages compiled clean (140 msg + 93 srv) + a 16-item official capability mapping layer + 15 Skill bindings</strong>.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v">GDPS 2026 &amp; IEIC International Embodied Intelligence Skills Competition (Zhangjiang, Shanghai · 2026-10-23—25 · 5-person team) · <strong>on-device integration was limited by the venue's hardware configuration (missing gateway / battery)</strong>, so simulation and demo tracks ran in parallel</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">Renpu（仁谱） <span class="muted">open source · AGPL-3.0-only</span></p>
+    <p class="proj-one">A local relationship-genealogy engine</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Your phone holds hundreds of contacts, and nobody can say <strong>who is connected to whom</strong>, or which relationship is real.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Local SQLite + six-domain model + relationship-edge inference + read-only WeChat parsing + a 15-subcommand CLI and local API, pure Python with zero compilation — <strong>the data never leaves your machine</strong>.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">github.com/jackyjinggit/renpu ↗</a> · AGPL-3.0-only (open core free to use and redistribute, attribution only) · 15-subcommand CLI / local API on 8877</span></div>
   </div>
 
   <div class="card proj">
@@ -257,157 +430,184 @@
     <p class="proj-one">A content retrospective tool for creators</p>
     <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Creators have the data but don't know which pieces are actually retaining readers, or where their profile conversion stalls.</span></div>
     <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Pull public data → compute the retention curve → locate the two inflection points → output a profile diagnosis. Demo runs on synthetic accounts (labelled as demo data, no login needed); your own account uses official read-only authorization, and the access secret stays on the local machine.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v">Zhihu hackathon project · <a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">frontend repo ↗</a> · described in the Zhihu column</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">github.com/jackyjinggit/kanshan-frontend ↗</a> · described in the Zhihu column</span></div>
   </div>
 
   <div class="card proj">
-    <p class="proj-name">Renpu（仁谱） <span class="muted">open source · AGPL-3.0-only</span></p>
-    <p class="proj-one">A local relationship-genealogy engine</p>
-    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Your phone holds hundreds of contacts, and nobody can say who is connected to whom, or which relationship is real.</span></div>
-    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Local SQLite + six-domain model + relationship-edge inference + read-only WeChat parsing + a 15-subcommand CLI and local API, pure Python with zero compilation — <strong>the data never leaves your machine</strong>.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><span class="muted">Repository being published (link follows release)</span> · AGPL-3.0-only, open core free to use and redistribute (attribution only) · 15-subcommand CLI / local API on 8877</span></div>
+    <p class="proj-name">CrossCheck <span class="muted">shipped · co-owner</span></p>
+    <p class="proj-one">Dual-model reports with on-chain evidence</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">The report is out, but nobody can prove it wasn't altered — especially when AI generated it.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v"><strong>Off-chain dual-model cross-review + on-chain SHA-256 attestation + tamper self-verification</strong> — evidence anyone can recompute independently.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">Live demo ↗</a> · <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">Source ↗</a></span></div>
   </div>
 
   <div class="card proj">
-    <p class="proj-name">SkillBridge <span class="muted">in progress</span></p>
-    <p class="proj-one">A cross-embodiment Agent skill library</p>
-    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">The same robot job skill has to be rewritten for every new machine — the more hardware you mix, the more that repetition costs.</span></div>
-    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">One Python Skill that migrates from sim2real to any physical embodiment with zero code changes; 15 ROS2 interface packages compiled clean (140 msg + 93 srv) + a 16-item official capability mapping layer + 15 Skill bindings.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v">GDPS 2026 &amp; IEIC International Embodied Intelligence Skills Competition (Zhangjiang, Shanghai · 2026-10-23—25) · <strong>on-device integration was limited by the venue's hardware configuration (missing gateway / battery)</strong>, so simulation and demo tracks ran in parallel</span></div>
+    <p class="proj-name">AgentGuard <span class="muted">shipped · team lead</span></p>
+    <p class="proj-one">Budget-capped Agent with a governance layer</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">An Agent can spend money autonomously, but with no ceiling that's an unlimited credit card handed to it.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v"><strong>Capped budget + governance layer</strong>, combined with <strong>Monad × X402 on-chain payment</strong>, turning "how much it can spend and on what" into an <strong>auditable constraint</strong>.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v">Monad Blitz V3, team lead · chain extended post-event</span></div>
   </div>
 
   <div class="card proj">
-    <p class="proj-name">CrossCheck · Dual-model Reports with On-chain Evidence <span class="muted">delivered</span></p>
-    <p class="proj-one">Making a report verifiable</p>
-    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">A report gets produced and nobody can prove it wasn't altered afterwards — especially when AI generated it.</span></div>
-    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Off-chain dual-model cross-audit + a SHA-256 canonical hash pinned on chain + a tamper self-check, so the evidence can be recomputed independently. Honest terminology: "match" ≠ "correct"; the chain only proves the result wasn't retroactively rewritten.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">live demo ↗</a> · <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">source ↗</a> (co-owner)</span></div>
-  </div>
-
-  <div class="card proj">
-    <p class="proj-name">AgentGuard <span class="muted">delivered</span></p>
-    <p class="proj-one">Putting a budget boundary around agent spending</p>
-    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">An agent that can spend autonomously, with no budget ceiling, is the same as handing it an unlimited credit card.</span></div>
-    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">Constrained budget + governance layer on Monad — on-chain bookkeeping + off-chain AI accounting + X402 payment trigger — turning "how much, and on what" into an auditable constraint.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v">Monad Blitz V3 (team lead) · <span class="muted">link after wrap-up</span></span></div>
-  </div>
-
-  <div class="card proj">
-    <p class="proj-name">AUREUM（创想集） <span class="muted">delivered</span></p>
-    <p class="proj-one">Turning scattered half-built ideas into a legible portfolio</p>
-    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">An independent developer has a pile of half-finished ideas scattered across places — and nobody else can grasp them at a glance.</span></div>
-    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">A Monad Blitz track project: a unified entry point and presentation layer (co-owner).</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">live demo ↗</a> · <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">source ↗</a></span></div>
-  </div>
-
-  <div class="card proj">
-    <p class="proj-name">AI Contest #1 / #2 / #3 (iXiamen) <span class="muted">in progress</span></p>
-    <p class="proj-one">Three tracks submitted in sequence</p>
-    <div class="proj-row"><span class="proj-k">Direction</span><span class="proj-v">#1 adversarial security · #2 hallucination governance · #3 multi-modal audit — all three point at one question: where is the trust boundary of AI output.</span></div>
-    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://ai.xm.gov.cn" target="_blank" rel="noopener">contest page ↗</a></span></div>
+    <p class="proj-name">AUREUM <span class="muted">shipped · co-owner</span></p>
+    <p class="proj-one">Turning scattered ideas into a showcaseable portfolio</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Independent builders hold a pile of half-finished ideas, scattered everywhere and never legible to anyone else.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">A Monad Blitz affiliated project: a <strong>unified entry point and showcase layer</strong>.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">Live demo ↗</a> · <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">Source ↗</a></span></div>
   </div>
 
   <details class="inbuilding">
-    <summary>In build (1)</summary>
+    <summary>In progress: ⻅账 · AI Competition (Xiamen) three tracks · other events</summary>
     <div class="card proj">
-      <p class="proj-name">⻅账 (Jian Zhang) · Trust Layer for On-chain AI Agent Organizations</p>
-      <p class="proj-one">Making collaboration between agents settleable and accountable</p>
-      <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">When several agents work together, contribution can't be measured, commitments can't be enforced, and there's nowhere to keep the books.</span></div>
-      <div class="proj-row"><span class="proj-k">Status</span><span class="proj-v"><span class="muted">Concept stage; code repository in construction · link after wrap-up</span></span></div>
+      <p class="proj-name">⻅账 <span class="muted">in progress</span></p>
+      <p class="proj-one">An on-chain trust layer for AI-Agent organizations</p>
+      <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">When multiple agents collaborate, contribution can't be measured, promises can't be enforced, and there's nowhere to keep the books.</span></div>
+      <div class="proj-row"><span class="proj-k">Status</span><span class="proj-v">Concept stage, repo under construction · Monad Blitz owner</span></div>
+    </div>
+    <div class="card proj">
+      <p class="proj-name">AI Competition (i Xiamen) #1 / #2 / #3 <span class="muted">in progress</span></p>
+      <p class="proj-one">Security offense / hallucination challenge / multimodal audit</p>
+      <div class="proj-row"><span class="proj-k">Shared question</span><span class="proj-v">All three lines point at one thing: <strong>where is the trust boundary of AI output?</strong></span></div>
+      <div class="proj-row"><span class="proj-k">Event</span><span class="proj-v"><a href="https://ai.xm.gov.cn" target="_blank" rel="noopener">ai.xm.gov.cn ↗</a> · three consecutive track submissions</span></div>
+    </div>
+    <div class="card proj">
+      <p class="proj-name">Other event record</p>
+      <p class="proj-one">Monad Blitz V3 (Shanghai · 10-17 · 4 projects, all MVPs) · GDPS / IEIC (Zhangjiang, Shanghai · 10-23—25 · 5-person team) · MoonStone DreamUP (Shanghai · 10-23—25 · 3-person team · roadshow and Q&amp;A completed) · Zhihu Hackathon Campus Season (technical guide complete) · INTERCITY HACK (MVP scheduling and roles set) · CWF / OSChina (agent-framework direction, watching)</p>
     </div>
   </details>
 </section>
 
 <hr>
 
+<section id="stack">
+  <h2>Stack</h2>
+  <p class="muted">Grouped by purpose, not by popularity.</p>
+
+  <div class="grid stack-grid">
+    <div class="card">
+      <h3>AI / HAI Methodology</h3>
+      <p>Human-AI Interaction (HAI) collaboration · protocol-driven symbiotic systems · FEE (Flattering-Echo Effect) · cognitive calibration · self-ethnography · long-horizon multi-window collaboration governance</p>
+    </div>
+    <div class="card">
+      <h3>Python / Local Data</h3>
+      <p>Python · SQLite · six-domain model · relationship-edge inference · read-only WeChat parsing · 15-subcommand CLI · local API (8877) · pure Python, zero compilation · local-first, data never leaves the machine</p>
+    </div>
+    <div class="card">
+      <h3>Embodied AI / Robotics</h3>
+      <p>Python Skill · sim2real · cross-embodiment skill library · ROS2 (140 msg + 93 srv) · capability mapping layer · Skill bindings · parallel simulation and on-device tracks</p>
+    </div>
+    <div class="card">
+      <h3>Trust / Security / On-chain</h3>
+      <p>Dual-model cross-review · SHA-256 on-chain attestation · tamper self-verification · Agent budget caps · auditable constraints · Monad × X402 on-chain payment · PII pre-print audit</p>
+    </div>
+    <div class="card">
+      <h3>Product / Hardware / IoT</h3>
+      <p>CUPS · industrial PC · 4G · remote device management · device-availability monitoring · fault reporting · MVP sprints · cross-project frontend component library · GitHub Pages</p>
+    </div>
+    <div class="card">
+      <h3>Open Source / Licensing</h3>
+      <p>GitHub / Gitee dual-sync · AGPL-3.0-only (open core + closed value-add layer) · CC BY-NC-SA 4.0 · OSF preprint archiving · joint-trust TSA timestamp certification</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
 <section id="research">
-  <h2>Research &amp; Writing</h2>
-  <ul>
-    <li><strong>HAI Collaboration Industry White Paper v1.0rc</strong> — Defines HAI as a category distinct from HCI, with a protocol-driven symbiotic system as the first recorded case. v1.2 revision in progress.</li>
-    <li><strong>FEE · Flattering-Echo Effect</strong> — Identifies a systematic distortion in AI collaboration where models amplify a user's pre-existing judgments, eroding decision quality. <a href="https://osf.io/6jdhm" target="_blank" rel="noopener">OSF preprint ↗</a></li>
-    <li><strong>Self-Ethnography Methodology</strong> — The methodological basis that makes the white paper auditable.</li>
-  </ul>
+  <h2>Research &amp; Method</h2>
+
+  <div class="research-grid">
+  <div class="card proj">
+    <p class="proj-name">HAI Collaboration Industry White Paper <span class="muted">v1.0rc · timestamp-authenticated</span></p>
+    <p class="proj-one">Human-AI collaboration — defining and landing a new category</p>
+    <div class="proj-row"><span class="proj-k">Problem space</span><span class="proj-v">When AI use goes beyond the "tool" category, no existing term covers efficiency, cognitive dependence and self-governance at once. Drawing on six months+ of structured human-AI collaboration, it proposes <strong>HAI collaboration</strong> as a category distinct from HCI.</span></div>
+    <div class="proj-row"><span class="proj-k">Method</span><span class="proj-v">Self-ethnography + quantified evidence + guard against talking only about oneself (protocol-driven symbiotic systems as the first fully documented case).</span></div>
+    <div class="proj-row"><span class="proj-k">Licence</span><span class="proj-v">CC BY-NC-SA 4.0 · certified by joint-trust TSA timestamp</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">FEE · Flattering-Echo Effect</p>
+    <p class="proj-one">A systematic distortion in AI collaboration — models tend to flatter and amplify a user's existing judgment, eroding decision quality.</p>
+    <div class="proj-row"><span class="proj-k">Archive</span><span class="proj-v"><a href="https://osf.io/6jdhm" target="_blank" rel="noopener">OSF preprint · node 6jdhm ↗</a></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">Protocol-driven symbiotic systems</p>
+    <p class="proj-one">A reference architecture and operating discipline for human-AI collaboration — the first complete case in the white paper.</p>
+  </div>
+
+  <div class="card proj print-hide">
+    <p class="proj-name">Literary studies</p>
+    <p class="proj-one">Thesis: the narrative art of Philip K. Dick's <em>Do Androids Dream of Electric Sheep?</em> (self-taught undergraduate, Chinese Language &amp; Literature).</p>
+  </div>
+  </div>
 </section>
 
 <hr>
 
-<section id="highlights">
-  <h2>What you'll see above vs. what's hard to put on a list</h2>
-  <p><strong>Cross-domain integration over single-domain depth.</strong> Background spans HAI research, anti-sycophancy methodology (FEE), hackathon execution, on-chain governance, game-UX creation, self-ethnography, and Chinese literary studies — held together by one frame (a protocol-driven symbiotic system) rather than depth in any single field.</p>
-  <p><strong>Method over throughput.</strong> ~130B+ tokens across ~80k dialogue turns since April 2026. ~73-role mapping in a single-actor solo practice. The number isn't commercial output — it's the depth one human can integrate the methodology end-to-end without losing craft.</p>
-  <p><strong>Honesty over polish.</strong> Where I haven't built a thing yet (e.g. a direction line on a project), this resume says "direction forthcoming" rather than dressing it up. Where I can't act as a senior engineer in a 10-year codebase, I won't claim it. Cross-domain fluency with high-integrity self-description is the actual edge.</p>
-</section>
-
-<div class="card" style="background: var(--accent-50); border-left: 4px solid var(--accent-600); padding: var(--space-6); margin: var(--space-4) 0;">
-  <h3 style="margin: 0 0 var(--space-2);">Monad Blitz V3 (Shanghai · 2026-10-17) <span style="font-size: var(--text-xs); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px;">wrapped</span></h3>
-  <p style="font-size: var(--text-md); margin: var(--space-2) 0;"><strong>Simultaneously led 4 projects, all delivered MVPs in a 36-hour sprint.</strong> One methodology running across governance / evidence / creation / trust layers — each project demoable on its own.</p>
-  <ul style="margin: var(--space-2) 0;">
-    <li><strong>AgentGuard</strong> · <em>team lead</em> · AI Agent budget governance on Monad — on-chain bookkeeping + off-chain AI accounting + X402 payment trigger.</li>
-    <li><strong>CrossCheck</strong> · <em>co-owner</em> · Dual-model audit pipeline + SHA-256 canonical hash on chain · <a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">live demo ↗</a></li>
-    <li><strong>AUREUM (创想集)</strong> · <em>co-owner</em> · Monad Blitz track project · <a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">live demo ↗</a></li>
-    <li><strong>⻅账 · Trust Layer for On-chain AI Agent Organizations</strong> · <em>owner</em> · concept stage, code repository in construction.</li>
-  </ul>
-</div>
-
-<hr>
-
-<section id="hackathons">
-  <h2>Hackathon Experience</h2>
-  <p>Founding engineer across multiple hackathon projects (see Selected Projects above). Recent appearances include Monad Blitz V3 (Shanghai · 2026-10-17, team lead) and the AI Contest series (iXiamen · 2026). Practice side takes the same methodology that drives the white paper and turns it into a bounded, demoable artifact within the available time budget.</p>
-</section>
-
-<hr>
-
-<section id="currently">
-  <h2>Currently</h2>
-  <ul>
-    <li>Closing Monad Blitz V3 (Shanghai) — AgentGuard live demo submitted (2026-10-17).</li>
-    <li>Competing at GDPS 2026 &amp; IEIC (Shanghai · 2026-10-23—25) with SkillBridge — 5-person team, cross-embodiment Agent skill library.</li>
-    <li>Silnk is live at <a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn</a>; the open core (Renpu, AGPL-3.0-only) is being routed into a real bounty-marketplace channel for result-based delivery.</li>
-    <li>Open to remote collaboration on protocol-driven, AI-governance, and self-ethnography work.</li>
-  </ul>
+<section id="numbers">
+  <h2>Usage &amp; Self-Evidence</h2>
+  <p class="muted">These numbers are not achievements — they are sample size. FEE's quantification, the protocol's iterations, the white paper's methodological basis all rest on these real turns. A methodology without real usage is only a claim on paper.</p>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-n">~13B</div>
+      <div class="kpi-l">tokens used</div>
+      <div class="kpi-s">≈ 84,000 novels of Dream of the Red Chamber</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">~80k</div>
+      <div class="kpi-l">real collaboration turns</div>
+      <div class="kpi-s">Apr 2026 → now</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">95%</div>
+      <div class="kpi-l">agent-window share</div>
+      <div class="kpi-s">web deepseek 3.5% · other 1.5%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">277 titles</div>
+      <div class="kpi-l">games · 20,000+ hours</div>
+      <div class="kpi-s">Full-achievement collector · souls-like / PVP</div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: var(--space-4);">
+    Channel mix: agent window 95% · web deepseek 3.5% · other 1.5%. Rhythm: Apr start → Jul shift to agent windows → Oct long-context as the main workhorse.<br>
+    Proof-driven · the remonstrating advisor, not the flatterer · mirror by another · <em>live my life on my way · leave a trail</em>
+  </p>
 </section>
 
 <hr>
 
-<section id="hobbies">
-  <h2>Hobbies</h2>
-  <p>277 games across full-completionist collection; 20,000+ hours; Souls-likes (Bloodborne / Lies of P) and PVP (Naraka: Bladepoint) as long-running lanes. Long-form Chinese reading as a structural habit. Game-UX self-study as a way to keep craft honest and observe behavior at the player–interface seam.</p>
-</section>
-
-<hr>
-
-<section id="online">
-  <h2>Online</h2>
-  <ul>
-    <li><strong>Zhihu</strong> — long-form essays on HAI / FEE / self-ethnography · <a href="https://www.zhihu.com/people/jiang-ping-8-61" target="_blank" rel="noopener">zhihu.com/people/jiang-ping-8-61 ↗</a></li>
-    <li><strong>Weibo</strong> — public-line micro-blogs · <a href="https://weibo.com/u/3069897487" target="_blank" rel="noopener">weibo.com/u/3069897487 ↗</a></li>
-    <li><strong>Bilibili</strong> — drafts and longer-form clips · <a href="https://space.bilibili.com/14376381" target="_blank" rel="noopener">space.bilibili.com/14376381 ↗</a></li>
-    <li><strong>WeChat Official Account · 蒋平的 AI 认知课程</strong> — long-form AI methodology publishing + subscriber list (HAI / FEE / self-ethnography / anti-sycophancy / hackathon real-ops) — <em>now live</em> · <img src="../wechat-qr.png" alt="WeChat QR code: 蒋平的AI认知课程" style="width: 120px; height: auto; vertical-align: middle; border-radius: 8px;" loading="lazy"></li>
-  </ul>
-</section>
-
-<hr>
-
-<section id="github">
+<section id="repos">
   <h2>GitHub</h2>
-  <p class="muted">Account <a href="https://github.com/jackyjinggit" target="_blank" rel="noopener">@jackyjinggit</a> · key repos + co-owner demo repos (non-self repos listed for access).</p>
-  <h3 style="margin-top: var(--space-6); font-size: var(--text-base); color: var(--ink-700);">@jackyjinggit owned</h3>
-  <ul>
-    <li><strong>printpilot (Silnk 思印客)</strong> — self-service printing management platform. MVP in a 2-day sprint. <a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a> · Repository · repo pending.</li>
-    <li><strong>kanshan-frontend</strong> — cross-project frontend component library (UI/UX asset base for Silnk and adjacent projects). <a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">Repository ↗</a></li>
-    <li><strong>renpu（仁谱）</strong> — local relationship-genealogy engine, AGPL-3.0-only. Local SQLite + six-domain model + relationship-edge inference + read-only WeChat parsing + 15-subcommand CLI / local API; pure Python, zero compilation, <strong>data never leaves the machine</strong>. <span class="muted">Repository being published (link follows release)</span></li>
-  </ul>
-  <h3 style="margin-top: var(--space-6); font-size: var(--text-base); color: var(--ink-700);">Co-owner demo repos</h3>
-  <ul>
-    <li><strong>CrossCheckMonadBlitz20261017</strong> — @yanyu473 (teammate) · dual-model audit + on-chain SHA-256 evidence. <a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">Live demo ↗</a> · <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">Source ↗</a></li>
-    <li><strong>aureum-creation-hub (AUREUM)</strong> — @determine123 (teammate) · Monad Blitz track project. <a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">Live demo ↗</a> · <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">Source ↗</a></li>
-  </ul>
+  <p class="muted">Key project repos + joint demo repos (including teammates' repos, for convenience).</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Own repos</h3>
+      <p>
+        <a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">renpu</a> · local relationship-genealogy engine, AGPL-3.0-only<br>
+        <a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">kanshan-frontend</a> · Kanshan front-end, cross-project component library<br>
+        <a href="https://github.com/jackyjinggit/personal-home" target="_blank" rel="noopener">personal-home</a> · personal site (GitHub Pages)<br>
+        printpilot / Silnk · repo in preparation
+      </p>
+    </div>
+    <div class="card">
+      <h3>Joint demo repos</h3>
+      <p>
+        <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">CrossCheckMonadBlitz20261017</a> · dual-model reports + on-chain SHA-256 evidence<br>
+        <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">aureum-creation-hub</a> · AUREUM creation hub
+      </p>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p class="muted">Reach out via GitHub issues or project contact channels. Main profile: <a href="../" hreflang="zh-CN" lang="zh-CN">Chinese homepage</a></p>
-  <p>Last updated: 2026-10-24 · Added the Journey section and rewrote projects as problem / build / evidence · New: Renpu (AGPL open core) and Kanshan copilot</p>
+  <p>Feedback welcome via GitHub Issues or the Zhihu column.</p>
+  <p>WeChat public account <strong>「蒋平的 AI 认知课程」</strong> — HAI / FEE / self-ethnography / anti-flattery / hackathon practice.</p>
+  <p class="muted" style="margin-top: var(--space-4);">
+    Generated from the <a href="https://jackyjinggit.github.io/personal-home/">personal homepage</a> · 2026-10-24 · white paper certified by joint-trust trusted timestamp · all rights reserved
+  </p>
 </footer>
 
 </body>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蒋平 · 简历 — 黑客松领队 / 独立研究者</title>
+<meta name="description" content="蒋平 — 独立研究者，人机协作（HAI）方向，FEE 反谄臣效应提出者。黑客松领队，多个开源项目创始工程师。自助打印统一管理、链上记账、AI 安全审核。">
+<meta name="author" content="蒋平">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="蒋平 · 简历">
+<meta property="og:description" content="独立研究者 · HAI 协作方法论 · 黑客松领队 · 开源项目创始工程师">
+<style>
+  /* === Design Tokens · v0.1 · 2026-10-17（与 personal-home 同源） === */
+  :root {
+    --accent-50: #e8f0fe; --accent-100: #d2e3fc; --accent-200: #aecbfa; --accent-300: #8ab4f8;
+    --accent-400: #669df6; --accent-500: #4285f4; --accent-600: #1a73e8; --accent-700: #1967d2;
+    --accent-800: #185abc; --accent-900: #174ea6;
+    --ink-50: #fafafa; --ink-100: #f5f5f5; --ink-200: #eeeeee; --ink-300: #e0e0e0;
+    --ink-400: #bdbdbd; --ink-500: #9e9e9e; --ink-600: #757575; --ink-700: #616161;
+    --ink-800: #424242; --ink-900: #212121;
+    --success: #2e7d32; --warning: #e65100; --error: #c62828; --info: #0277bd;
+    --accent: var(--accent-600); --ink: var(--ink-900); --sub: var(--ink-600);
+    --line: var(--ink-300); --bg: var(--ink-50);
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px;
+    --space-8: 32px; --space-12: 48px; --space-16: 64px;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-pill: 999px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+    --shadow-md: 0 1px 4px rgba(0,0,0,.08);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.10);
+    --text-xs: 12px; --text-sm: 14px; --text-base: 16px; --text-md: 18px; --text-lg: 20px;
+    --text-xl: 24px; --text-2xl: 32px; --text-3xl: 48px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --duration-fast: 120ms; --duration-base: 200ms;
+    --easing-out: cubic-bezier(0.2, 0.8, 0.4, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg); color: var(--ink);
+    line-height: 1.75; margin: 0;
+    padding: 0 var(--space-4) var(--space-16);
+    max-width: 100%;
+  }
+  @media (min-width: 768px) { body { padding: 0 var(--space-6) var(--space-16); } }
+
+  h1, h2, h3 { color: var(--ink); margin: 0 0 var(--space-3); line-height: 1.35; }
+  h1 { font-size: var(--text-2xl); font-weight: 600; letter-spacing: 0.02em; }
+  h2 { font-size: var(--text-xl); margin-top: var(--space-8); }
+  h3 { font-size: var(--text-md); }
+  p { margin: 0 0 var(--space-4); }
+  strong { color: var(--ink); font-weight: 600; }
+  em { color: var(--ink-700); font-style: italic; }
+  ol, ul { padding-left: var(--space-6); }
+
+  a { color: var(--accent-700); text-decoration: none; transition: color var(--duration-fast) var(--easing-out); }
+  a:hover, a:focus-visible { color: var(--accent-800); text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent-300); outline-offset: 2px; }
+
+  hr { border: none; border-top: 1px solid var(--line); margin: var(--space-8) 0; }
+  section { padding: var(--space-4) 0; }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+    margin: var(--space-4) 0;
+  }
+  .card h3 { margin: 0 0 var(--space-2); font-weight: 600; }
+  .card p { margin: var(--space-1) 0; font-size: var(--text-sm); color: var(--ink-700); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .grid .card { margin: 0; }
+
+  .subtitle { color: var(--sub); font-size: var(--text-sm); margin-bottom: var(--space-4); }
+  .muted { color: var(--sub); font-size: var(--text-sm); }
+  ul li { margin: var(--space-2) 0; }
+
+  /* === 时间线 + 项目三段式 === */
+  .thesis {
+    background: var(--accent-50);
+    border-left: 4px solid var(--accent-600);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .thesis p { font-size: var(--text-md); margin: 0 0 var(--space-3); color: var(--ink-800); }
+  .thesis p:last-child { margin-bottom: 0; }
+
+  .timeline { position: relative; margin: var(--space-6) 0 0; padding-left: var(--space-8); }
+  .timeline::before {
+    content: ""; position: absolute; left: 9px; top: 10px; bottom: 10px;
+    width: 2px; background: var(--accent-200);
+  }
+  .tl-item { position: relative; margin-bottom: var(--space-6); }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: calc(var(--space-8) * -1 + 3px); top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--accent-400);
+  }
+  .tl-item.tl-now::before { background: var(--accent-600); border-color: var(--accent-600); }
+  .tl-when { font-size: var(--text-xs); color: var(--accent-800); font-weight: 600; letter-spacing: 0.04em; }
+  .tl-what { font-size: var(--text-lg); font-weight: 600; margin: 2px 0 var(--space-1); color: var(--ink-900); }
+  .tl-turn { font-size: var(--text-sm); color: var(--ink-700); margin: 0 0 var(--space-2); }
+  .tl-turn strong { color: var(--accent-800); }
+  .tl-why { font-size: var(--text-sm); color: var(--sub); margin: 0; }
+
+  .proj { margin-bottom: var(--space-6); }
+  .proj:last-child { margin-bottom: 0; }
+  .proj-name { font-size: var(--text-lg); font-weight: 600; color: var(--ink-900); margin: 0 0 var(--space-1); }
+  .proj-one { font-size: var(--text-sm); color: var(--sub); margin: 0 0 var(--space-3); }
+  .proj-row {
+    display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--space-3);
+    align-items: start;
+    margin-bottom: var(--space-2); font-size: var(--text-sm); line-height: 1.7;
+  }
+  .proj-row:last-child { margin-bottom: 0; }
+  .proj-k {
+    white-space: nowrap;
+    color: var(--accent-800); font-weight: 600; font-size: var(--text-xs);
+    letter-spacing: 0.03em; padding-top: 2px;
+  }
+  .proj-v { color: var(--ink-700); min-width: 0; overflow-wrap: anywhere; }
+  .proj-v a { overflow-wrap: anywhere; }
+
+  /* === 评委视角新增：能力证据条 === */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-3);
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .kpi {
+    background: #fff; border-radius: var(--radius-md);
+    padding: var(--space-4); box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--accent-500);
+  }
+  .kpi-n {
+    font-size: var(--text-xl); font-weight: 700; color: var(--accent-700);
+    line-height: 1.15; letter-spacing: -0.02em;
+    white-space: nowrap; overflow-wrap: normal;
+  }
+  .kpi-l { font-size: var(--text-xs); color: var(--ink-600); margin-top: 4px; line-height: 1.5; }
+  .kpi-s { font-size: var(--text-xs); color: var(--ink-500); margin-top: 2px; line-height: 1.45; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-2) 0 0; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill);
+    background: var(--accent-50); color: var(--accent-800);
+    font-size: var(--text-xs); border: 1px solid var(--accent-200);
+  }
+
+  details.inbuilding { margin-top: var(--space-4); }
+  details.inbuilding > summary {
+    cursor: pointer; font-size: var(--text-sm); color: var(--ink-700);
+    padding: var(--space-3) var(--space-4); background: var(--ink-100);
+    border-radius: var(--radius-md); list-style: none;
+  }
+  details.inbuilding > summary::-webkit-details-marker { display: none; }
+  details.inbuilding > summary::before { content: "▸ "; color: var(--ink-500); }
+  details.inbuilding[open] > summary::before { content: "▾ "; }
+  details.inbuilding .card { margin-top: var(--space-3); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--sub);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: var(--text-xl); }
+    .proj-row { display: block; }
+    .proj-k { display: block; margin-bottom: 2px; }
+    .proj-v a { word-break: break-all; }
+    .tl-item::before { left: calc(var(--space-8) * -1 + 1px); }
+  }
+
+  /* === 打印（A4 PDF 友好） === */
+  @media print {
+    body { background: #fff; padding: 0; font-size: 11pt; line-height: 1.6; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; margin-top: 18pt; }
+    h3 { font-size: 12pt; }
+    .card { box-shadow: none; border: 1px solid var(--line); padding: 10pt 12pt; break-inside: avoid; }
+    .thesis { break-inside: avoid; }
+    .tl-item { break-inside: avoid; }
+    .proj { break-inside: avoid; margin-bottom: 12pt; }
+    .kpi { box-shadow: none; border: 1px solid var(--line); border-top: 3px solid var(--accent-500); break-inside: avoid; }
+    hr { margin: 12pt 0; }
+    a { color: var(--ink-800); }
+    details.inbuilding > summary { background: var(--ink-100); }
+    section { padding: 4pt 0; }
+  }
+
+  /* === 评委版打印收紧：控制在 3 页内 === */
+  @media print {
+    body { font-size: 9.6pt; line-height: 1.45; }
+    h1 { font-size: 17pt; margin-bottom: 4pt; }
+    h2 { font-size: 12pt; margin: 12pt 0 4pt; }
+    h3 { font-size: 10pt; }
+    p { margin: 0 0 5pt; }
+    .subtitle { font-size: 9pt; margin-bottom: 6pt; }
+    .muted { font-size: 8.4pt; }
+    .thesis { padding: 8pt 10pt; margin: 6pt 0 8pt; }
+    .thesis p { font-size: 9.4pt; margin: 0 0 3pt; }
+    .kpis { grid-template-columns: repeat(3, 1fr); gap: 5pt; margin: 6pt 0 8pt; }
+    .kpi { padding: 6pt 8pt; }
+    .kpi-n { font-size: 13pt; }
+    .kpi-l { font-size: 7.6pt; margin-top: 1pt; }
+    .kpi-s { font-size: 7.2pt; }
+    .timeline { padding-left: 20pt; }
+    .tl-item { margin-bottom: 8pt; }
+    .tl-when { font-size: 7.8pt; }
+    .tl-what { font-size: 10.5pt; margin: 0 0 1pt; }
+    .tl-turn, .tl-why { font-size: 8.6pt; margin-bottom: 2pt; }
+    .card { padding: 7pt 9pt; margin: 5pt 0; }
+    .proj { margin-bottom: 7pt; }
+    .proj-name { font-size: 10.5pt; margin-bottom: 1pt; }
+    .proj-one { font-size: 8.6pt; margin-bottom: 3pt; }
+    .proj-row { font-size: 8.6pt; margin-bottom: 1.5pt; grid-template-columns: 68pt 1fr; gap: 5pt; }
+    .proj-k { font-size: 7.8pt; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 5pt; }
+    .grid .card { margin: 0; padding: 6pt 8pt; }
+    .grid .card p { font-size: 8.2pt; }
+    hr { margin: 8pt 0; }
+    section { padding: 2pt 0; }
+    footer { margin-top: 10pt; padding-top: 6pt; font-size: 8.4pt; }
+    /* 打印时展开可折叠区块（评委要看到全部） */
+    details.inbuilding { display: block; }
+    details.inbuilding > summary { display: none; }
+    details.inbuilding .card { margin-top: 4pt; }
+    /* 「研究与方法」与「使用量」压成两栏 */
+    #research, #numbers, #repos { break-inside: auto; }
+  }
+
+  /* === 评委版打印精简：研究区两列 + 隐藏非核心 === */
+  @media print {
+    /* 研究与方法 4 卡 → 两列 */
+    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5pt; }
+    .research-grid .card { margin: 0; break-inside: avoid; }
+    /* 文学研究对评委非核心 → 打印时隐藏（网页版仍可见） */
+    .print-hide { display: none !important; }
+    /* 技术栈 6 卡 → 三列（更紧凑） */
+    .stack-grid { grid-template-columns: repeat(3, 1fr); gap: 5pt; }
+    .stack-grid .card { padding: 5pt 7pt; }
+    .stack-grid .card p { font-size: 7.6pt; line-height: 1.4; }
+    .stack-grid .card h3 { font-size: 8.6pt; margin-bottom: 2pt; }
+  }
+
+  /* === 评委版最终收紧 === */
+  @media print {
+    /* 在建中的概念项目：打印时折叠（评委要看的已交付项目才展开） */
+    details.inbuilding { display: block; }
+    details.inbuilding > summary {
+      display: block; font-size: 8.6pt; font-weight: 600; color: var(--ink-600);
+      background: var(--ink-100); padding: 4pt 6pt; border-radius: 3pt;
+    }
+    details.inbuilding > summary::before { content: ""; }
+    details.inbuilding .card { display: none; }
+    /* 使用量区压紧 */
+    #numbers .kpis { grid-template-columns: repeat(4, 1fr); }
+    #numbers .kpi-s { display: none; }
+    /* GitHub 区：两卡并排已做，再紧一档 */
+    #repos .card { padding: 5pt 7pt; }
+    #repos .card p { font-size: 8pt; }
+    /* 底部 footer 收窄 */
+    footer p { margin-bottom: 2pt; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="muted" style="text-align: right; margin-bottom: var(--space-4);">🌐 <a href="en/resume.html" hreflang="en" lang="en">English</a> · <a href="index.html">个人主页</a></p>
+  <h1>蒋平</h1>
+  <p class="subtitle">独立研究者 · 人机协作（HAI）方法论 · 黑客松领队 · 开源项目创始工程师</p>
+  <p>一个独立研究者，把「<strong>AI 到底该怎么和人一起干活</strong>」这一个问题，<strong>从踩坑做到方法论、从方法论做到工具、从工具做到产品</strong>。</p>
+  <div class="thesis">
+    <p><strong>我在解决什么</strong></p>
+    <p>1. <strong>AI 很会附和</strong>——它让你觉得都对，然后你的判断被一点点磨平（FEE 反谄臣效应，已量化）。</p>
+    <p>2. <strong>深度协作没有护栏</strong>——多轮、多窗口、长周期协作会悄悄失控，缺的不是更强的模型，是一层认知校准。</p>
+    <p>3. <strong>协作过程不可见</strong>——没有人能说清「这三个月到底发生了什么」，于是没人能复核、没人敢复用。</p>
+    <p>4. <strong>一个人做不完的事太多</strong>——但组队就意味着交出方向，所以工具和协议才是杠杆。</p>
+  </div>
+  <p class="muted">
+    GitHub: <a href="https://github.com/jackyjinggit" target="_blank" rel="noopener">@jackyjinggit</a>
+    · Gitee: <a href="https://gitee.com/jacky_jiang_gitee" target="_blank" rel="noopener">@jacky_jiang_gitee</a>
+    · 知乎: <a href="https://www.zhihu.com/people/jiang-ping-8-61" target="_blank" rel="noopener">@蒋平</a>
+    · B 站: <a href="https://space.bilibili.com/14376381" target="_blank" rel="noopener">@14376381</a>
+  </p>
+</header>
+
+<hr>
+
+<section id="evidence">
+  <h2>评委速览</h2>
+  <p class="muted">如果只有 30 秒——这六个数字是我能拿出的全部硬证据。</p>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-n">36 小时</div>
+      <div class="kpi-l">同时组织 4 个项目</div>
+      <div class="kpi-s">Monad Blitz V3 收尾日 · 全部落地 MVP</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">5 人队</div>
+      <div class="kpi-l">GDPS / IEIC 领队</div>
+      <div class="kpi-s">200+ 队伍报名 · 9 大赛道 23 赛项</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">130 亿</div>
+      <div class="kpi-l">token · ~8 万轮协作</div>
+      <div class="kpi-s">2026-04 至今 · 方法论的数据底座</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">2 天</div>
+      <div class="kpi-l">MVP 冲刺上线</div>
+      <div class="kpi-s">思印客 Silnk · 已上线运营</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">15 命令</div>
+      <div class="kpi-l">仁谱 CLI + 本地 API</div>
+      <div class="kpi-s">纯 Python 零编译 · AGPL-3.0-only 已开源</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">233 接口</div>
+      <div class="kpi-l">ROS2 msg 140 + srv 93</div>
+      <div class="kpi-s">15 个接口包编译通过 · SkillBridge</div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="summary">
+  <h2>我是什么</h2>
+  <p>独立研究者，方向聚焦<strong>人机协作（HAI）与协议驱动共生系统</strong>。《HAI 协作行业白皮书》作者（v1.0rc，CC BY-NC-SA 4.0，已时间戳认证）· <strong>FEE 反谄臣效应</strong>提出者（OSF 预印本，节点 6jdhm）——一个把「谗臣效应」从中文互联网词汇变成可量化研究对象的工作。</p>
+  <p>同时是多个开源项目的创始工程师，把同一套 HAI 方法论落到<strong>限定时间内可演示的交付</strong>：自助打印统一管理、链上可信记账、多模态安全审核。自我民族志实践者，一年以上的结构化人-AI 协作记录者。</p>
+  <p class="muted">研究侧写方法论，实践侧把它变成能跑的东西——这是我一直在做的同一件事。</p>
+</section>
+
+<hr>
+
+<section id="journey">
+  <h2>五次跃迁</h2>
+  <p class="muted">不是简历式的罗列——每一次跃迁都是被一个真问题推着走的。</p>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-when">2026 年 4 月</div>
+      <div class="tl-what">把 AI 当日用工位</div>
+      <p class="tl-turn">写长文、跑批处理、维护知识库、做分发——<strong>三个月后账单比直觉更诚实</strong>：AI 费率的下降是算术题，不是情绪。</p>
+      <p class="tl-why">这一阶段的产物是后来所有方法论的<strong>数据底座</strong>：<strong>~130 亿 token / ~8 万轮真实协作</strong>——不是读出来的，是用出来的。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 年 8 月 5 日</div>
+      <div class="tl-what">把问题说出去：扶手不够</div>
+      <p class="tl-turn">写《给 AI 工作台的一封公开信：能力够了，扶手呢？》——<strong>第一次发现有人在评论区真的在问「那怎么办」</strong>。</p>
+      <p class="tl-why">由此开出专栏《AI 协作的认知结构研究》，把「谗臣效应」从中文互联网词汇变成一个可量化的研究对象（FEE）。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 年 9 月</div>
+      <div class="tl-what">把病做成药：看山 copilot</div>
+      <p class="tl-turn">「先把自己的轨迹看清，再决定下一步」手工做了很久——<strong>于是把它做成了工具</strong>，以参赛项目身份参加知乎黑客松（赛题项目名「创作校准引擎」）。</p>
+      <p class="tl-why"><strong>第一次从「说问题的人」变成「做工具的人」</strong>——也是第一次被别人拿去用。演示用合成账号（页面标注「演示数据」，免登录），真实账号走官方只读授权，密钥只留本机。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 年 10 月</div>
+      <div class="tl-what">体系成立：白皮书 + 论文</div>
+      <p class="tl-turn">《HAI 协作行业白皮书》v1.2 定稿并经时间戳认证；FEE 预印本在 OSF 存档（节点 6jdhm）——<strong>个人经验变成可被引用的方法</strong>。</p>
+      <p class="tl-why">用自我民族志方法记录协作实践，提出 HAI 协作作为独立于 HCI 的新类别，并给出三年路线。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-when">2026 年 10 月 17 日</div>
+      <div class="tl-what">从一个人做，到组队交付</div>
+      <p class="tl-turn">Monad Blitz V3 收尾日 <strong>36 小时内同时组织 4 个项目全部落地 MVP</strong>——治理层、证据层、创意层、信任层，方法论一致，各自都能演示。</p>
+      <p class="tl-why">这验证了一件事：<strong>方法论一致时，组队不是妥协，是放大</strong>。之后带 <strong>5 人队</strong>打 GDPS 暨 IEIC（SkillBridge 跨本体技能库）。</p>
+    </div>
+
+    <div class="tl-item tl-now">
+      <div class="tl-when">2026 年 10 月 25 日 · 现在</div>
+      <div class="tl-what">第一条真营收线 + 开放核心 + 双线完赛</div>
+      <p class="tl-turn">思印客 Silnk 官网上线；仁谱 renpu 以 <strong>AGPL-3.0-only</strong> 开源——<strong>把开放核心送进真实交易通道</strong>。同一周双线作战：5 人队 GDPS 暨 IEIC（SkillBridge）+ 3 人队 MoonStone DreamUP 完成路演与答辩（Silnk · AI + 硬件赛道 · 三层硬件全自研 · 210 项 pytest 通过）。</p>
+      <p class="tl-why">下一步：让开放核心负责获客，让闭源增值层负责变现，两条路各走各的、不混在一条链上；真机联调受现场硬件限制就如实标注——<strong>证据强度本身就是说服力</strong>。</p>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+
+<section id="projects">
+  <h2>近期项目</h2>
+  <p class="muted">每个项目都回答同一个问题：<strong>它解决的是谁的问题？</strong></p>
+
+  <div class="card proj">
+    <p class="proj-name">思印客 Silnk <span class="muted">已上线</span> <span class="muted">MoonStone 已参赛</span></p>
+    <p class="proj-one">自助打印机的统一管家</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">高校与园区里散落的自助打印机——没有后台、无法远程管理、坏了没人知道，只能靠人蹲点。更深一层：<strong>打错才被发现、拿错没人能证明、源文件长期留在机器里</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">把「上传 → 体检 → 计价 → 支付 → 打印 → 取件 → 删除」做成一条<strong>可审计</strong>链路；<strong>三层硬件自研</strong>：涂鸦 T5AI 取件屏（串口接收真实状态 / 纸量 / 取件码，触摸确认回传）· 地瓜 RDK X5 出纸口视觉检测 · 旧打印机零配置接入（图形向导 + 4 位接入码批准即下发本机令牌）。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a> · <a href="https://jackyjinggit.github.io/personal-home/sentinel-v07/index.html">AI 守门人演示 ↗</a>（PII 印前审核）· <strong>210 项 pytest 通过</strong> · MoonStone DreamUP 黑客松（上海 · 10-23—25 · 3 人队 · AI + 硬件赛道 · 已完成路演答辩）</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">SkillBridge <span class="muted">参赛中</span></p>
+    <p class="proj-one">跨本体的 Agent 技能库</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">同一套机器人作业技能，换一台机器就要重写一遍——硬件型号越杂，重复劳动越贵。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">一套 <strong>Python Skill</strong> 从 <strong>sim2real</strong> 到任意真机<strong>零改动迁移</strong>；<strong>15 个 ROS2 接口包编译通过（140 msg + 93 srv）+ 16 项官方能力映射层 + 15 个 Skill 绑定</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v">GDPS 2026 暨 IEIC 国际具身智能技能大赛（上海张江 · 10-23—25 · 5 人队）· <strong>真机联调受现场硬件配置限制（缺网关 / 电池）</strong>，同步推进仿真与展示双线</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">仁谱 renpu <span class="muted">已开源 · AGPL-3.0-only</span></p>
+    <p class="proj-one">本地人脉关系图谱引擎</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">通讯录里躺着几百个联系人，但没人说得清<strong>谁是谁的人</strong>、哪条关系是真是假。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">本地 <strong>SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API</strong>，纯 Python 零编译——<strong>数据不出本机</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">github.com/jackyjinggit/renpu ↗</a> · AGPL-3.0-only（开放核心可自由使用与再分发，署名义务除外）· 本地 API 端口 8877</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">看山 copilot <span class="muted">知乎黑客松参赛</span></p>
+    <p class="proj-one">创作者的内容复盘工具</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">创作者手里有数据，却不知道哪篇内容在留人、主页转化卡在哪一步。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">拉公开数据 → 算留人曲线 → 定位两个拐点 → 输出主页诊断。演示用合成账号（标注「演示数据」，免登录出结论）；跑自己的号走官方只读授权，<strong>Access Secret 只留本机、不进前端</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">github.com/jackyjinggit/kanshan-frontend ↗</a> · 知乎专栏自述</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">CrossCheck <span class="muted">已交付 · 联合 owner</span></p>
+    <p class="proj-one">双模型报告与链上证据</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">报告出了，没人能证明它没被改过——尤其是 AI 生成的报告。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v"><strong>链下双模型交叉审核 + 链上 SHA-256 存证 + 篡改自检验</strong>，证据可独立复算。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">Live demo ↗</a> · <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">源码 ↗</a></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">AgentGuard <span class="muted">已交付 · 带队</span></p>
+    <p class="proj-one">AI Agent 受限预算 + 治理层</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">Agent 能自主花钱，但没有预算上限，等于替它开了张无限额度的卡。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v"><strong>受限预算 + 治理层</strong>，结合 <strong>Monad × X402 链上支付</strong>，把「能花多少、花在哪儿」变成<strong>可审计的约束</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v">Monad Blitz V3 带队项目 · 赛后补链</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">创想集 AUREUM <span class="muted">已交付 · 联合 owner</span></p>
+    <p class="proj-one">把零散想法收成可展示的作品集</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">独立开发者手里有一堆半成品 idea，但它们散在各处，永远无法被别人一眼看懂。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">Monad Blitz 关联项目，做成<strong>统一入口与展示层</strong>。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><a href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">Live demo ↗</a> · <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">源码 ↗</a></span></div>
+  </div>
+
+  <details class="inbuilding">
+    <summary>在建中：⻅账 · AI 大赛（i 厦门）三线 · 其他参赛记录</summary>
+    <div class="card proj">
+      <p class="proj-name">⻅账 <span class="muted">在建中</span></p>
+      <p class="proj-one">AI Agent 组织的链上信任层</p>
+      <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">多个 Agent 协作时，贡献无法度量、承诺无法追责、账目无处可查。</span></div>
+      <div class="proj-row"><span class="proj-k">状态</span><span class="proj-v">概念阶段，代码仓建设中 · Monad Blitz owner</span></div>
+    </div>
+    <div class="card proj">
+      <p class="proj-name">AI 大赛（i 厦门）#1 / #2 / #3 <span class="muted">参赛中</span></p>
+      <p class="proj-one">安全攻防 / 幻觉挑战 / 多模态审核</p>
+      <div class="proj-row"><span class="proj-k">共同问题</span><span class="proj-v">三条线都指向同一件事：<strong>AI 输出的可信边界在哪</strong>。</span></div>
+      <div class="proj-row"><span class="proj-k">赛事</span><span class="proj-v"><a href="https://ai.xm.gov.cn" target="_blank" rel="noopener">ai.xm.gov.cn ↗</a> · 三条赛道连续提交</span></div>
+    </div>
+    <div class="card proj">
+      <p class="proj-name">其他赛事记录</p>
+      <p class="proj-one">Monad Blitz V3（上海 · 10-17 · 4 项目全部落地 MVP）· GDPS / IEIC（上海张江 · 10-23—25 · 5 人队）· MoonStone DreamUP（上海 · 10-23—25 · 3 人队 · 已完成路演答辩）· 知乎黑客松校园季（已完成技术指南）· INTERCITY HACK（已有 MVP 排程与分工）· CWF / OSChina（智能体框架方向，关注）</p>
+    </div>
+  </details>
+</section>
+
+<hr>
+
+<section id="stack">
+  <h2>技术栈</h2>
+  <p class="muted">按用途分，不按流行度排。</p>
+
+  <div class="grid stack-grid">
+    <div class="card">
+      <h3>AI / HAI 方法论</h3>
+      <p>Human-AI Interaction（HAI）协作 · 协议驱动共生系统 · FEE 反谄臣效应 · 认知校准 · 自我民族志 · 多轮多窗口长周期协作治理</p>
+    </div>
+    <div class="card">
+      <h3>Python / 本地数据</h3>
+      <p>Python · SQLite · 六域模型 · 关系边推导 · 微信只读解析 · 15 子命令 CLI · 本地 API（8877）· 纯 Python 零编译 · Local-first / 数据不出本机</p>
+    </div>
+    <div class="card">
+      <h3>具身智能 / 机器人</h3>
+      <p>Python Skill · sim2real · 跨本体技能库 · ROS2（140 msg + 93 srv）· 能力映射层 · Skill 绑定 · 仿真与真机双线推进</p>
+    </div>
+    <div class="card">
+      <h3>可信 / 安全 / 链上</h3>
+      <p>双模型交叉审核 · SHA-256 链上存证 · 篡改自检验 · Agent 预算上限 · 可审计约束 · Monad × X402 链上支付 · PII 印前审核</p>
+    </div>
+    <div class="card">
+      <h3>产品 / 硬件 / IoT</h3>
+      <p>CUPS · 工控机 · 4G · 远程设备管理 · 设备在线状态监控 · 故障上报 · MVP 冲刺 · 跨项目前端组件库 · GitHub Pages</p>
+    </div>
+    <div class="card">
+      <h3>开源 / 许可</h3>
+      <p>GitHub / Gitee 双同步 · AGPL-3.0-only（开放核心 + 闭源增值层）· CC BY-NC-SA 4.0 · OSF 预印本 · 联合信任 TSA 时间戳认证</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="research">
+  <h2>研究与方法</h2>
+
+  <div class="research-grid">
+  <div class="card proj">
+    <p class="proj-name">HAI 协作行业白皮书 <span class="muted">v1.0rc · 时间戳认证</span></p>
+    <p class="proj-one">人类-AI 协作——一个新类别的定义与落地</p>
+    <div class="proj-row"><span class="proj-k">问题空间</span><span class="proj-v">当 AI 的使用深度超过「工具」范畴时，现有词汇没有一个能同时覆盖效率、认知依赖和自我治理这三个维度。基于超过六个月的结构化人-AI 协作实践，提出 <strong>HAI 协作</strong>作为一个独立于 HCI 的新类别。</span></div>
+    <div class="proj-row"><span class="proj-k">方法基础</span><span class="proj-v">自我民族志 + 量化证据 + 防止自说自话（协议驱动共生系统为首个完整案例）。</span></div>
+    <div class="proj-row"><span class="proj-k">许可</span><span class="proj-v">CC BY-NC-SA 4.0 · 已通过联合信任 TSA 时间戳认证</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">FEE · 反谄臣效应 <span class="muted">Flattering-Echo Effect</span></p>
+    <p class="proj-one">指出 AI 协作中的一类系统性失真——模型倾向于附和与放大使用者既有判断，从而侵蚀决策质量。</p>
+    <div class="proj-row"><span class="proj-k">存档</span><span class="proj-v"><a href="https://osf.io/6jdhm" target="_blank" rel="noopener">OSF 预印本 · 节点 6jdhm ↗</a></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">协议驱动共生系统</p>
+    <p class="proj-one">人机协作的参考架构与运行纪律，HAI 白皮书中的首个完整案例。</p>
+  </div>
+
+  <div class="card proj print-hide">
+    <p class="proj-name">文学研究</p>
+    <p class="proj-one">毕业论文：菲利普·K·迪克《仿生人会梦见电子羊》的叙事艺术（成人本科自考 · 汉语言文学）。</p>
+  </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="numbers">
+  <h2>使用量与自证</h2>
+  <p class="muted">这些数字不是成就，是样本量——FEE 的量化、协作协议的迭代、白皮书的方法论基础，都建立在这些真实轮次之上。一个没有真实使用量的方法论，只是纸面主张。</p>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-n">~130 亿</div>
+      <div class="kpi-l">token 总用量</div>
+      <div class="kpi-s">≈ 8.4 万部《红楼梦》</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">~8 万轮</div>
+      <div class="kpi-l">真实协作轮次</div>
+      <div class="kpi-s">2026-04 至今</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">95%</div>
+      <div class="kpi-l">agent 窗占比</div>
+      <div class="kpi-s">网页端 3.5% · 其他 1.5%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">277 款</div>
+      <div class="kpi-l">游戏 · 20000+ 小时</div>
+      <div class="kpi-s">全成就收集 · 魂系 / PVP 重度</div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: var(--space-4);">
+    渠道构成：agent 窗 95% · 网页端 deepseek 3.5% · 其他 1.5%。节奏：4 月起步 → 7 月转 agent 窗 → 10 月以长上下文为主力。<br>
+    求证驱动 · 诤臣非馋臣 · 以人为镜 · <em>live my life on my way · leave a trail</em>
+  </p>
+</section>
+
+<hr>
+
+<section id="repos">
+  <h2>GitHub</h2>
+  <p class="muted">关键项目仓 + 联合 demo 仓（非自有仓也列出，便于访问）。</p>
+  <div class="grid">
+    <div class="card">
+      <h3>自有仓</h3>
+      <p>
+        <a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">renpu</a> · 仁谱，本地人脉关系图谱引擎，AGPL-3.0-only<br>
+        <a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">kanshan-frontend</a> · 看山前端，跨项目组件库<br>
+        <a href="https://github.com/jackyjinggit/personal-home" target="_blank" rel="noopener">personal-home</a> · 个人主页（GitHub Pages）<br>
+        printpilot / 思印客 Silnk · 仓库筹备中
+      </p>
+    </div>
+    <div class="card">
+      <h3>联合 demo 仓</h3>
+      <p>
+        <a href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">CrossCheckMonadBlitz20261017</a> · 双模型报告 + 链上 SHA-256 证据<br>
+        <a href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">aureum-creation-hub</a> · AUREUM 创想集
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>欢迎通过 GitHub Issues 或知乎专栏评论区反馈。</p>
+  <p>微信公众号「<strong>蒋平的 AI 认知课程</strong>」已开通 —— 内容方向：HAI / FEE / 自我民族志 / 反谄臣 / 黑客松实战。</p>
+  <p class="muted" style="margin-top: var(--space-4);">
+    本简历基于 <a href="https://jackyjinggit.github.io/personal-home/">个人主页</a>生成 · 2026-10-24 · 白皮书已通过联合信任可信时间戳认证 · 作者保留所有权利
+  </p>
+</footer>
+
+</body>
+</html>

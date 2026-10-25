@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蒋平 · 评委速览卡（A4 单页）</title>
+<meta name="description" content="蒋平 · 黑客松评委速览卡 —— 一页纸：30 秒硬证据 + 5 个项目 + 领队能力">
+<meta name="author" content="蒋平">
+<style>
+  :root {
+    --accent-50: #e8f0fe; --accent-100: #d2e3fc; --accent-200: #aecbfa; --accent-400: #669df6;
+    --accent-600: #1a73e8; --accent-700: #1967d2; --accent-800: #185abc;
+    --ink-100: #f5f5f5; --ink-200: #eeeeee; --ink-300: #e0e0e0; --ink-500: #9e9e9e;
+    --ink-600: #757575; --ink-700: #616161; --ink-800: #424242; --ink-900: #212121;
+    --bg: #fafafa;
+    --radius-md: 8px; --radius-pill: 999px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.06); --shadow-md: 0 1px 4px rgba(0,0,0,.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    background: var(--bg); color: var(--ink-900);
+    line-height: 1.6; margin: 0; padding: 20px;
+    max-width: 900px; margin: 0 auto;
+  }
+  h1 { font-size: 26px; font-weight: 700; margin: 0 0 2px; letter-spacing: .01em; }
+  h2 {
+    font-size: 13px; font-weight: 700; color: var(--accent-800);
+    text-transform: uppercase; letter-spacing: .08em;
+    margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--ink-200);
+  }
+  p { margin: 0 0 8px; }
+  a { color: var(--accent-700); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .head { margin-bottom: 12px; }
+  .head .sub { font-size: 13px; color: var(--ink-700); margin-bottom: 6px; }
+  .head .oneline { font-size: 13.5px; color: var(--ink-800); }
+  .head .oneline strong { color: var(--accent-800); }
+  .links { font-size: 11.5px; color: var(--ink-600); margin-top: 6px; }
+  .links a { margin-right: 10px; }
+
+  .kpis {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 7px; margin: 10px 0 4px;
+  }
+  .kpi {
+    background: #fff; border-radius: var(--radius-md); padding: 8px 9px;
+    box-shadow: var(--shadow-sm); border-top: 2.5px solid var(--accent-600);
+  }
+  .kpi-n { font-size: 17px; font-weight: 700; color: var(--accent-700); line-height: 1.1; white-space: nowrap; }
+  .kpi-l { font-size: 10px; color: var(--ink-600); margin-top: 2px; line-height: 1.35; }
+
+  .grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+  .pj {
+    background: #fff; border-radius: var(--radius-md); padding: 9px 10px;
+    box-shadow: var(--shadow-sm); border-left: 3px solid var(--accent-500);
+  }
+  .pj-n { font-size: 12.5px; font-weight: 700; color: var(--ink-900); margin-bottom: 1px; }
+  .pj-s { font-size: 9.5px; color: var(--accent-700); margin-bottom: 4px; font-weight: 600; }
+  .pj-d { font-size: 10.5px; color: var(--ink-700); line-height: 1.45; }
+  .pj-m { font-size: 9.5px; color: var(--ink-500); margin-top: 4px; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .blk {
+    background: #fff; border-radius: var(--radius-md); padding: 10px 12px;
+    box-shadow: var(--shadow-sm);
+  }
+  .blk h3 { font-size: 11.5px; font-weight: 700; color: var(--accent-800); margin: 0 0 5px; }
+  .blk ul { margin: 0; padding-left: 15px; font-size: 10.5px; color: var(--ink-700); }
+  .blk li { margin-bottom: 3px; }
+  .blk p { font-size: 10.5px; color: var(--ink-700); margin: 0 0 4px; }
+
+  .why {
+    background: var(--accent-50); border-left: 3px solid var(--accent-600);
+    border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 4px;
+  }
+  .why p { font-size: 11px; color: var(--ink-800); margin: 0 0 4px; }
+  .why p:last-child { margin-bottom: 0; }
+  .why b { color: var(--accent-800); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .tag {
+    padding: 1px 8px; border-radius: var(--radius-pill);
+    background: var(--accent-50); color: var(--accent-800);
+    font-size: 9.5px; border: 1px solid var(--accent-200);
+  }
+
+  footer {
+    margin-top: 14px; padding-top: 8px; border-top: 1px solid var(--ink-200);
+    font-size: 10px; color: var(--ink-600);
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;
+  }
+  footer .note { max-width: 70%; line-height: 1.45; }
+
+  @media print {
+    body { background: #fff; padding: 10mm; max-width: none; font-size: 9pt; }
+    h1 { font-size: 19pt; }
+    h2 { font-size: 10pt; margin: 10pt 0 5pt; }
+    .kpi-n { font-size: 14pt; }
+    .kpi-l { font-size: 8pt; }
+    .pj-n { font-size: 10.5pt; }
+    .pj-d, .pj-s, .pj-m { font-size: 8.2pt; }
+    .blk ul, .blk p, .why p { font-size: 8.4pt; }
+    .kpis { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
+    .grid5 { grid-template-columns: repeat(5, 1fr); gap: 4pt; }
+    .two { gap: 7pt; }
+    .kpi, .pj, .blk, .why { box-shadow: none; border: 1px solid var(--ink-200); }
+    h2 { break-after: avoid; }
+    .kpis, .grid5, .two, .why { break-inside: avoid; }
+    footer { break-inside: avoid; }
+  }
+
+  /* === 单页填充：内容偏少 → 放大并拉开间距填满 A4 === */
+  @media print {
+    body { padding: 11mm 12mm; font-size: 9.6pt; line-height: 1.55; }
+    h1 { font-size: 22pt; margin-bottom: 3px; }
+    .head { margin-bottom: 10px; }
+    .head .sub { font-size: 11.5pt; margin-bottom: 5px; }
+    .head .oneline { font-size: 11.5pt; line-height: 1.6; }
+    .links { font-size: 10pt; margin-top: 6px; }
+    h2 {
+      font-size: 10.5pt; margin: 13pt 0 7pt; padding-bottom: 3px;
+      letter-spacing: .1em;
+    }
+    .kpis { gap: 5pt; margin: 8px 0 2px; }
+    .kpi { padding: 7px 8px; }
+    .kpi-n { font-size: 16pt; }
+    .kpi-l { font-size: 9pt; margin-top: 3px; }
+    .grid5 { gap: 5pt; }
+    .pj { padding: 8px 9px; border-left-width: 2.5px; }
+    .pj-n { font-size: 11pt; margin-bottom: 2px; }
+    .pj-s { font-size: 8.8pt; margin-bottom: 4px; }
+    .pj-d { font-size: 9.4pt; line-height: 1.5; }
+    .pj-m { font-size: 8.6pt; margin-top: 4px; }
+    .why { padding: 9px 11px; }
+    .why p { font-size: 9.6pt; line-height: 1.6; margin-bottom: 6px; }
+    .blk { padding: 9px 11px; }
+    .blk h3 { font-size: 10pt; margin-bottom: 5px; }
+    .blk ul { font-size: 9.4pt; padding-left: 14px; }
+    .blk li { margin-bottom: 4px; }
+    .blk p { font-size: 9.4pt; line-height: 1.55; }
+    .tag { font-size: 8.8pt; padding: 1px 7px; }
+    .two { gap: 9pt; }
+    footer { margin-top: 12px; padding-top: 7px; font-size: 8.8pt; line-height: 1.5; }
+  }
+
+  /* === 单页收口 v2：1365px → 目标 < 1010px === */
+  @media print {
+    body { padding: 9mm 10mm; font-size: 8.6pt; line-height: 1.42; }
+    h1 { font-size: 19pt; margin-bottom: 2px; }
+    .head { margin-bottom: 7px; }
+    .head .sub { font-size: 10pt; margin-bottom: 3px; }
+    .head .oneline { font-size: 10pt; line-height: 1.45; }
+    .links { font-size: 8.8pt; margin-top: 4px; }
+    h2 { font-size: 9.4pt; margin: 9px 0 5px; padding-bottom: 2px; }
+    .kpis { gap: 4pt; margin: 5px 0 0; }
+    .kpi { padding: 5px 6px; }
+    .kpi-n { font-size: 13.5pt; }
+    .kpi-l { font-size: 8pt; margin-top: 2px; }
+    .grid5 { gap: 4pt; }
+    .pj { padding: 6px 7px; }
+    .pj-n { font-size: 9.6pt; margin-bottom: 1px; }
+    .pj-s { font-size: 7.8pt; margin-bottom: 3px; }
+    .pj-d { font-size: 8.4pt; line-height: 1.38; }
+    .pj-m { font-size: 7.6pt; margin-top: 3px; }
+    .why { padding: 7px 9px; }
+    .why p { font-size: 8.6pt; line-height: 1.45; margin-bottom: 4px; }
+    .blk { padding: 7px 9px; }
+    .blk h3 { font-size: 9pt; margin-bottom: 3px; }
+    .blk ul { font-size: 8.4pt; padding-left: 13px; }
+    .blk li { margin-bottom: 2.5px; }
+    .blk p { font-size: 8.4pt; line-height: 1.42; margin-bottom: 3px; }
+    .tag { font-size: 7.8pt; padding: 1px 6px; }
+    .two { gap: 7pt; }
+    footer { margin-top: 8px; padding-top: 5px; font-size: 7.8pt; line-height: 1.4; }
+  }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>蒋平</h1>
+  <p class="sub">独立研究者 · 人机协作（HAI）方法论 · <strong>黑客松领队</strong> · 开源项目创始工程师</p>
+  <p class="oneline">把「<strong>AI 到底该怎么和人一起干活</strong>」从踩坑做到方法论、从方法论做到工具、从工具做到产品。<strong>擅长限定时间内从创意做到可演示的 MVP</strong>，并把它变成能复用的协议与工具。</p>
+  <p class="links">
+    <a href="https://github.com/jackyjinggit">GitHub @jackyjinggit</a>
+    <a href="https://gitee.com/jacky_jiang_gitee">Gitee</a>
+    <a href="https://www.zhihu.com/people/jiang-ping-8-61">知乎</a>
+    <a href="https://silnk.cn">silnk.cn</a>
+    <a href="https://osf.io/6jdhm">FEE 预印本</a>
+    <a href="https://jackyjinggit.github.io/personal-home/">个人主页</a>
+  </p>
+</div>
+
+<h2>30 秒硬证据</h2>
+<div class="kpis">
+  <div class="kpi"><div class="kpi-n">36 小时</div><div class="kpi-l">4 项目全部落地 MVP</div></div>
+  <div class="kpi"><div class="kpi-n">5 人队</div><div class="kpi-l">GDPS/IEIC 领队</div></div>
+  <div class="kpi"><div class="kpi-n">130 亿</div><div class="kpi-l">token · 8 万轮协作</div></div>
+  <div class="kpi"><div class="kpi-n">2 天</div><div class="kpi-l">MVP 冲刺上线</div></div>
+  <div class="kpi"><div class="kpi-n">233 接口</div><div class="kpi-l">ROS2 msg+srv</div></div>
+  <div class="kpi"><div class="kpi-n">15 命令</div><div class="kpi-l">仁谱 CLI + API</div></div>
+</div>
+
+<h2>五个代表作</h2>
+<div class="grid5">
+  <div class="pj">
+    <div class="pj-n">思印客 Silnk</div>
+    <div class="pj-s">已上线 · MoonStone 已参赛</div>
+    <div class="pj-d">自助打印机统一管家。「上传 → 体检 → 计价 → 支付 → 打印 → 取件 → 删除」全链路可审计；三层硬件自研（T5AI 取件屏 / RDK X5 出纸视觉 / 旧机零配置接入）；210 项 pytest 通过。</div>
+    <div class="pj-m">silnk.cn · MoonStone 10-23—25</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">SkillBridge</div>
+    <div class="pj-s">参赛中 · 5 人队领队</div>
+    <div class="pj-d">跨本体 Agent 技能库。一套 Python Skill 从 sim2real 到任意真机零改动迁移；15 个 ROS2 包编译通过。</div>
+    <div class="pj-m">GDPS 暨 IEIC · 上海张江</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">仁谱 renpu</div>
+    <div class="pj-s">已开源 · AGPL-3.0-only</div>
+    <div class="pj-d">本地人脉关系图谱引擎。SQLite + 六域模型 + 关系边推导 + 微信只读解析，纯 Python 零编译，数据不出本机。</div>
+    <div class="pj-m">github.com/jackyjinggit/renpu</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">看山 copilot</div>
+    <div class="pj-s">知乎黑客松参赛</div>
+    <div class="pj-d">创作者内容复盘工具。公开数据 → 留人曲线 → 定位两个拐点 → 主页诊断。密钥只留本机。</div>
+    <div class="pj-m">kanshan-frontend</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">CrossCheck</div>
+    <div class="pj-s">已交付 · 联合 owner</div>
+    <div class="pj-d">双模型报告 + 链上 SHA-256 存证 + 篡改自检验，证据可独立复算。</div>
+    <div class="pj-m">Monad Blitz V3</div>
+  </div>
+</div>
+
+<h2>为什么值得带我进队</h2>
+<div class="two">
+  <div class="why">
+    <p><b>① 方法论一致 = 放大而非妥协</b>　Monad Blitz 收尾日 36 小时内同时组织 4 个项目全部落地 MVP——治理层、证据层、创意层、信任层，各自都能演示。验证过的事：<b>方法论一致时，组队是放大器</b>。</p>
+    <p><b>② 我不做「最后才出现的人」</b>　从立项、拆解、分工到路演稿，全流程在场。省掉的是你们最贵的沟通成本。</p>
+    <p><b>③ 现场不慌</b>　Soul 现场真机因缺网关/电池没跑通，我当场改双线推进（仿真 + 展示）保住演示，没有让项目归零。</p>
+  </div>
+  <div class="blk">
+    <h3>可立刻上手的活</h3>
+    <ul>
+      <li>方法论设计：把模糊需求拆成可验收的交付物</li>
+      <li>AI 协作工程：多轮/多窗口协作的上下文与认知校准</li>
+      <li>Agent 接入：把现有 CLI / 工具包接成可被调用的 Agent</li>
+      <li>可信交付：链下交叉审核 + 链上存证 + 自检验</li>
+      <li>前端：跨项目组件库（Silnk / 看山共用底座）</li>
+      <li>路演：3 分钟快讲 + 5 分钟 Demo + 问答预案</li>
+    </ul>
+    <h3 style="margin-top:8px">技术栈</h3>
+    <div class="tags">
+      <span class="tag">Python</span><span class="tag">SQLite</span>
+      <span class="tag">ROS2</span><span class="tag">sim2real</span>
+      <span class="tag">CUPS / IoT</span><span class="tag">前端组件库</span>
+      <span class="tag">SHA-256 存证</span><span class="tag">Agent 治理</span>
+      <span class="tag">GitHub Pages</span><span class="tag">AGPL 开源</span>
+    </div>
+  </div>
+</div>
+
+<h2>研究与自证</h2>
+<div class="two">
+  <div class="blk">
+    <h3>HAI 协作行业白皮书 · FEE 反谄臣效应</h3>
+    <p>《HAI 协作行业白皮书》v1.2 定稿并经 TSA 时间戳认证（CC BY-NC-SA 4.0）——提出 HAI 协作作为独立于 HCI 的新类别。FEE（Flattering-Echo Effect）OSF 预印本存档，节点 6jdhm。</p>
+    <p style="color:var(--ink-600)">FEE 指出：模型倾向附和并放大使用者既有判断，长期侵蚀决策质量。已量化。</p>
+  </div>
+  <div class="blk">
+    <h3>使用量（样本量，不是炫耀）</h3>
+    <p>~130 亿 token / ~8 万轮真实协作（2026-04 至今）· agent 窗 95% · 长上下文为主力。</p>
+    <p style="color:var(--ink-600)">这些数字不是成就，是样本量——FEE 的量化、协作协议的迭代、白皮书的方法论基础，都建立在这些真实轮次之上。没有真实使用量的方法论，只是纸面主张。</p>
+  </div>
+</div>
+
+<footer>
+  <div class="note">
+    另交付：AgentGuard（Agent 受限预算 + 治理层，带队）· AUREUM 创想集（联合 owner）· AI 大赛 i 厦门三线（安全攻防 / 幻觉挑战 / 多模态审核）· 微信公众号「蒋平的 AI 认知课程」<br>
+    完整简历：<a href="https://jackyjinggit.github.io/personal-home/">personal-home</a> · 白皮书已通过联合信任可信时间戳认证 · 作者保留所有权利
+  </div>
+  <div style="text-align:right;white-space:nowrap">2026-10-24</div>
+</footer>
+
+</body>
+</html>

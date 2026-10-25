@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacky Jiang · Judge Brief (A4 one-pager)</title>
+<meta name="description" content="Jacky Jiang - Hackathon Judge Brief: 30-second evidence, 5 projects, team-lead value">
+<meta name="author" content="Jacky Jiang">
+<style>
+  :root {
+    --accent-50: #e8f0fe; --accent-100: #d2e3fc; --accent-200: #aecbfa; --accent-400: #669df6;
+    --accent-600: #1a73e8; --accent-700: #1967d2; --accent-800: #185abc;
+    --ink-100: #f5f5f5; --ink-200: #eeeeee; --ink-300: #e0e0e0; --ink-500: #9e9e9e;
+    --ink-600: #757575; --ink-700: #616161; --ink-800: #424242; --ink-900: #212121;
+    --bg: #fafafa;
+    --radius-md: 8px; --radius-pill: 999px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.06); --shadow-md: 0 1px 4px rgba(0,0,0,.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    background: var(--bg); color: var(--ink-900);
+    line-height: 1.6; margin: 0; padding: 20px;
+    max-width: 900px; margin: 0 auto;
+  }
+  h1 { font-size: 26px; font-weight: 700; margin: 0 0 2px; letter-spacing: .01em; }
+  h2 {
+    font-size: 13px; font-weight: 700; color: var(--accent-800);
+    text-transform: uppercase; letter-spacing: .08em;
+    margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--ink-200);
+  }
+  p { margin: 0 0 8px; }
+  a { color: var(--accent-700); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .head { margin-bottom: 12px; }
+  .head .sub { font-size: 13px; color: var(--ink-700); margin-bottom: 6px; }
+  .head .oneline { font-size: 13.5px; color: var(--ink-800); }
+  .head .oneline strong { color: var(--accent-800); }
+  .links { font-size: 11.5px; color: var(--ink-600); margin-top: 6px; }
+  .links a { margin-right: 10px; }
+
+  .kpis {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 7px; margin: 10px 0 4px;
+  }
+  .kpi {
+    background: #fff; border-radius: var(--radius-md); padding: 8px 9px;
+    box-shadow: var(--shadow-sm); border-top: 2.5px solid var(--accent-600);
+  }
+  .kpi-n { font-size: 17px; font-weight: 700; color: var(--accent-700); line-height: 1.1; white-space: nowrap; }
+  .kpi-l { font-size: 10px; color: var(--ink-600); margin-top: 2px; line-height: 1.35; }
+
+  .grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+  .pj {
+    background: #fff; border-radius: var(--radius-md); padding: 9px 10px;
+    box-shadow: var(--shadow-sm); border-left: 3px solid var(--accent-500);
+  }
+  .pj-n { font-size: 12.5px; font-weight: 700; color: var(--ink-900); margin-bottom: 1px; }
+  .pj-s { font-size: 9.5px; color: var(--accent-700); margin-bottom: 4px; font-weight: 600; }
+  .pj-d { font-size: 10.5px; color: var(--ink-700); line-height: 1.45; }
+  .pj-m { font-size: 9.5px; color: var(--ink-500); margin-top: 4px; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .blk {
+    background: #fff; border-radius: var(--radius-md); padding: 10px 12px;
+    box-shadow: var(--shadow-sm);
+  }
+  .blk h3 { font-size: 11.5px; font-weight: 700; color: var(--accent-800); margin: 0 0 5px; }
+  .blk ul { margin: 0; padding-left: 15px; font-size: 10.5px; color: var(--ink-700); }
+  .blk li { margin-bottom: 3px; }
+  .blk p { font-size: 10.5px; color: var(--ink-700); margin: 0 0 4px; }
+
+  .why {
+    background: var(--accent-50); border-left: 3px solid var(--accent-600);
+    border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 4px;
+  }
+  .why p { font-size: 11px; color: var(--ink-800); margin: 0 0 4px; }
+  .why p:last-child { margin-bottom: 0; }
+  .why b { color: var(--accent-800); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .tag {
+    padding: 1px 8px; border-radius: var(--radius-pill);
+    background: var(--accent-50); color: var(--accent-800);
+    font-size: 9.5px; border: 1px solid var(--accent-200);
+  }
+
+  footer {
+    margin-top: 14px; padding-top: 8px; border-top: 1px solid var(--ink-200);
+    font-size: 10px; color: var(--ink-600);
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;
+  }
+  footer .note { max-width: 70%; line-height: 1.45; }
+
+  @media print {
+    body { background: #fff; padding: 10mm; max-width: none; font-size: 9pt; }
+    h1 { font-size: 19pt; }
+    h2 { font-size: 10pt; margin: 10pt 0 5pt; }
+    .kpi-n { font-size: 14pt; }
+    .kpi-l { font-size: 8pt; }
+    .pj-n { font-size: 10.5pt; }
+    .pj-d, .pj-s, .pj-m { font-size: 8.2pt; }
+    .blk ul, .blk p, .why p { font-size: 8.4pt; }
+    .kpis { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
+    .grid5 { grid-template-columns: repeat(5, 1fr); gap: 4pt; }
+    .two { gap: 7pt; }
+    .kpi, .pj, .blk, .why { box-shadow: none; border: 1px solid var(--ink-200); }
+    h2 { break-after: avoid; }
+    .kpis, .grid5, .two, .why { break-inside: avoid; }
+    footer { break-inside: avoid; }
+  }
+
+  /* === 单页填充：内容偏少 → 放大并拉开间距填满 A4 === */
+  @media print {
+    body { padding: 11mm 12mm; font-size: 9.6pt; line-height: 1.55; }
+    h1 { font-size: 22pt; margin-bottom: 3px; }
+    .head { margin-bottom: 10px; }
+    .head .sub { font-size: 11.5pt; margin-bottom: 5px; }
+    .head .oneline { font-size: 11.5pt; line-height: 1.6; }
+    .links { font-size: 10pt; margin-top: 6px; }
+    h2 {
+      font-size: 10.5pt; margin: 13pt 0 7pt; padding-bottom: 3px;
+      letter-spacing: .1em;
+    }
+    .kpis { gap: 5pt; margin: 8px 0 2px; }
+    .kpi { padding: 7px 8px; }
+    .kpi-n { font-size: 16pt; }
+    .kpi-l { font-size: 9pt; margin-top: 3px; }
+    .grid5 { gap: 5pt; }
+    .pj { padding: 8px 9px; border-left-width: 2.5px; }
+    .pj-n { font-size: 11pt; margin-bottom: 2px; }
+    .pj-s { font-size: 8.8pt; margin-bottom: 4px; }
+    .pj-d { font-size: 9.4pt; line-height: 1.5; }
+    .pj-m { font-size: 8.6pt; margin-top: 4px; }
+    .why { padding: 9px 11px; }
+    .why p { font-size: 9.6pt; line-height: 1.6; margin-bottom: 6px; }
+    .blk { padding: 9px 11px; }
+    .blk h3 { font-size: 10pt; margin-bottom: 5px; }
+    .blk ul { font-size: 9.4pt; padding-left: 14px; }
+    .blk li { margin-bottom: 4px; }
+    .blk p { font-size: 9.4pt; line-height: 1.55; }
+    .tag { font-size: 8.8pt; padding: 1px 7px; }
+    .two { gap: 9pt; }
+    footer { margin-top: 12px; padding-top: 7px; font-size: 8.8pt; line-height: 1.5; }
+  }
+
+  /* === 单页收口 v2：1365px → 目标 < 1010px === */
+  @media print {
+    body { padding: 9mm 10mm; font-size: 8.6pt; line-height: 1.42; }
+    h1 { font-size: 19pt; margin-bottom: 2px; }
+    .head { margin-bottom: 7px; }
+    .head .sub { font-size: 10pt; margin-bottom: 3px; }
+    .head .oneline { font-size: 10pt; line-height: 1.45; }
+    .links { font-size: 8.8pt; margin-top: 4px; }
+    h2 { font-size: 9.4pt; margin: 9px 0 5px; padding-bottom: 2px; }
+    .kpis { gap: 4pt; margin: 5px 0 0; }
+    .kpi { padding: 5px 6px; }
+    .kpi-n { font-size: 13.5pt; }
+    .kpi-l { font-size: 8pt; margin-top: 2px; }
+    .grid5 { gap: 4pt; }
+    .pj { padding: 6px 7px; }
+    .pj-n { font-size: 9.6pt; margin-bottom: 1px; }
+    .pj-s { font-size: 7.8pt; margin-bottom: 3px; }
+    .pj-d { font-size: 8.4pt; line-height: 1.38; }
+    .pj-m { font-size: 7.6pt; margin-top: 3px; }
+    .why { padding: 7px 9px; }
+    .why p { font-size: 8.6pt; line-height: 1.45; margin-bottom: 4px; }
+    .blk { padding: 7px 9px; }
+    .blk h3 { font-size: 9pt; margin-bottom: 3px; }
+    .blk ul { font-size: 8.4pt; padding-left: 13px; }
+    .blk li { margin-bottom: 2.5px; }
+    .blk p { font-size: 8.4pt; line-height: 1.42; margin-bottom: 3px; }
+    .tag { font-size: 7.8pt; padding: 1px 6px; }
+    .two { gap: 7pt; }
+    footer { margin-top: 8px; padding-top: 5px; font-size: 7.8pt; line-height: 1.4; }
+  }
+
+  /* === EN one-pager v3: 1209px -> < 1000px === */
+  @media print {
+    body { padding: 7mm 8mm; font-size: 7.9pt; line-height: 1.34; }
+    h1 { font-size: 17pt; margin-bottom: 1px; }
+    .head { margin-bottom: 5px; }
+    .head .sub { font-size: 9.2pt; margin-bottom: 2px; }
+    .head .oneline { font-size: 9.2pt; line-height: 1.36; }
+    .links { font-size: 8pt; margin-top: 3px; }
+    h2 { font-size: 8.6pt; margin: 7px 0 4px; padding-bottom: 2px; }
+    .kpis { gap: 3.5pt; margin: 4px 0 0; }
+    .kpi { padding: 4px 5px; }
+    .kpi-n { font-size: 12pt; }
+    .kpi-l { font-size: 7.3pt; margin-top: 1px; }
+    .grid5 { gap: 3.5pt; }
+    .pj { padding: 5px 6px; }
+    .pj-n { font-size: 8.8pt; margin-bottom: 1px; }
+    .pj-s { font-size: 7.2pt; margin-bottom: 2px; }
+    .pj-d { font-size: 7.7pt; line-height: 1.3; }
+    .pj-m { font-size: 7pt; margin-top: 2px; }
+    .why { padding: 5px 7px; }
+    .why p { font-size: 7.9pt; line-height: 1.34; margin-bottom: 3px; }
+    .blk { padding: 5px 7px; }
+    .blk h3 { font-size: 8.4pt; margin-bottom: 2px; }
+    .blk ul { font-size: 7.7pt; padding-left: 12px; }
+    .blk li { margin-bottom: 1.5px; }
+    .blk p { font-size: 7.7pt; line-height: 1.32; margin-bottom: 2px; }
+    .tag { font-size: 7.2pt; padding: 0.5px 5px; }
+    .two { gap: 6pt; }
+    footer { margin-top: 6px; padding-top: 4px; font-size: 7.2pt; line-height: 1.3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>Jacky Jiang</h1>
+  <p class="sub">Independent Researcher · HAI Methodology · <strong>Hackathon Team Lead</strong> · Open-Source Founder</p>
+  <p class="oneline">Taking one question - <strong>how should AI actually work alongside people</strong> - from failure to methodology, from methodology to tools, from tools to shipped products. <strong>Built to turn an idea into a demoable MVP inside a fixed window</strong>, then package it as reusable protocol and tooling.</p>
+  <p class="links">
+    <a href="https://github.com/jackyjinggit">GitHub @jackyjinggit</a>
+    <a href="https://gitee.com/jacky_jiang_gitee">Gitee</a>
+    <a href="https://www.zhihu.com/people/jiang-ping-8-61">Zhihu</a>
+    <a href="https://silnk.cn">silnk.cn</a>
+    <a href="https://osf.io/6jdhm">FEE preprint</a>
+    <a href="https://jackyjinggit.github.io/personal-home/">Homepage</a>
+  </p>
+</div>
+
+<h2>30-Second Evidence</h2>
+<div class="kpis">
+  <div class="kpi"><div class="kpi-n">36 hours</div><div class="kpi-l">4 projects, all landed MVPs</div></div>
+  <div class="kpi"><div class="kpi-n">5-person</div><div class="kpi-l">Team lead, GDPS/IEIC</div></div>
+  <div class="kpi"><div class="kpi-n">13B</div><div class="kpi-l">tokens · ~80k turns</div></div>
+  <div class="kpi"><div class="kpi-n">2 days</div><div class="kpi-l">MVP sprint to live</div></div>
+  <div class="kpi"><div class="kpi-n">233 APIs</div><div class="kpi-l">ROS2 msg + srv</div></div>
+  <div class="kpi"><div class="kpi-n">15 cmds</div><div class="kpi-l">Renpu CLI + API</div></div>
+</div>
+
+<h2>Five Selected Works</h2>
+<div class="grid5">
+  <div class="pj">
+    <div class="pj-n">Silnk</div>
+    <div class="pj-s">live · MoonStone entry</div>
+    <div class="pj-d">The single control plane for self-service printers. Upload → pre-check → pricing → payment → print → pickup → delete, fully auditable; three self-built hardware layers (T5AI pickup screen / RDK X5 paper-output vision / zero-config legacy onboarding); 210 pytest cases passing.</div>
+    <div class="pj-m">silnk.cn · MoonStone 10-23—25</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">SkillBridge</div>
+    <div class="pj-s">in progress - 5-person lead</div>
+    <div class="pj-d">Cross-embodiment Agent skill library. One Python Skill migrates sim2real to any machine with zero code changes; 15 ROS2 packages compiled clean.</div>
+    <div class="pj-m">GDPS &amp; IEIC - Zhangjiang, Shanghai</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">Renpu</div>
+    <div class="pj-s">open source - AGPL-3.0-only</div>
+    <div class="pj-d">Local relationship-genealogy engine. SQLite + six-domain model + edge inference + read-only WeChat parsing, pure Python, data never leaves the machine.</div>
+    <div class="pj-m">github.com/jackyjinggit/renpu</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">Kanshan copilot</div>
+    <div class="pj-s">Zhihu hackathon entry</div>
+    <div class="pj-d">A content retrospective tool. Public data to retention curve to two inflection points to profile diagnosis. Secrets stay local.</div>
+    <div class="pj-m">kanshan-frontend</div>
+  </div>
+  <div class="pj">
+    <div class="pj-n">CrossCheck</div>
+    <div class="pj-s">shipped - co-owner</div>
+    <div class="pj-d">Dual-model reports with on-chain SHA-256 attestation and tamper self-verification - evidence anyone can recompute.</div>
+    <div class="pj-m">Monad Blitz V3</div>
+  </div>
+</div>
+
+<h2>Why Bring Me Onto Your Team</h2>
+<div class="two">
+  <div class="why">
+    <p><b>① One methodology amplifies instead of diluting</b>　On Monad Blitz V3's closing day, 4 projects were organized and all landed MVPs within 36 hours - governance, evidence, creation and trust layers, each independently demoable. What that proved: <b>when the methodology holds, teaming up is an amplifier</b>.</p>
+    <p><b>② I'm not the person who shows up last</b>　Present end-to-end - scoping, decomposition, role assignment, pitch script. That removes your most expensive line item: communication.</p>
+    <p><b>③ I don't freeze on stage</b>　At the Soul event the on-device run failed (missing gateway/battery). I switched to parallel simulation + demo tracks on the spot and kept the project alive.</p>
+  </div>
+  <div class="blk">
+    <h3>What I Can Start On Immediately</h3>
+    <ul>
+      <li>Method design: turn vague briefs into acceptance-testable deliverables</li>
+      <li>AI collaboration engineering: context and cognitive calibration across long multi-window runs</li>
+      <li>Agent integration: wrap an existing CLI or tool into a callable Agent</li>
+      <li>Trustworthy delivery: off-chain cross-review + on-chain attestation + self-verification</li>
+      <li>Front-end: cross-project component library shared by Silnk and Kanshan</li>
+      <li>Pitching: 3-minute quick pitch + 5-minute demo + Q&A prep</li>
+    </ul>
+    <h3 style="margin-top:8px">Stack</h3>
+    <div class="tags">
+      <span class="tag">Python</span><span class="tag">SQLite</span>
+      <span class="tag">ROS2</span><span class="tag">sim2real</span>
+      <span class="tag">CUPS / IoT</span><span class="tag">frontend library</span>
+      <span class="tag">SHA-256 attestation</span><span class="tag">Agent governance</span>
+      <span class="tag">GitHub Pages</span><span class="tag">AGPL open source</span>
+    </div>
+  </div>
+</div>
+
+<h2>Research & Self-Evidence</h2>
+<div class="two">
+  <div class="blk">
+    <h3>HAI Collaboration White Paper - FEE</h3>
+    <p>The <em>HAI Collaboration Industry White Paper</em> reached v1.2, TSA timestamp-authenticated (CC BY-NC-SA 4.0) - proposing HAI collaboration as a category distinct from HCI. FEE (Flattering-Echo Effect) archived on OSF, node 6jdhm.</p>
+    <p style="color:var(--ink-600)">FEE names the systematic distortion: models flatter and amplify a user's existing judgment, eroding decision quality over time. Now quantified.</p>
+  </div>
+  <div class="blk">
+    <h3>Usage (sample size, not bragging)</h3>
+    <p>~13B tokens / ~80k real collaboration turns (Apr 2026 to now) - agent window 95% - long-context as the workhorse.</p>
+    <p style="color:var(--ink-600)">These numbers are not achievements - they are sample size. FEE's quantification, the protocol's iterations and the white paper's basis all rest on these real turns. A methodology without real usage is only a claim on paper.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="note">
+    Also shipped: AgentGuard (budget-capped Agent + governance, team lead) - AUREUM creation hub (co-owner) - AI Competition i Xiamen, three tracks (security offense / hallucination challenge / multimodal audit) - WeChat column<br>
+    Full resume: <a href="https://jackyjinggit.github.io/personal-home/">personal-home</a> · White paper certified by joint-trust trusted timestamp - all rights reserved
+  </div>
+  <div style="text-align:right;white-space:nowrap">2026-10-24</div>
+</footer>
+
+</body>
+</html>
