@@ -176,6 +176,81 @@
     .two { gap: 7pt; }
     footer { margin-top: 8px; padding-top: 5px; font-size: 7.8pt; line-height: 1.4; }
   }
+
+  /* === A4 打印收口 (2026-10-25) === */
+  /* 根因：Edge headless 默认 US Letter (215.9x279.4mm)，比 A4 矮 17.6mm，
+     「单页填充」样式按 Letter 标定 → 速览卡溢出到第 2 页。
+     修正：显式声明 A4 纸张 + 保留背景色（否则卡片底色丢失）。 */
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /* 卡片等高：描述长度不一时底部齐平，避免参差 */
+    .pj { display: flex; flex-direction: column; }
+    .pj-d { flex: 1; }
+    .pj-m { margin-top: auto; padding-top: 3px; }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* === A4 尺寸重标定 v3 (2026-10-25) ===
+     scale=0.9983 — 由 autotune2.py 按真实 PDF 页数与填充率自动标定 */
+  @media print {
+    body { padding: 9.98mm 10.98mm; font-size: 9.38pt; line-height: 1.52; }
+    h1 { font-size: 21.96pt; margin-bottom: 2.99px; }
+    .head { margin-bottom: 8.98px; }
+    .head .sub { font-size: 10.98pt; margin-bottom: 3.99px; }
+    .head .oneline { font-size: 10.78pt; line-height: 1.55; }
+    .links { font-size: 9.38pt; margin-top: 4.99px; }
+    h2 { font-size: 10.18pt; margin: 10.98px 0 5.99px; padding-bottom: 2.0px; }
+    .kpis { gap: 4.99pt; margin: 6.99px 0 2.0px; }
+    .kpi { padding: 5.99px 6.99px; }
+    .kpi-n { font-size: 14.97pt; }
+    .kpi-l { font-size: 8.59pt; margin-top: 2.0px; }
+    .grid5 { gap: 4.99pt; }
+    .pj { padding: 6.99px 7.99px; }
+    .pj-n { font-size: 10.38pt; margin-bottom: 2.0px; }
+    .pj-s { font-size: 8.39pt; margin-bottom: 3.99px; }
+    .pj-d { font-size: 8.98pt; line-height: 1.45; }
+    .pj-m { font-size: 8.19pt; }
+    .why { padding: 7.99px 9.98px; }
+    .why p { font-size: 9.18pt; line-height: 1.52; margin-bottom: 4.99px; }
+    .blk { padding: 7.99px 9.98px; }
+    .blk h3 { font-size: 9.58pt; margin-bottom: 3.99px; }
+    .blk ul { font-size: 8.98pt; padding-left: 13.98px; }
+    .blk li { margin-bottom: 2.99px; }
+    .blk p { font-size: 8.98pt; line-height: 1.48; }
+    .tag { font-size: 8.39pt; padding: 1.0px 5.99px; }
+    .two { gap: 7.99pt; }
+    footer { margin-top: 9.98px; padding-top: 5.99px; font-size: 8.39pt; line-height: 1.45; }
+  }
 </style>
 </head>
 <body>
@@ -209,8 +284,8 @@
   <div class="pj">
     <div class="pj-n">思印客 Silnk</div>
     <div class="pj-s">已上线 · MoonStone 已参赛</div>
-    <div class="pj-d">自助打印机统一管家。「上传 → 体检 → 计价 → 支付 → 打印 → 取件 → 删除」全链路可审计；三层硬件自研（T5AI 取件屏 / RDK X5 出纸视觉 / 旧机零配置接入）；210 项 pytest 通过。</div>
-    <div class="pj-m">silnk.cn · MoonStone 10-23—25</div>
+    <div class="pj-d">自助打印机统一管家。上传→体检→计价→支付→打印→取件→删除全链路可审计；三层硬件自研；210 项 pytest 通过。</div>
+    <div class="pj-m">silnk.cn · MoonStone</div>
   </div>
   <div class="pj">
     <div class="pj-n">SkillBridge</div>

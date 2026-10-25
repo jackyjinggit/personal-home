@@ -207,6 +207,77 @@
     .two { gap: 6pt; }
     footer { margin-top: 6px; padding-top: 4px; font-size: 7.2pt; line-height: 1.3; }
   }
+
+  /* === A4 打印收口 (2026-10-25) === */
+  /* 根因：Edge headless 默认 US Letter (215.9x279.4mm)，比 A4 矮 17.6mm，
+     「单页填充」样式按 Letter 标定 → 速览卡溢出到第 2 页。
+     修正：显式声明 A4 纸张 + 保留背景色（否则卡片底色丢失）。 */
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /* 卡片等高：描述长度不一时底部齐平，避免参差 */
+    .pj { display: flex; flex-direction: column; }
+    .pj-d { flex: 1; }
+    .pj-m { margin-top: auto; padding-top: 3px; }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* === A4 尺寸重标定 v3 (2026-10-25) ===
+     scale=0.9052 — 由 autotune2.py 按真实 PDF 页数与填充率自动标定 */
+  @media print {
+    body { padding: 9.05mm 9.96mm; font-size: 8.51pt; line-height: 1.38; }
+    h1 { font-size: 19.91pt; margin-bottom: 2.72px; }
+    .head { margin-bottom: 8.15px; }
+    .head .sub { font-size: 9.96pt; margin-bottom: 3.62px; }
+    .head .oneline { font-size: 9.78pt; line-height: 1.4; }
+    .links { font-size: 8.51pt; margin-top: 4.53px; }
+    h2 { font-size: 9.23pt; margin: 9.96px 0 5.43px; padding-bottom: 1.81px; }
+    .kpis { gap: 4.53pt; margin: 6.34px 0 1.81px; }
+    .kpi { padding: 5.43px 6.34px; }
+    .kpi-n { font-size: 13.58pt; }
+    .kpi-l { font-size: 7.78pt; margin-top: 1.81px; }
+    .grid5 { gap: 4.53pt; }
+    .pj { padding: 6.34px 7.24px; }
+    .pj-n { font-size: 9.41pt; margin-bottom: 1.81px; }
+    .pj-s { font-size: 7.6pt; margin-bottom: 3.62px; }
+    .pj-d { font-size: 8.15pt; line-height: 1.31; }
+    .pj-m { font-size: 7.42pt; }
+    .why { padding: 7.24px 9.05px; }
+    .why p { font-size: 8.33pt; line-height: 1.38; margin-bottom: 4.53px; }
+    .blk { padding: 7.24px 9.05px; }
+    .blk h3 { font-size: 8.69pt; margin-bottom: 3.62px; }
+    .blk ul { font-size: 8.15pt; padding-left: 12.67px; }
+    .blk li { margin-bottom: 2.72px; }
+    .blk p { font-size: 8.15pt; line-height: 1.34; }
+    .tag { font-size: 7.6pt; padding: 0.91px 5.43px; }
+    .two { gap: 7.24pt; }
+    footer { margin-top: 9.05px; padding-top: 5.43px; font-size: 7.6pt; line-height: 1.31; }
+  }
 </style>
 </head>
 <body>
@@ -240,8 +311,8 @@
   <div class="pj">
     <div class="pj-n">Silnk</div>
     <div class="pj-s">live · MoonStone entry</div>
-    <div class="pj-d">The single control plane for self-service printers. Upload → pre-check → pricing → payment → print → pickup → delete, fully auditable; three self-built hardware layers (T5AI pickup screen / RDK X5 paper-output vision / zero-config legacy onboarding); 210 pytest cases passing.</div>
-    <div class="pj-m">silnk.cn · MoonStone 10-23—25</div>
+    <div class="pj-d">The single control plane for self-service printers. Upload → pre-check → pricing → payment → print → pickup → delete, fully auditable; three self-built hardware layers; 210 pytest cases passing.</div>
+    <div class="pj-m">silnk.cn · MoonStone</div>
   </div>
   <div class="pj">
     <div class="pj-n">SkillBridge</div>
