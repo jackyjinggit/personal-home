@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiniMax 开放平台用量 · 蒋平个人站</title>
+<meta name="description" content="蒋平 MiniMax 开放平台 Token 计划用量分析（2026/10/06 ~ 2026/10/25）：模型分布、每日节奏、缓存命中率。">
+<meta name="theme-color" content="#1a73e8">
+<style>
+  :root {
+    --accent-50:#e8f0fe;--accent-100:#d2e3fc;--accent-200:#aecbfa;--accent-300:#8ab4f8;
+    --accent-400:#669df6;--accent-500:#4285f4;--accent-600:#1a73e8;--accent-700:#1967d2;
+    --accent-800:#185abc;--accent-900:#174ea6;
+    --ink-50:#fafafa;--ink-100:#f5f5f5;--ink-200:#eeeeee;--ink-300:#e0e0e0;
+    --ink-400:#bdbdbd;--ink-500:#9e9e9e;--ink-600:#757575;--ink-700:#616161;
+    --ink-800:#424242;--ink-900:#212121;
+    --success:#2e7d32;--warning:#e65100;--error:#c62828;--info:#0277bd;
+    --accent:var(--accent-600);--ink:var(--ink-900);--sub:var(--ink-600);
+    --line:var(--ink-300);--bg:var(--ink-50);
+    --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;
+    --space-8:32px;--space-12:48px;--space-16:64px;
+    --radius-md:8px;--radius-pill:999px;
+    --shadow-md:0 1px 4px rgba(0,0,0,.08);
+    --text-sm:14px;--text-base:16px;--text-md:18px;--text-xl:20px;--text-2xl:32px;
+    --font-sans-cn:-apple-system,"Noto Sans SC","Microsoft YaHei",sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{font-family:var(--font-sans-cn);background:var(--bg);color:var(--ink);line-height:1.7;margin:0;padding:0 var(--space-4) var(--space-16)}
+  @media(min-width:768px){body{padding:0 var(--space-6) var(--space-16)}}
+  h1{font-size:var(--text-2xl);font-weight:600;margin:var(--space-6) 0 var(--space-2)}
+  h2{font-size:var(--text-xl);margin:var(--space-8) 0 var(--space-3)}
+  p{margin:0 0 var(--space-4)}
+  a{color:var(--accent-700);text-decoration:none}
+  a:hover{text-decoration:underline}
+  nav{position:sticky;top:0;background:rgba(250,250,250,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:10;margin:0 calc(var(--space-4)*-1);padding:var(--space-3) var(--space-4)}
+  @media(min-width:768px){nav{margin:0 calc(var(--space-6)*-1);padding:var(--space-3) var(--space-6)}}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-1)}
+  nav a{display:inline-block;padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-size:var(--text-sm);color:var(--sub)}
+  nav a:hover{background:var(--accent-50);color:var(--accent-700);text-decoration:none}
+  .muted{color:var(--sub);font-size:var(--text-sm)}
+  .card{background:#fff;border-radius:var(--radius-md);padding:var(--space-6);box-shadow:var(--shadow-md);margin:var(--space-4) 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4)}
+  .grid .card{margin:0}
+  .stat-num{font-size:var(--text-2xl);font-weight:600;color:var(--accent-700);line-height:1.1}
+  .stat-num small{font-size:var(--text-base);color:var(--ink-700)}
+  table{width:100%;border-collapse:collapse;font-size:var(--text-sm);background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-md);display:block;overflow-x:auto;white-space:nowrap}
+  th,td{text-align:left;padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--line);vertical-align:top;min-width:120px}
+  th{background:var(--ink-100);font-weight:600;color:var(--ink-800)}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  @media(min-width:768px){table{display:table;white-space:normal}}
+  .bar{background:var(--ink-100);border-radius:var(--radius-pill);height:10px;overflow:hidden}
+  .bar-fill{background:linear-gradient(90deg,var(--accent-400),var(--accent-600));height:100%}
+  .note{background:var(--accent-50);border-left:4px solid var(--accent-600);border-radius:var(--radius-md);padding:var(--space-4) var(--space-6);margin:var(--space-4) 0}
+  .note p{margin:0 0 var(--space-2)}
+  .note p:last-child{margin-bottom:0}
+  footer{border-top:1px solid var(--line);margin-top:var(--space-12);padding-top:var(--space-6);font-size:var(--text-sm);color:var(--sub)}
+</style>
+</head>
+<body>
+<nav><ul>
+  <li><a href="index.html">首页</a></li>
+  <li><a href="index.html#data">数据</a></li>
+  <li><a href="library.html">扩展阅读库</a></li>
+  <li><a href="en/index.html">English</a></li>
+</ul></nav>
+
+<section>
+  <h1>MiniMax 开放平台用量</h1>
+  <p class="muted">统计窗口 2026/10/06 ~ 2026/10/25（20 天）· 数据来源：MiniMax 开放平台 Token 计划用量导出 CSV（客户端只读授权，无内容/无 PII）。</p>
+  <p class="muted">这套数字不是成就，是样本量——长上下文 + 高缓存命中率，是把「三个月真实协作」跑顺的算术证据。</p>
+</section>
+
+<section>
+  <div class="grid">
+    <div class="card"><div class="stat-num">58.6<small> 亿</small></div><p class="muted">总处理 token<br>（输入+输出+缓存读取）</p></div>
+    <div class="card"><div class="stat-num">4.41<small> 亿</small></div><p class="muted">计费 token<br>（仅输入+输出）</p></div>
+    <div class="card"><div class="stat-num">54.2<small> 亿</small></div><p class="muted">缓存读取<br>（命中后从缓存取，通常折扣/免费）</p></div>
+    <div class="card"><div class="stat-num">92.8<small>%</small></div><p class="muted">加权缓存命中率</p></div>
+    <div class="card"><div class="stat-num">26<small> 张</small></div><p class="muted">image-01 图片生成</p></div>
+    <div class="card"><div class="stat-num">3<small> 条</small></div><p class="muted">video-01 视频生成</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>按模型 / 工具</h2>
+  <p class="muted">M3-512k 是绝对主力（长上下文主力模型）；M3.1-Flash 自 10/23 起放量；纯文本占了绝大多数，图片/视频是小头。</p>
+  <table>
+    <thead><tr><th>模型 / 工具</th><th class="num">输入</th><th class="num">输出</th><th class="num">缓存读取</th><th class="num">合计</th><th>占比（占窗口总量）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>MiniMax-M3-512k<br><small class="muted">类型 Text · 300 时段</small></td>
+        <td class="num">303,245,122</td>
+        <td class="num">18,421,691</td>
+        <td class="num">3,485,473,641</td>
+        <td class="num">3,807,140,454</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:100.0%"></div></div><small class="muted">65.0%</small></td>
+      </tr>
+      <tr>
+        <td>MiniMax-M3.1-Flash<br><small class="muted">类型 Text · 62 时段</small></td>
+        <td class="num">75,955,367</td>
+        <td class="num">4,006,974</td>
+        <td class="num">1,645,098,130</td>
+        <td class="num">1,725,060,471</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:45.3%"></div></div><small class="muted">29.4%</small></td>
+      </tr>
+      <tr>
+        <td>MiniMax-M3-1m<br><small class="muted">类型 Text · 42 时段</small></td>
+        <td class="num">38,611,720</td>
+        <td class="num">720,728</td>
+        <td class="num">287,342,391</td>
+        <td class="num">326,674,839</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:8.6%"></div></div><small class="muted">5.6%</small></td>
+      </tr>
+      <tr>
+        <td>MiniMax-M3.1-Flash-Preview<br><small class="muted">类型 Text · 1 时段</small></td>
+        <td class="num">22,951</td>
+        <td class="num">53</td>
+        <td class="num">1,992</td>
+        <td class="num">24,996</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:0.0%"></div></div><small class="muted">0.0%</small></td>
+      </tr>
+      <tr>
+        <td>MiniMax-M2.7<br><small class="muted">类型 Text · 1 时段</small></td>
+        <td class="num">203</td>
+        <td class="num">1</td>
+        <td class="num">0</td>
+        <td class="num">204</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:0.0%"></div></div><small class="muted">0.0%</small></td>
+      </tr>
+      <tr>
+        <td>image-01<br><small class="muted">类型 Image · 3 时段</small></td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:0.0%"></div></div><small class="muted">0.0%</small></td>
+      </tr>
+      <tr>
+        <td>video-01<br><small class="muted">类型 Video · 2 时段</small></td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:0.0%"></div></div><small class="muted">0.0%</small></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>按日节奏</h2>
+  <p class="muted">峰值出现在 10/25（单日破 12 亿），整体呈「项目冲刺日高、间歇日低」的工作波次；10/08、10/19 为明显低谷。</p>
+  <table>
+    <thead><tr><th>日期</th><th class="num">输入</th><th class="num">输出</th><th class="num">缓存读取</th><th class="num">合计</th><th>强度（相对峰值）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>2026/10/06</td>
+        <td class="num">8,213,568</td>
+        <td class="num">531,698</td>
+        <td class="num">141,191,711</td>
+        <td class="num">149,936,977</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:12.4%"></div></div><small class="muted">2.6%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/07</td>
+        <td class="num">35,225,694</td>
+        <td class="num">1,365,060</td>
+        <td class="num">530,405,715</td>
+        <td class="num">566,996,469</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:47.0%"></div></div><small class="muted">9.7%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/08</td>
+        <td class="num">1,816,321</td>
+        <td class="num">107,362</td>
+        <td class="num">15,464,584</td>
+        <td class="num">17,388,267</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:1.4%"></div></div><small class="muted">0.3%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/09</td>
+        <td class="num">15,878,764</td>
+        <td class="num">708,523</td>
+        <td class="num">121,179,458</td>
+        <td class="num">137,766,745</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:11.4%"></div></div><small class="muted">2.4%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/10</td>
+        <td class="num">23,554,113</td>
+        <td class="num">1,020,515</td>
+        <td class="num">323,084,129</td>
+        <td class="num">347,658,757</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:28.8%"></div></div><small class="muted">5.9%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/11</td>
+        <td class="num">3,801,235</td>
+        <td class="num">351,709</td>
+        <td class="num">90,608,952</td>
+        <td class="num">94,761,896</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:7.9%"></div></div><small class="muted">1.6%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/12</td>
+        <td class="num">5,635,630</td>
+        <td class="num">310,520</td>
+        <td class="num">62,768,396</td>
+        <td class="num">68,714,546</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:5.7%"></div></div><small class="muted">1.2%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/13</td>
+        <td class="num">41,820,905</td>
+        <td class="num">2,320,927</td>
+        <td class="num">392,246,268</td>
+        <td class="num">436,388,100</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:36.2%"></div></div><small class="muted">7.4%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/14</td>
+        <td class="num">35,563,873</td>
+        <td class="num">970,898</td>
+        <td class="num">220,851,733</td>
+        <td class="num">257,386,504</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:21.4%"></div></div><small class="muted">4.4%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/15</td>
+        <td class="num">63,258,948</td>
+        <td class="num">1,894,014</td>
+        <td class="num">446,951,526</td>
+        <td class="num">512,104,488</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:42.5%"></div></div><small class="muted">8.7%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/16</td>
+        <td class="num">20,536,100</td>
+        <td class="num">1,182,410</td>
+        <td class="num">173,641,499</td>
+        <td class="num">195,360,009</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:16.2%"></div></div><small class="muted">3.3%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/17</td>
+        <td class="num">11,314,051</td>
+        <td class="num">795,245</td>
+        <td class="num">113,391,129</td>
+        <td class="num">125,500,425</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:10.4%"></div></div><small class="muted">2.1%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/18</td>
+        <td class="num">7,415,991</td>
+        <td class="num">505,412</td>
+        <td class="num">113,281,090</td>
+        <td class="num">121,202,493</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:10.1%"></div></div><small class="muted">2.1%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/19</td>
+        <td class="num">2,847,166</td>
+        <td class="num">264,059</td>
+        <td class="num">51,850,330</td>
+        <td class="num">54,961,555</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:4.6%"></div></div><small class="muted">0.9%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/20</td>
+        <td class="num">12,442,018</td>
+        <td class="num">1,037,805</td>
+        <td class="num">134,364,220</td>
+        <td class="num">147,844,043</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:12.3%"></div></div><small class="muted">2.5%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/21</td>
+        <td class="num">22,928,042</td>
+        <td class="num">959,334</td>
+        <td class="num">306,597,101</td>
+        <td class="num">330,484,477</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:27.4%"></div></div><small class="muted">5.6%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/22</td>
+        <td class="num">32,752,275</td>
+        <td class="num">835,086</td>
+        <td class="num">328,893,808</td>
+        <td class="num">362,481,169</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:30.1%"></div></div><small class="muted">6.2%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/23</td>
+        <td class="num">24,340,830</td>
+        <td class="num">1,505,193</td>
+        <td class="num">381,809,024</td>
+        <td class="num">407,655,047</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:33.8%"></div></div><small class="muted">7.0%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/24</td>
+        <td class="num">10,557,296</td>
+        <td class="num">1,534,536</td>
+        <td class="num">306,855,523</td>
+        <td class="num">318,947,355</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:26.5%"></div></div><small class="muted">5.4%</small></td>
+      </tr>
+      <tr>
+        <td>2026/10/25</td>
+        <td class="num">37,932,543</td>
+        <td class="num">4,949,141</td>
+        <td class="num">1,162,479,958</td>
+        <td class="num">1,205,361,642</td>
+        <td style="min-width:160px"><div class="bar"><div class="bar-fill" style="width:100.0%"></div></div><small class="muted">20.6%</small></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="note">
+    <p><strong>怎么读这份数据</strong></p>
+    <p>1. 「缓存读取」54.2 亿，是真正的大头——它代表长上下文被反复复用（同一段系统提示 / 长文档被反复带进对话），命中后按折扣或免费计费。也就是说：<strong>实际花钱的只有「输入 + 输出」≈ 4.41 亿 token</strong>，长上下文把成本压了下来。</p>
+    <p>2. 加权缓存命中率 92.8%，说明绝大多数请求命中了既有缓存，符合长上下文 + 提示缓存（context caching）的运行方式。</p>
+    <p>3. 这份是 <strong>2026-10-06 ~ 10-25 的 MiniMax 单一来源</strong>，与首页「数据」段「~130 亿 token / ~8 万轮（自 2026 年 4 月累计，多来源）」<strong>口径不同、不互相覆盖</strong>。本窗口 20 天即产生约 58.6 亿，提示全量累计数可能需要刷新。</p>
+    <p>4. 本页为<strong>增量件</strong>：每次从开放平台导出新 CSV，重跑生成脚本即可刷新，不改动既有设计。</p>
+  </div>
+</section>
+
+<footer>
+  <p>数据源：MiniMax 开放平台 Token 计划用量 CSV（只读导出）· 最后生成：2026/10/25</p>
+  <p>返回 <a href="index.html">个人站首页 ↗</a></p>
+</footer>
+</body>
+</html>

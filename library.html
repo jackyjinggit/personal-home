@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>扩展阅读库 · 蒋平</title>
+<meta name="description" content="蒋平的公开成果库：方法论与研究、开源项目与工具、现场交付物、演示与作品、个人档案。全部链接经实测可达。">
+<meta name="author" content="蒋平">
+<meta property="og:type" content="website">
+<meta property="og:title" content="扩展阅读库 · 蒋平">
+<meta property="og:description" content="论文、白皮书、开源项目、现场交付物、可点的 demo —— 公开可及的成果索引，每条均已实测可达。">
+<link rel="canonical" href="https://jackyjinggit.github.io/personal-home/library.html">
+<style>
+  :root{
+    --accent-50:#e8f0fe; --accent-100:#d2e3fc; --accent-200:#aecbfa; --accent-300:#8ab4f8;
+    --accent-400:#669df6; --accent-500:#4285f4; --accent-600:#1a73e8; --accent-700:#1967d2;
+    --accent-800:#185abc; --accent-900:#174ea6;
+    --ink-50:#fafafa; --ink-100:#f5f5f5; --ink-200:#eeeeee; --ink-300:#e0e0e0;
+    --ink-400:#bdbdbd; --ink-500:#9e9e9e; --ink-600:#757575; --ink-700:#616161;
+    --ink-800:#424242; --ink-900:#212121;
+    --ok:#137333; --ok-bg:#e6f4ea; --warn:#8a5a10; --warn-bg:#fff8e8;
+    --line:var(--ink-300); --bg:var(--ink-50);
+    --space-2:4px; --space-3:8px; --space-4:12px; --space-5:16px; --space-6:24px; --space-8:32px;
+    --text-xs:12px; --text-sm:13.5px; --text-md:15px; --text-lg:18px; --text-xl:24px;
+    --radius-md:10px; --radius-pill:999px;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.06); --shadow-md:0 4px 14px rgba(0,0,0,.09);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+    background:var(--bg); color:var(--ink-900); line-height:1.65; margin:0; padding:0 0 60px;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(250,250,250,.94); backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--line); margin-bottom:var(--space-8);
+  }
+  nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;
+    max-width:980px;margin:0 auto;padding:12px 20px}
+  nav a{color:var(--ink-700);text-decoration:none;font-size:var(--text-sm);font-weight:500}
+  nav a:hover{color:var(--accent-700)}
+  nav a.active{color:var(--accent-700);font-weight:700}
+  nav .sp{margin-left:auto}
+
+  header{padding:var(--space-8) 0 var(--space-6)}
+  h1{font-size:var(--text-xl);font-weight:700;margin:0 0 var(--space-3);letter-spacing:.01em}
+  .lead{font-size:var(--text-md);color:var(--ink-700);margin:0 0 var(--space-4);max-width:760px}
+  .meta{font-size:var(--text-sm);color:var(--ink-600)}
+  .badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:var(--radius-pill);
+    background:var(--ok-bg);color:var(--ok);border:1px solid #c8e6c9;margin-left:8px;vertical-align:2px;font-weight:600}
+  .badge.warn{background:var(--warn-bg);color:var(--warn);border-color:#f0d9a8}
+
+  section{margin-bottom:var(--space-8)}
+  h2{font-size:var(--text-lg);font-weight:700;margin:0 0 var(--space-2);
+    padding-bottom:var(--space-2);border-bottom:2px solid var(--accent-100);color:var(--accent-900)}
+  .sec-note{font-size:var(--text-sm);color:var(--ink-600);margin:var(--space-2) 0 var(--space-4)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:var(--space-4);margin-top:var(--space-4)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:var(--space-5);box-shadow:var(--shadow-sm);border-left:3px solid var(--accent-400)}
+  .card.w{border-left-color:var(--ink-400)}
+  .card.g{border-left-color:var(--ok)}
+  .card h3{margin:0 0 var(--space-2);font-size:var(--text-md);font-weight:700;color:var(--ink-900)}
+  .card p{margin:0 0 var(--space-3);font-size:var(--text-sm);color:var(--ink-700)}
+  .card .meta{font-size:var(--text-xs)}
+  .links{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+  .links a{font-size:var(--text-xs);padding:3px 10px;border-radius:var(--radius-pill);
+    background:var(--accent-50);color:var(--accent-800);border:1px solid var(--accent-200);
+    text-decoration:none;font-weight:600}
+  .links a:hover{background:var(--accent-100)}
+  .links a.ext{background:#fff;color:var(--ink-700);border-color:var(--line)}
+  .links a.ext:hover{background:var(--ink-100)}
+  .state{font-size:11.5px;padding:2px 8px;border-radius:var(--radius-pill);font-weight:600}
+  .state.ok{background:var(--ok-bg);color:var(--ok)}
+  .state.warn{background:var(--warn-bg);color:var(--warn)}
+  .note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--amber,#f0a93c);
+    border-radius:var(--radius-md);padding:var(--space-5);margin:var(--space-6) 0;font-size:var(--text-sm);color:var(--ink-700)}
+  .note h4{margin:0 0 var(--space-2);font-size:var(--text-md);color:var(--ink-900)}
+  .note ul{margin:var(--space-2) 0 0;padding-left:20px}
+  .note li{margin-bottom:6px}
+  footer{border-top:1px solid var(--line);padding-top:var(--space-5);margin-top:var(--space-8);
+    font-size:var(--text-xs);color:var(--ink-500)}
+  @media print{
+    nav{display:none}
+    .card{break-inside:avoid}
+    h2{break-after:avoid}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="index.html">首页</a></li>
+    <li><a href="#research">研究与方法论</a></li>
+    <li><a href="#code">开源与工具</a></li>
+    <li><a href="#delivery">现场交付物</a></li>
+    <li><a href="#demo">演示与作品</a></li>
+    <li><a href="#profile">个人档案</a></li>
+    <li class="sp"><a href="resume.html">简历 ↗</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<header>
+  <h1>扩展阅读库</h1>
+  <p class="lead">
+    这里收的不是「作品列表」，而是<strong>可以直接打开看的东西</strong>——论文、白皮书、可运行的代码、现场交付的文档、可点的 demo。
+    每一条都标注了访问状态；标「受限」的，是需要你本人授权才能拿到的东西，我不假装它公开。
+  </p>
+  <p class="meta">最近核验：2026-10-26 · 全部链接逐条实测可达 · <span class="badge">已实测</span></p>
+</header>
+
+<section id="research">
+  <h2>研究与方法论</h2>
+  <p class="sec-note">这一类是可以被引用、被质疑、被当作学术对象对待的。</p>
+  <div class="grid">
+    <div class="card">
+      <h3>HAI 协作行业白皮书 <span class="state ok">全文可读</span></h3>
+      <p>《人类-AI协作：一个新类别的定义与落地》。提出 HAI 协作（Human-AI Interaction / 协作）作为独立于 HCI 的新类别，以协议驱动共生系统作为首个被完整记录的深度案例，并给出三年路线。含问题空间、参考架构、方法论基础、行业路径五章。</p>
+      <p class="meta">v1.0rc · 经联合信任 TSA 时间戳认证 · CC BY-NC-SA 4.0 · ~15KB Markdown</p>
+      <div class="links">
+        <a href="whitepaper/HAI行业白皮书.md">在线读全文 ↗</a>
+        <a class="ext" href="index.html#research">站内章节导航 ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>FEE · 反谄臣效应（Flattering-Echo Effect）<span class="state ok">预印本</span></h3>
+      <p>指出 AI 协作中的一类系统性失真：模型倾向于附和与放大使用者既有判断，从而侵蚀决策质量。这是白皮书的方法论基底，也是《谗臣效应》专栏的核心研究对象。</p>
+      <p class="meta">OSF 节点 · 项目级存档（非预印本同行评审状态，证据效力以节点说明为准）</p>
+      <div class="links">
+        <a class="ext" href="https://osf.io/6jdhm" target="_blank" rel="noopener">OSF 节点 ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>具身智能环境搭建课 · 要点汇报 <span class="state ok">双版本</span></h3>
+      <p>一条可复用的具身智能开发前置路径：先以四件套搭好标准环境，再以三条查询指令探测任意机器人的能力边界，最后在仿真中验证后再进入真机。含技术判断表。</p>
+      <p class="meta">2026-10-25 · 简略版 2 页 / 详细版 3 页 · 已做对外干净化处理</p>
+      <div class="links">
+        <a href="docs/具身智能课程汇报_简略版_2026-10-25.pdf">简略版 PDF ↗</a>
+        <a href="docs/具身智能课程汇报_详细版_2026-10-25.pdf">详细版 PDF ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="code">
+  <h2>开源与工具</h2>
+  <p class="sec-note">代码是可以被验证的东西——能 clone 下来跑，才算数。</p>
+  <div class="grid">
+    <div class="card g">
+      <h3>仁谱 renpu <span class="state ok">文档可读 · 仓库待授权</span></h3>
+      <p>本地人脉关系图谱引擎。本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API，纯 Python 零编译，<strong>数据不出本机</strong>。开放核心 AGPL-3.0-only。</p>
+      <p class="meta">README / INSTALL / QUICKSTART / SKILL / TROUBLESHOOT 全部可在线读 · 有 v0.2.0 / v0.2.1 版本标签 · 演示数据全为合成（姓名虚构、wxid 带 demo 前缀），不含任何真实联系人</p>
+      <div class="links">
+        <a href="docs/renpu/README.md">README ↗</a>
+        <a href="docs/renpu/QUICKSTART.md">快速开始 ↗</a>
+        <a href="docs/renpu/INSTALL.md">安装 ↗</a>
+        <a href="docs/renpu/SKILL.md">Skill 接入 ↗</a>
+        <a class="ext" href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">仓库（当前对访客不可见）↗</a>
+      </div>
+    </div>
+    <div class="card g">
+      <h3>看山 copilot 前端组件库 <span class="state ok">公开</span></h3>
+      <p>跨项目前端组件库——Silnk 与看山 copilot 共用的底座。看山 copilot 本身是创作者的内容复盘工具：拉公开数据 → 算留人曲线 → 定位两个拐点 → 输出主页诊断。演示用合成账号（页面标注「演示数据」，免登录），真实账号走官方只读授权，<strong>密钥只留本机</strong>。</p>
+      <p class="meta">知乎黑客松参赛项目 · MIT 友好 · 自述见知乎专栏</p>
+      <div class="links">
+        <a class="ext" href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">源码仓库 ↗</a>
+      </div>
+    </div>
+    <div class="card g">
+      <h3>思印客 Silnk（printpilot）<span class="state ok">线上运营</span></h3>
+      <p>自助打印机的统一管家。把「上传 → 体检 → 计价 → 支付 → 打印 → 取件 → 删除」做成一条<strong>可审计</strong>链路；三层硬件自研：涂鸦 T5AI 取件屏（串口接收真实状态 / 纸量 / 取件码）· 地瓜 RDK X5 出纸口视觉检测 · 旧打印机零配置接入（图形向导 + 4 位接入码批准即下发本机令牌）。</p>
+      <p class="meta">210 项 pytest 通过 · 13 个后端路由 · Vue 3 用户端 + 原生管理端 · 5 分钟文件自动删除且删除可查</p>
+      <div class="links">
+        <a class="ext" href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="delivery">
+  <h2>现场交付物</h2>
+  <p class="sec-note">这些是在真实时间压力下交付出去的东西——形态不完美，但确实被用掉了。</p>
+  <div class="grid">
+    <div class="card w">
+      <h3>思印客 Silnk · 一页纸价值说明 + 路演海报 <span class="state ok">可下载</span></h3>
+      <p>MoonStone DreamUP 黑客松现场用的价值说明与路演物料。含三层硬件自研说明、可审计链路的完整流程、210 项测试的证据口径。</p>
+      <p class="meta">2026-10-23 / 10-25 · A4 与 A3 两种规格 · 上海张江 · AI + 硬件赛道 · 3 人队 · 已完成路演答辩</p>
+      <div class="links">
+        <a href="docs/思印客Silnk_一页纸价值说明_2026-10-23.pdf">一页纸 PDF ↗</a>
+        <a href="docs/思印客Silnk_路演海报_A3.pdf">路演海报 A3 ↗</a>
+        <a href="docs/思印客Silnk_路演海报_A4.pdf">路演海报 A4 ↗</a>
+      </div>
+    </div>
+    <div class="card w">
+      <h3>团队协作要点汇报 <span class="state ok">双版本</span></h3>
+      <p>把一次实际协作里可复用的部分抽出来：谁在哪一步做了什么、哪些判断有据可查、哪些是待验证假设。简略版给结论，详细版给证据链。</p>
+      <p class="meta">2026-10-22 · 简略版 2 页 / 详细版 3 页</p>
+      <div class="links">
+        <a href="docs/团队协作汇报_简略版_2026-10-22.pdf">简略版 PDF ↗</a>
+        <a href="docs/团队协作汇报_详细版_2026-10-22.pdf">详细版 PDF ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <h2>演示与作品</h2>
+  <p class="sec-note">点开就能跑的东西，比描述更有说服力。</p>
+  <div class="grid">
+    <div class="card g">
+      <h3>AI 守门人（PII 印前审核）<span class="state ok">可点</span></h3>
+      <p>打印前的隐私守门人演示页——在文件进入打印链路前做一次 PII 检查。这是「可审计链路」里最容易被忽略、但对校园场景最要紧的一环。</p>
+      <p class="meta">站内独立页面 · 无需登录</p>
+      <div class="links">
+        <a class="ext" href="sentinel-v07/index.html">打开演示页 ↗</a>
+      </div>
+    </div>
+    <div class="card g">
+      <h3>CrossCheck · 双模型报告与链上证据 <span class="state ok">可点</span></h3>
+      <p>让报告可被验证。链下双模型交叉审核 + 链上 SHA-256 存证 + 篡改自检验，证据可独立复算。解决的是「报告出了，没人能证明它没被改过」——尤其当报告是 AI 生成的。</p>
+      <p class="meta">Monad Blitz V3 · 联合 owner · 源码与 demo 同时公开</p>
+      <div class="links">
+        <a class="ext" href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">live demo ↗</a>
+        <a class="ext" href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">源码 ↗</a>
+      </div>
+    </div>
+    <div class="card g">
+      <h3>创想集 AUREUM <span class="state ok">可点</span></h3>
+      <p>把零散想法收成可展示的作品集——独立开发者手里的半成品 idea 散在各处，永远无法被别人一眼看懂。做成了统一入口与展示层。</p>
+      <p class="meta">Monad Blitz 关联项目 · 联合 owner</p>
+      <div class="links">
+        <a class="ext" href="https://determine123.github.io/aureum-creation-hub/" target="_blank" rel="noopener">演示 ↗</a>
+        <a class="ext" href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">源码 ↗</a>
+      </div>
+    </div>
+    <div class="card g">
+      <h3>AI 原生组织架构（我的版本）<span class="state ok">本页可读</span></h3>
+      <p>同一件事的另一条路径：不是把层级拆掉，而是把「谁有权决定方向」从组织里抽出来交给一个人；中层被重新定义为协调 / 生产 / 监督三种权责；经验按个人 → 项目 → 组织三级沉淀，每级晋升都要过审核门。</p>
+      <p class="meta">基于公开的 CCF TF184 分享图所作的独立批评与重构 · 含三权分立与数据主权标注</p>
+      <div class="links">
+        <a class="ext" href="library_arch.html">展开阅读 ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="profile">
+  <h2>个人档案</h2>
+  <p class="sec-note">给评委、招聘方与合作方的可下载版本——链接始终指向最新版，历史版本在 Releases 列表可查。</p>
+  <div class="grid">
+    <div class="card">
+      <h3>简历（中文 / English）<span class="state ok">PDF + 网页版</span></h3>
+      <p>完整版 5 页（含五次跃迁时间线与全部项目三段式）；速览卡 1 页 A4，含「30 秒硬证据」与「为什么值得带我进队」两段，适合现场递给评委。</p>
+      <p class="meta">GitHub Release 版本化 · 每次更新自动指向最新</p>
+      <div class="links">
+        <a class="ext" href="https://github.com/jackyjinggit/personal-home/releases/latest/download/resume-zh.pdf">完整中文 PDF ↗</a>
+        <a class="ext" href="https://github.com/jackyjinggit/personal-home/releases/latest/download/resume-quick-zh.pdf">速览卡 PDF ↗</a>
+        <a class="ext" href="https://github.com/jackyjinggit/personal-home/releases/latest/download/resume-en.pdf">Full Resume PDF ↗</a>
+        <a class="ext" href="resume.html">中文网页版 ↗</a>
+        <a class="ext" href="en/resume.html">English web version ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>速览卡网页版 <span class="state ok">单页</span></h3>
+      <p>速览卡的网页版本，浏览器直接看，不用下文件。中文与英文各一份，都是 A4 单页。</p>
+      <div class="links">
+        <a class="ext" href="quick.html">中文速览卡 ↗</a>
+        <a class="ext" href="en/quick.html">English brief ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>微信公众号「蒋平的 AI 认知课程」</h3>
+      <p>长文的 AI 方法论写作与订阅读者列表——HAI / FEE / 自我民族志 / 反谄臣 / 黑客松实战。</p>
+      <p class="meta">平台内入口，不跨平台导流</p>
+      <div class="links">
+        <a class="ext" href="index.html#wechat">看入口 ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="note">
+  <h4>关于「受限」与「不列」</h4>
+  <ul>
+    <li><strong>仁谱 renpu</strong> 的完整文档（README / INSTALL / QUICKSTART / SKILL / TROUBLESHOOT）已随本页放出，可直接在线读；但 <strong>GitHub 仓库当前对匿名访客不可见</strong>——是否公开由你决定。这一条我如实标注，没有把它写成「人人可 clone」。</li>
+    <li><strong>未收录</strong>的，都是还没到可以给人看的时候：仍在进行中的赛事、未公开的论文原稿、内部治理文档与诊断包、涉及他人或第三方的内容。<strong>「还没准备好」不等于「做完了但藏着」——前者是状态，后者是判断。</strong></li>
+    <li>本页所有外链在最近一次核验时均可访问。若你日后调整了任一仓库的公开性，这里需要同步更新标注。</li>
+  </ul>
+</div>
+
+<footer>
+  扩展阅读库 · 蒋平 · 与个人主页同仓发布 · 全部链接逐条实测可达（2026-10-26）· 站内内容均可离线打开
+</footer>
+
+</div>
+</body>
+</html>

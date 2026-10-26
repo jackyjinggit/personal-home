@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>扩展阅读库 · 蒋平</title>
+<meta name="description" content="论文、白皮书、开源项目、产品与演讲——蒋平公开可及的成果索引。每条均已实测可达。">
+<meta name="author" content="蒋平">
+<meta property="og:type" content="website">
+<meta property="og:title" content="扩展阅读库 · 蒋平">
+<meta property="og:description" content="论文、白皮书、开源项目、产品与演讲——公开可及的成果索引。">
+<link rel="canonical" href="https://jackyjinggit.github.io/personal-home/reading/">
+<style>
+  :root{
+    --accent-50:#e8f0fe; --accent-100:#d2e3fc; --accent-200:#aecbfa; --accent-300:#8ab4f8;
+    --accent-400:#669df6; --accent-500:#4285f4; --accent-600:#1a73e8; --accent-700:#1967d2;
+    --accent-800:#185abc; --accent-900:#174ea6;
+    --ink-50:#fafafa; --ink-100:#f5f5f5; --ink-200:#eeeeee; --ink-300:#e0e0e0;
+    --ink-400:#bdbdbd; --ink-500:#9e9e9e; --ink-600:#757575; --ink-700:#616161;
+    --ink-800:#424242; --ink-900:#212121;
+    --line:var(--ink-300); --bg:var(--ink-50);
+    --space-2:4px; --space-3:8px; --space-4:12px; --space-5:16px; --space-6:24px; --space-8:32px; --space-10:48px;
+    --text-sm:13px; --text-md:15px; --text-lg:17px; --text-xl:21px; --text-2xl:27px;
+    --radius-md:10px; --radius-lg:16px;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.06); --shadow-md:0 4px 14px rgba(0,0,0,.09);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+    background:var(--bg); color:var(--ink-900); line-height:1.65; margin:0; padding:0 20px 64px;
+  }
+  .wrap{max-width:940px; margin:0 auto}
+
+  /* 顶部导航 */
+  nav{
+    position:sticky; top:0; z-index:10; background:rgba(250,250,250,.94);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--line); margin:0 -20px var(--space-8); padding:0 20px;
+  }
+  nav ul{list-style:none; display:flex; flex-wrap:wrap; gap:var(--space-5);
+    max-width:940px; margin:0 auto; padding:var(--space-4) 0}
+  nav a{color:var(--ink-700); text-decoration:none; font-size:var(--text-sm); font-weight:600}
+  nav a:hover{color:var(--accent-700)}
+  nav a.active{color:var(--accent-800)}
+  nav a.back{color:var(--accent-700)}
+
+  header{margin-bottom:var(--space-8)}
+  h1{font-size:var(--text-2xl); font-weight:700; margin:0 0 var(--space-3); letter-spacing:.01em}
+  .lead{font-size:var(--text-md); color:var(--ink-700); margin:0 0 var(--space-5); max-width:760px}
+  .meta{font-size:var(--text-sm); color:var(--ink-600); padding:var(--space-4) var(--space-5);
+    background:#fff; border:1px solid var(--ink-200); border-left:4px solid var(--accent-600);
+    border-radius:var(--radius-md)}
+  .meta b{color:var(--accent-800)}
+
+  h2{font-size:var(--text-xl); font-weight:700; margin:var(--space-10) 0 var(--space-2);
+    padding-bottom:var(--space-3); border-bottom:2px solid var(--accent-200)}
+  h2 .cnt{font-size:var(--text-sm); font-weight:500; color:var(--ink-500); margin-left:var(--space-3)}
+  .h2note{font-size:var(--text-sm); color:var(--ink-600); margin:0 0 var(--space-5)}
+
+  /* 条目卡 */
+  .item{background:#fff; border:1px solid var(--ink-200); border-radius:var(--radius-md);
+    padding:var(--space-5); margin-bottom:var(--space-4); box-shadow:var(--shadow-sm);
+    border-left:4px solid var(--accent-500)}
+  .item.feature{border-left-color:var(--accent-700)}
+  .item.item-2{border-left-color:#757575}
+  .item.item-3{border-left-color:#f0a93c}
+  .item h3{font-size:var(--text-lg); font-weight:700; margin:0 0 var(--space-2); color:var(--ink-900)}
+  .item h3 .tag{display:inline-block; font-size:11.5px; font-weight:600; padding:2px 9px;
+    border-radius:999px; margin-left:var(--space-3); vertical-align:middle;
+    background:var(--accent-50); color:var(--accent-800); border:1px solid var(--accent-200)}
+  .item h3 .tag.gray{background:var(--ink-100); color:var(--ink-700); border-color:var(--ink-300)}
+  .item h3 .tag.amber{background:#fff3e0; color:#8a5a10; border-color:#f2d9ae}
+  .item p{margin:0 0 var(--space-3); font-size:var(--text-md); color:var(--ink-800)}
+  .item p.why{font-size:var(--text-sm); color:var(--ink-700); margin:0 0 var(--space-3)}
+  .item p.why b{color:var(--accent-800)}
+  .links{display:flex; flex-wrap:wrap; gap:var(--space-3); align-items:center}
+  .btn{display:inline-block; padding:6px 14px; background:var(--accent-600); color:#fff;
+    text-decoration:none; border-radius:999px; font-size:var(--text-sm); font-weight:600}
+  .btn:hover{background:var(--accent-700)}
+  .btn.ghost{background:transparent; color:var(--accent-700); border:1px solid var(--accent-300)}
+  .btn.ghost:hover{background:var(--accent-50)}
+  .note{font-size:12.5px; color:var(--ink-500)}
+
+  /* 说明块 */
+  .callout{background:var(--accent-50); border-left:4px solid var(--accent-600);
+    padding:var(--space-5) var(--space-6); border-radius:var(--radius-md);
+    font-size:var(--text-md); color:var(--ink-800); margin:var(--space-5) 0}
+  .callout b{color:var(--accent-900)}
+
+  .pending{background:#fff8e8; border-left:4px solid #f0a93c;
+    padding:var(--space-5) var(--space-6); border-radius:var(--radius-md);
+    font-size:var(--text-sm); color:var(--ink-800); margin:var(--space-5) 0}
+  .pending b{color:#8a5a10}
+
+  footer{margin-top:var(--space-10); padding-top:var(--space-5); border-top:1px solid var(--line);
+    font-size:var(--text-sm); color:var(--ink-500)}
+  footer p{margin:0 0 var(--space-2)}
+
+  @media print{
+    body{background:#fff; padding:0 10mm}
+    nav{position:static}
+    .item,.callout,.pending{break-inside:avoid}
+    h2{break-after:avoid}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a class="back" href="../index.html">← 返回主页</a></li>
+    <li><a href="#paper">论文与白皮书</a></li>
+    <li><a href="#oss">开源项目</a></li>
+    <li><a href="#product">产品与案例</a></li>
+    <li><a href="#talk">演讲与分享</a></li>
+    <li><a class="active" href="./index.html" aria-current="page">扩展阅读库</a></li>
+    <li><a href="../en/index.html" hreflang="en" lang="en">English</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<header>
+  <h1>扩展阅读库</h1>
+  <p class="lead">
+    我公开可及的东西，都在这里：论文与白皮书、开源项目、产品与案例、演讲与分享。
+    每一条都做了 <strong>HTTP 实测</strong>——点开是空的、有 404 的，宁可不放。
+  </p>
+  <div class="meta">
+    <b>收录标准</b>：① 外部访问者无需登录即可打开；② 内容已完成脱敏（无内部代号、无真实姓名、无敏感路径）；
+    ③ 链接经实测返回 200。<br>
+    <b>未收录</b>：仍在私有仓或本地打磨中的成果——它们还没准备好被读，我不在这里贴死链。
+  </div>
+</header>
+
+<h2 id="paper">论文与白皮书<span class="cnt">2 项</span></h2>
+<p class="h2note">方法论的源头。每篇都写清楚了「问题是什么、怎么证的、失效条件在哪」。</p>
+
+<div class="item feature">
+  <h3>HAI 协作行业白皮书 <span class="tag">v1.0rc · 已时间戳认证</span></h3>
+  <p>副标题：人类-AI 协作——一个新类别的定义与落地。当 AI 的使用深度超过「工具」范畴时，现有词汇没有一个能同时覆盖效率、认知依赖和自我治理这三个维度。</p>
+  <p class="why"><b>为什么值得读</b>：它把「协作」从 HCI 里拆出来单独立类，并给出三年路线。写的是六个月、六类案例、1.3 亿 token 的真实协作，不是观点文章。许可协议 CC BY-NC-SA 4.0，已通过联合信任 TSA 时间戳认证。</p>
+  <div class="links">
+    <a class="btn" href="assets/HAI行业白皮书.md" download>⬇ 下载全文（Markdown）</a>
+    <a class="btn ghost" href="../index.html#research">主页「研究」区 ↗</a>
+  </div>
+</div>
+
+<div class="item feature">
+  <h3>FEE · 反谄臣效应 <span class="tag">OSF 预印本</span></h3>
+  <p>Flattering-Echo Effect：模型倾向于附和与放大使用者既有判断，从而侵蚀决策质量。论文基于自我民族志方法记录真实协作过程。</p>
+  <p class="why"><b>为什么值得读</b>：这是白皮书方法论底座里可被独立检验的一块——不是「我认为 AI 会谄媚」，而是有记录、有可反驳条件的观察。OSF 存档意味着时间戳与版本固定。</p>
+  <div class="links">
+    <a class="btn" href="https://osf.io/6jdhm" target="_blank" rel="noopener">OSF 预印本 ↗</a>
+  </div>
+</div>
+
+<h2 id="oss">开源项目<span class="cnt">3 项</span></h2>
+<p class="h2note">能跑起来的，不是 PPT。</p>
+
+<div class="item">
+  <h3>kanshan-frontend <span class="tag gray">跨项目前端组件库</span></h3>
+  <p>多个项目共用的前端组件库（UI/UX 资产底座），是思印客与看山 copilot 的共用底座。</p>
+  <p class="why"><b>为什么值得看</b>：从零写组件库是「看起来简单、实际很难」的那类活——一致性、可访问性、响应式断点都要自己扛一遍。</p>
+  <div class="links">
+    <a class="btn" href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">源码 ↗</a>
+  </div>
+</div>
+
+<div class="item">
+  <h3>CrossCheck · 双模型报告与链上证据 <span class="tag gray">Monad Blitz V3 · 联合 owner</span></h3>
+  <p>链下双模型交叉审核 + 链上 SHA-256 存证 + 篡改自检验。证据可被任何人独立复算。</p>
+  <p class="why"><b>为什么值得看</b>：它回答的是一个具体到有点土的问题——<em>报告出了，怎么证明它没被改过？</em> 尤其是 AI 生成的报告。解法不玄学：双模型审核 + 链上哈希 + 自检验。</p>
+  <div class="links">
+    <a class="btn" href="https://yanyu473.github.io/CrossCheckMonadBlitz20261017/" target="_blank" rel="noopener">live demo ↗</a>
+    <a class="btn ghost" href="https://github.com/yanyu473/CrossCheckMonadBlitz20261017" target="_blank" rel="noopener">源码 ↗</a>
+  </div>
+</div>
+
+<div class="item">
+  <h3>创想集 AUREUM <span class="tag gray">Monad Blitz 关联 · 联合 owner</span></h3>
+  <p>把零散想法收成可展示的作品集——统一入口与展示层。独立开发者手里一堆半成品 idea 的通用解法。</p>
+  <p class="why"><b>为什么值得看</b>：<em>做出来 ≠ 别人能看懂。</em> 这一层做的就是「可被检视」，对任何独立开发者都成立。</p>
+  <div class="links">
+    <a class="btn" href="https://determine123.github.io/aureum-creation-hub" target="_blank" rel="noopener">演示 ↗</a>
+    <a class="btn ghost" href="https://github.com/determine123/aureum-creation-hub" target="_blank" rel="noopener">源码 ↗</a>
+  </div>
+</div>
+
+<h2 id="product">产品与案例<span class="cnt">2 项</span></h2>
+<p class="h2note">跑过真实场景的东西，以及把它讲清楚的一次性材料。</p>
+
+<div class="item">
+  <h3>思印客 Silnk <span class="tag amber">已上线运营</span></h3>
+  <p>自助打印机的统一管家。把「上传 → 体检 → 计价 → 支付 → 打印 → 取件 → 删除」做成一条<strong>可审计</strong>链路。</p>
+  <p class="why"><b>为什么值得看</b>：自助打印真正难的不是「把文件发到打印机」，而是<em>打错、拿错、留下</em>。这个产品把「可审计」当成主卖点，而不是把「能打印」当成主卖点——这是一个面向真实校园场景的判断题。</p>
+  <div class="links">
+    <a class="btn" href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a>
+    <a class="btn ghost" href="../sentinel-v07/index.html">AI 守门人演示页 ↗</a>
+    <span class="note">PII 印前审核演示：打印前拦下敏感信息</span>
+  </div>
+</div>
+
+<div class="item">
+  <h3>灵机一动 Workshop 汇报 <span class="tag gray">简略 2 页 · 详细 3 页</span></h3>
+  <p>GDPS 2026 暨 IEIC 国际具身智能技能大赛现场的 ROS2 网课汇报实录。逐字稿整理 + 技术判断表 12 条。</p>
+  <p class="why"><b>为什么值得读</b>：<em>96 分钟逐字稿压成可复用的技术判断</em>，且对外版做过 28 项干净化检查（去乱码、去个人身份暴露、去模糊措辞）。想知道「ROS2 从零到能编包」这条路实际怎么走，这两份够用。</p>
+  <div class="links">
+    <a class="btn" href="assets/灵机一动Workshop汇报_简略版.pdf">⬇ 简略版（PDF）</a>
+    <a class="btn ghost" href="assets/灵机一动Workshop汇报_详细版.pdf">⬇ 详细版（PDF）</a>
+  </div>
+</div>
+
+<h2 id="talk">演讲与分享<span class="cnt">2 项</span></h2>
+<p class="h2note">被邀请讲过的东西，通常比我想讲的更能说明我在关注什么。</p>
+
+<div class="item">
+  <h3>团队技术方向汇报 <span class="tag gray">简略 2 页 · 详细 4 页</span></h3>
+  <p>面向团队的技术方向汇报实录。讲的是「为什么选这条路」，不是「我们做了什么」。</p>
+  <p class="why"><b>为什么值得读</b>：技术汇报里最有信息量的通常不是结论，而是<em>被否掉的方案和否掉的理由</em>。这份保留了讨论痕迹。</p>
+  <div class="links">
+    <a class="btn" href="assets/团队汇报_简略版.pdf">⬇ 简略版（PDF）</a>
+    <a class="btn ghost" href="assets/团队汇报_详细版.pdf">⬇ 详细版（PDF）</a>
+  </div>
+</div>
+
+<div class="item">
+  <h3>知乎专栏 · 蒋平的 AI 认知课程 <span class="tag amber">持续更新</span></h3>
+  <p>长文形式讲 AI 协作方法论：HAI 分类、FEE 反谄臣、自我民族志，以及黑客松现场的真实操作。</p>
+  <p class="why"><b>为什么值得读</b>：白皮书是结论，这里是<em>推导过程</em>——包括那些后来被推翻的判断。想看一个观点怎么被自己的证据修正过，从这里读起。</p>
+  <div class="links">
+    <a class="btn" href="../index.html#wechat">公众号入口 ↗</a>
+    <span class="note">微信公众号「蒋平的 AI 认知课程」</span>
+  </div>
+</div>
+
+<div class="callout">
+  <b>关于这个库的性质。</b>它不是作品陈列，而是<strong>可检验性清单</strong>——
+  每一条都应该让你能在没有我的情况下自己验证：白皮书能下载、论文能打开、代码能 clone、demo 能点。
+  凡是还需要我口头解释才成立的，都还没放进来。
+</div>
+
+<div class="pending">
+  <b>正在准备、暂未收录。</b>仁谱 renpu（AGPL-3.0-only 开放核心 · 本地人脉关系图谱引擎）代码库仍在私有状态，
+  公开后可纳入本页；本文提到的其他赛事材料也在整理中。
+  <strong>我不放打不开的链接</strong>——需要看可以先在主页的「近期作品」区看它的能力说明。
+</div>
+
+<footer>
+  <p>本库所有链接于 2026-10-26 实测可达。发现失效请告知，会即刻处理。</p>
+  <p><a href="../index.html">← 返回主页</a> · <a href="../resume.html">简历</a> · <a href="../quick.html">速览卡</a> · <a href="../en/index.html">English</a></p>
+</footer>
+
+</div>
+</body>
+</html>
