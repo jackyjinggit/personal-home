@@ -288,7 +288,7 @@
 <body>
 
 <header>
-  <p class="muted" style="text-align: right; margin-bottom: var(--space-4);">🌐 <strong>English</strong> · <a href="../resume.html" hreflang="zh-CN" lang="zh-CN">中文简历</a> · <a href="../index.html">Homepage</a></p>
+  <p class="muted" style="text-align: right; margin-bottom: var(--space-4);">🌐 <strong>English</strong> · <a href="../index.html" hreflang="zh-CN" lang="zh-CN">中文简历</a> · <a href="https://jackyjinggit.github.io/personal-home/">Homepage</a></p>
   <h1>Jacky Jiang</h1>
   <p class="subtitle">Independent Researcher · AI Collaboration Methodology · Hackathon Team Lead · Open-Source Founder</p>
   <p>One independent researcher, taking a single question — <strong>how should AI actually work alongside people</strong> — from lived failure, to methodology, to tools, to shipped products.</p>
@@ -398,6 +398,13 @@
     </div>
 
     <div class="tl-item tl-now">
+      <div class="tl-when">27 October 2026 · now</div>
+      <div class="tl-what">Two installable open-source packages + an application deck</div>
+      <p class="tl-turn">Packaged the cross-embodiment skill layer into <strong>skillbridge-soft</strong> (zero dependencies, 977 lines, five-step demo verified) and built <strong>agent-pkg-audit</strong> — a pre-publish gate for agent packages that scans secrets, PII, absolute paths, manifest drift and broken references, and <strong>exits non-zero so CI can block a release</strong>. Also produced a 10-page English application deck.</p>
+      <p class="tl-why">Both tools came out of governance work I was already doing, and both were tested against my own repositories — which surfaced a real defect in the auditor and turned a 27-leak repository clean. <strong>Shipping a tool is also how you find out whether it works.</strong></p>
+    </div>
+
+    <div class="tl-item tl-now">
       <div class="tl-when">25 October 2026 · now</div>
       <div class="tl-what">First real revenue line + an open core + two events closed</div>
       <p class="tl-turn">Silnk went live (unified self-service printing management); Renpu was open-sourced under AGPL-3.0-only — <strong>putting an open core into a real transaction channel</strong>. In the same week, two tracks at once: a 5-person team at GDPS &amp; IEIC (SkillBridge) and a 3-person team at MoonStone DreamUP (Silnk · AI + Hardware track · three self-built hardware layers · 210 pytest cases passing), roadshow and Q&amp;A completed.</p>
@@ -427,6 +434,22 @@
     <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">The same robot job skill has to be rewritten for every new machine — the more hardware you mix, the more that repetition costs.</span></div>
     <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v">One Python Skill that migrates from sim2real to any physical embodiment with zero code changes; <strong>15 ROS2 interface packages compiled clean (140 msg + 93 srv) + a 16-item official capability mapping layer + 15 Skill bindings</strong>.</span></div>
     <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v">GDPS 2026 &amp; IEIC International Embodied Intelligence Skills Competition (Zhangjiang, Shanghai · 2026-10-23—25 · 5-person team) · <strong>on-device integration was limited by the venue's hardware configuration (missing gateway / battery)</strong>, so simulation and demo tracks ran in parallel</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">skillbridge-soft <span class="muted">packaged 2026-10-27 · pending public release</span></p>
+    <p class="proj-one">The installable cross-embodiment skill layer</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">A skill library has to be rewritten for every robot it meets — and <strong>abstraction drift is silent</strong>. Nobody tells you the layer has quietly welded itself to one machine.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v"><strong>977 lines, zero dependencies</strong>, three layers: capability / mapping / driver. The same semantic Skill runs on two bodies with a <strong>byte-identical</strong> instruction signature and completely different topics. Skill files carry zero brand names and zero topics, and a <strong>static self-check</strong> fails loudly on drift.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><strong>Five-step demo verified end to end</strong> (architecture self-check → cross-embodiment execution → signature identity → file fingerprints → difference only in the mapping table) · demo re-run after tarball install exits 0 · swapping bodies = edit one YAML + swap one driver, <strong>the Skill file never changes</strong></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">agent-pkg-audit <span class="muted">packaged 2026-10-27 · pending public release</span></p>
+    <p class="proj-one">A pre-publish gate for agent packages</p>
+    <div class="proj-row"><span class="proj-k">Whose problem</span><span class="proj-v">Agent packages ship prompts, tool definitions and configuration — and <strong>one leaked email, one absolute path from someone's laptop, one dangling skill reference</strong> usually surfaces after release, not before.</span></div>
+    <div class="proj-row"><span class="proj-k">What I built</span><span class="proj-v"><strong>Zero-dependency, standard library only.</strong> Scans secrets / PII / absolute paths / manifest drift / broken refs / unfinished markers and <strong>exits non-zero so CI can block a release</strong> — usable as a CI step or a prepublishOnly hook. Project-specific rules go through <code>--rules</code>; the shipped defaults stay neutral.</span></div>
+    <div class="proj-row"><span class="proj-k">Evidence</span><span class="proj-v"><strong>13-assertion suite passing</strong> (clean package exits 0 / dirty package exits 1 / self-audit exits 0 / custom rules / whole-repo scan / npm pack) · tarball install verified · CI workflow covers 3 Python versions plus a self-audit gate · <strong>every rule corresponds to a leak that actually happened</strong>, not a paper linter</span></div>
   </div>
 
   <div class="card proj">

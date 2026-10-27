@@ -405,6 +405,13 @@
     </div>
 
     <div class="tl-item tl-now">
+      <div class="tl-when">2026 年 10 月 27 日 · 现在</div>
+      <div class="tl-what">两个可安装开源包 + 一份英文申请 Deck</div>
+      <p class="tl-turn">把跨本体技能层打包成 <strong>skillbridge-soft</strong>（零依赖 977 行，五步 demo 实测通过），并做出 <strong>agent-pkg-audit</strong>——Agent 包发布前审计门：扫密钥 / PII / 绝对路径 / 清单漂移 / 断链，<strong>exit 1 阻断发布</strong>，可挂 CI 或 prepublishOnly。同时产出 10 页英文申请 Deck。</p>
+      <p class="tl-why">两个工具都从我原本就在做的治理工作里长出来，而且都拿我自己的仓实测过——正是这一步让审计器暴露出一个真缺陷，把一个含 27 处泄漏的仓清干净。<strong>把工具发出去，也是验证它到底能不能用的办法。</strong></p>
+    </div>
+
+    <div class="tl-item tl-now">
       <div class="tl-when">2026 年 10 月 25 日 · 现在</div>
       <div class="tl-what">第一条真营收线 + 开放核心 + 双线完赛</div>
       <p class="tl-turn">思印客 Silnk 官网上线；仁谱 renpu 以 <strong>AGPL-3.0-only</strong> 开源——<strong>把开放核心送进真实交易通道</strong>。同一周双线作战：5 人队 GDPS 暨 IEIC（SkillBridge）+ 3 人队 MoonStone DreamUP 完成路演与答辩（Silnk · AI + 硬件赛道 · 三层硬件全自研 · 210 项 pytest 通过）。</p>
@@ -434,6 +441,22 @@
     <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">同一套机器人作业技能，换一台机器就要重写一遍——硬件型号越杂，重复劳动越贵。</span></div>
     <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v">一套 <strong>Python Skill</strong> 从 <strong>sim2real</strong> 到任意真机<strong>零改动迁移</strong>；<strong>15 个 ROS2 接口包编译通过（140 msg + 93 srv）+ 16 项官方能力映射层 + 15 个 Skill 绑定</strong>。</span></div>
     <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v">GDPS 2026 暨 IEIC 国际具身智能技能大赛（上海张江 · 10-23—25 · 5 人队）· <strong>真机联调受现场硬件配置限制（缺网关 / 电池）</strong>，同步推进仿真与展示双线</span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">skillbridge-soft <span class="muted">2026-10-27 打包完成 · 待公开发布</span></p>
+    <p class="proj-one">SkillBridge 的可安装跨本体技能层</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">技能库装到别的机器人上要重写一遍——<strong>抽象层腐化是静默的</strong>，没人告诉你它已经绑死某台机器。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v"><strong>977 行零依赖</strong>三层解耦（能力层 / 映射层 / 驱动层）；同一份语义 Skill 在两个本体上<strong>指令签名字节级一致</strong>、topic 完全不同；Skill 文件零品牌名零 topic，<strong>静态自检</strong>漂移即失败。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><strong>demo 五步实测通过</strong>（架构自检 → 跨本体执行 → 签名一致 → 文件指纹 → 差异只在映射表）· tarball 安装后 demo 复跑 exit 0 · 换本体 = 改一张 YAML + 换一个 driver，<strong>Skill 文件一行不动</strong></span></div>
+  </div>
+
+  <div class="card proj">
+    <p class="proj-name">agent-pkg-audit <span class="muted">2026-10-27 打包完成 · 待公开发布</span></p>
+    <p class="proj-one">Agent 包的发布前审计门</p>
+    <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">Agent 包里塞着 prompt、工具定义和配置——<strong>一个泄漏的邮箱、一条本机绝对路径、一条断掉的 skill 引用</strong>，往往在发布之后才发现。</span></div>
+    <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v"><strong>零依赖 Python 标准库</strong>，扫密钥 / PII / 绝对路径 / 清单漂移 / 断链 / 未完成标记，<strong>exit 1 阻断发布</strong>，可直接挂 CI 或 prepublishOnly；<strong>项目专属规则走 --rules 自定义</strong>，默认规则保持中立。</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><strong>13 项断言全过</strong>（干净包 exit 0 / 脏包 exit 1 / 自审 exit 0 / 自定义规则 / 全仓扫描 / npm pack）· tarball 安装实测跑通 · CI 工作流含 3 个 Python 版本 + 自审卡点 · <strong>每条规则对应一次真实发生过的泄漏</strong>，不是纸面 linter</span></div>
   </div>
 
   <div class="card proj">
