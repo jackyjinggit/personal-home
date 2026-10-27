@@ -444,19 +444,19 @@
   </div>
 
   <div class="card proj">
-    <p class="proj-name">skillbridge-soft <span class="muted">2026-10-27 打包完成 · 待公开发布</span></p>
+    <p class="proj-name">skillbridge-soft <span class="muted">2026-10-27 GitHub 开源</span></p>
     <p class="proj-one">SkillBridge 的可安装跨本体技能层</p>
     <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">技能库装到别的机器人上要重写一遍——<strong>抽象层腐化是静默的</strong>，没人告诉你它已经绑死某台机器。</span></div>
     <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v"><strong>977 行零依赖</strong>三层解耦（能力层 / 映射层 / 驱动层）；同一份语义 Skill 在两个本体上<strong>指令签名字节级一致</strong>、topic 完全不同；Skill 文件零品牌名零 topic，<strong>静态自检</strong>漂移即失败。</span></div>
-    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><strong>demo 五步实测通过</strong>（架构自检 → 跨本体执行 → 签名一致 → 文件指纹 → 差异只在映射表）· tarball 安装后 demo 复跑 exit 0 · 换本体 = 改一张 YAML + 换一个 driver，<strong>Skill 文件一行不动</strong></span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><strong>demo 五步实测通过</strong>（架构自检 → 跨本体执行 → 签名一致 → 文件指纹 → 差异只在映射表）· tarball 安装后 demo 复跑 exit 0 · 换本体 = 改一张 YAML + 换一个 driver，<strong>Skill 文件一行不动</strong> · <a href="https://github.com/jackyjinggit/skillbridge-soft" target="_blank" rel="noopener">GitHub ↗</a></span></div>
   </div>
 
   <div class="card proj">
-    <p class="proj-name">agent-pkg-audit <span class="muted">2026-10-27 打包完成 · 待公开发布</span></p>
+    <p class="proj-name">agent-pkg-audit <span class="muted">2026-10-27 GitHub 开源</span></p>
     <p class="proj-one">Agent 包的发布前审计门</p>
     <div class="proj-row"><span class="proj-k">谁的问题</span><span class="proj-v">Agent 包里塞着 prompt、工具定义和配置——<strong>一个泄漏的邮箱、一条本机绝对路径、一条断掉的 skill 引用</strong>，往往在发布之后才发现。</span></div>
     <div class="proj-row"><span class="proj-k">我做了什么</span><span class="proj-v"><strong>零依赖 Python 标准库</strong>，扫密钥 / PII / 绝对路径 / 清单漂移 / 断链 / 未完成标记，<strong>exit 1 阻断发布</strong>，可直接挂 CI 或 prepublishOnly；<strong>项目专属规则走 --rules 自定义</strong>，默认规则保持中立。</span></div>
-    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><strong>13 项断言全过</strong>（干净包 exit 0 / 脏包 exit 1 / 自审 exit 0 / 自定义规则 / 全仓扫描 / npm pack）· tarball 安装实测跑通 · CI 工作流含 3 个 Python 版本 + 自审卡点 · <strong>每条规则对应一次真实发生过的泄漏</strong>，不是纸面 linter</span></div>
+    <div class="proj-row"><span class="proj-k">证据</span><span class="proj-v"><strong>13 项断言全过</strong>（干净包 exit 0 / 脏包 exit 1 / 自审 exit 0 / 自定义规则 / 全仓扫描 / npm pack）· tarball 安装实测跑通 · CI 工作流含 3 个 Python 版本 + 自审卡点 · <strong>每条规则对应一次真实发生过的泄漏</strong>，不是纸面 linter · <a href="https://github.com/jackyjinggit/agent-pkg-audit" target="_blank" rel="noopener">GitHub ↗</a></span></div>
   </div>
 
   <div class="card proj">
