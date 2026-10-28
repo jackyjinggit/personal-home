@@ -390,6 +390,65 @@
 
 <hr>
 
+<section id="renpu">
+  <h2>Renpu · 仁谱</h2>
+  <p class="muted">A local relationship-genealogy engine — pulls <em>who is connected to whom</em> out of the message stream.</p>
+
+  <div class="card" style="background: var(--accent-50); border-left: 4px solid var(--accent-600); padding: var(--space-6); margin: var(--space-4) 0;">
+    <h3 style="margin: 0 0 var(--space-2);">A genealogy, not a message feed<span class="badge">AGPL-3.0-only</span></h3>
+    <p style="font-size: var(--text-md); margin: var(--space-2) 0;">A WeChat digest tells you <strong>who said what yesterday</strong>. Renpu tells you <strong>who runs with whom, who is close to you, who owes you a reply</strong>.</p>
+    <p style="font-size: var(--text-md); margin: var(--space-2) 0;">It reads the local WeChat store read-only, builds a relationship model, and emits a <strong>single-file HTML graph</strong> — decrypting, indexing and rendering all happen on the machine, so <strong>data never leaves it</strong>. No external calls, no uploads.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">21,823</div>
+      <div class="muted" style="font-size: var(--text-sm);">contacts (real store)</div>
+    </div>
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">35,611</div>
+      <div class="muted" style="font-size: var(--text-sm);">relationship edges</div>
+    </div>
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">265</div>
+      <div class="muted" style="font-size: var(--text-sm);">groups</div>
+    </div>
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">0</div>
+      <div class="muted" style="font-size: var(--text-sm);">bytes leave the machine</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-4); margin: var(--space-4) 0;">
+    <figure style="margin: 0;">
+      <img src="../assets/renpu-graph.png" alt="Renpu relationship graph" style="width: 100%; border-radius: var(--radius-md); border: 1px solid var(--line); display: block;">
+      <figcaption class="muted" style="font-size: var(--text-sm); margin-top: var(--space-2);">The relationship graph — 34 people on one screen. <strong>Grey is shared groups</strong>, <strong>teal is private chat</strong>, white is you. Circles are coloured automatically. (Demo data, invented people.)</figcaption>
+    </figure>
+    <figure style="margin: 0;">
+      <img src="../assets/renpu-private-only.png" alt="Renpu person file" style="width: 100%; border-radius: var(--radius-md); border: 1px solid var(--line); display: block;">
+      <figcaption class="muted" style="font-size: var(--text-sm); margin-top: var(--space-2);">One person, one file — the person on the right <strong>only ever talked to you privately, never in a group</strong>. Deriving relationships from group co-occurrence alone leaves such people at <strong>zero relationships</strong>. Renpu counts them.</figcaption>
+    </figure>
+  </div>
+
+  <div class="card" style="padding: var(--space-5);">
+    <h3 style="margin: 0 0 var(--space-3); font-size: var(--text-base);">How to use it</h3>
+    <ul style="margin: 0; padding-left: var(--space-5); line-height: 2;">
+      <li><strong>One command for the whole tour</strong>: <code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe tour</code> — graph plus report, zero configuration</li>
+      <li><strong>Or read your own store</strong>: <code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe ingest</code> (read-only WeChat parsing) then <code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe graph --share</code> (redacted, safe to send)</li>
+      <li><strong>Drop it into your notes</strong>: <code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe export-vault</code> — writes notes and wikilinks into an Obsidian vault, ready for the existing graph plugins</li>
+      <li><strong>Let an agent read it</strong>: <code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe serve</code> — 15 read-only endpoints on 127.0.0.1</li>
+    </ul>
+    <p class="muted" style="font-size: var(--text-sm); margin: var(--space-3) 0 0;">Pure Python, zero compilation · single-file executable, no Python needed · desktop workbench, CLI and local API · one flag replaces names, group names and account identifiers for sharing</p>
+    <p style="margin: var(--space-3) 0 0;">
+      <a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener"><strong>Source repository ↗</strong></a> ·
+      <a href="../docs/renpu/README.md">Docs ↗</a> ·
+      <a href="../docs/renpu/QUICKSTART.md">Five-minute start ↗</a>
+    </p>
+  </div>
+</section>
+
+<hr>
+
 <section id="github">
   <h2>GitHub</h2>
   <p class="muted">Account <a href="https://github.com/jackyjinggit" target="_blank" rel="noopener">@jackyjinggit</a> · key repos + co-owner demo repos (non-self repos listed for access).</p>
@@ -397,7 +456,7 @@
   <ul>
     <li><strong>printpilot (Silnk 思印客)</strong> — self-service printing management platform. MVP in a 2-day sprint. <a href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a> · Repository · repo pending.</li>
     <li><strong>kanshan-frontend</strong> — cross-project frontend component library (UI/UX asset base for Silnk and adjacent projects). <a href="https://github.com/jackyjinggit/kanshan-frontend" target="_blank" rel="noopener">Repository ↗</a></li>
-    <li><strong>renpu（仁谱）</strong> — local relationship-genealogy engine, AGPL-3.0-only. Local SQLite + six-domain model + relationship-edge inference + read-only WeChat parsing + 15-subcommand CLI / local API; pure Python, zero compilation, <strong>data never leaves the machine</strong>. <span class="muted">Repository being published (link follows release)</span></li>
+    <li><strong>renpu（仁谱）</strong> — local relationship-genealogy engine, AGPL-3.0-only. Local SQLite + six-domain model + relationship-edge inference + read-only WeChat parsing + 21-subcommand CLI / local API; pure Python, zero compilation, <strong>data never leaves the machine</strong>. <a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">github.com/jackyjinggit/renpu ↗</a> · <a href="../docs/renpu/README.md">Docs ↗</a></li>
   </ul>
   <h3 style="margin-top: var(--space-6); font-size: var(--text-base); color: var(--ink-700);">Co-owner demo repos</h3>
   <ul>

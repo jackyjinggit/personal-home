@@ -277,6 +277,7 @@
     <li><a href="#home">首页</a></li>
     <li><a href="#journey">足迹</a></li>
     <li><a href="#hackathon">黑客松</a></li>
+    <li><a href="#renpu">仁谱</a></li>
     <li><a href="#research">研究</a></li>
     <li><a href="#data">数据</a></li>
     <li><a href="#github">GitHub</a></li>
@@ -507,6 +508,65 @@
 
 <hr>
 
+<section id="renpu">
+  <h2>仁谱 · renpu</h2>
+  <p class="muted">本地人脉关系图谱引擎 —— 把「谁跟谁有关系」从消息流里抽出来。</p>
+
+  <div class="card" style="background: var(--accent-50); border-left: 4px solid var(--accent-600); padding: var(--space-6); margin: var(--space-4) 0;">
+    <h3 style="margin: 0 0 var(--space-2);">关系谱不是消息流<span class="badge">AGPL-3.0-only</span></h3>
+    <p style="font-size: var(--text-md); margin: var(--space-2) 0;">微信日报工具告诉你<strong>昨天谁说了什么</strong>。仁谱告诉你<strong>谁跟谁是一伙的、谁跟你最近、谁欠你一句话</strong>。</p>
+    <p style="font-size: var(--text-md); margin: var(--space-2) 0;">从本地微信库只读解析，建关系模型，出<strong>单文件 HTML 图谱</strong>——解密、建库、出图全在本机，<strong>数据不出本机</strong>，零外链、零上传。</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0;">
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">21,823</div>
+      <div class="muted" style="font-size: var(--text-sm);">联系人（真实库跑通）</div>
+    </div>
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">35,611</div>
+      <div class="muted" style="font-size: var(--text-sm);">条关系边</div>
+    </div>
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">265</div>
+      <div class="muted" style="font-size: var(--text-sm);">个群（成员与共现）</div>
+    </div>
+    <div class="card" style="text-align: center; padding: var(--space-4);">
+      <div style="font-size: 1.9rem; font-weight: 700; color: var(--accent-700);">0</div>
+      <div class="muted" style="font-size: var(--text-sm);">字节离开本机</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-4); margin: var(--space-4) 0;" class="renpu-shots">
+    <figure style="margin: 0;">
+      <img src="assets/renpu-graph.png" alt="仁谱关系图谱" style="width: 100%; border-radius: var(--radius-md); border: 1px solid var(--line); display: block;">
+      <figcaption class="muted" style="font-size: var(--text-sm); margin-top: var(--space-2);">关系图谱 —— 60 人一屏，<strong>灰色是同群</strong>、<strong>青色是私聊</strong>、白色是你自己；圈层自动分色。（演示数据，人物虚构）</figcaption>
+    </figure>
+    <figure style="margin: 0;">
+      <img src="assets/renpu-private-only.png" alt="仁谱人物档案" style="width: 100%; border-radius: var(--radius-md); border: 1px solid var(--line); display: block;">
+      <figcaption class="muted" style="font-size: var(--text-sm); margin-top: var(--space-2);">一人一档 —— 右边这位<strong>只跟你私聊、一个群都没有</strong>。旧算法只从群共现推关系，这类人是<strong>零关系</strong>；仁谱把他们算回来了。</figcaption>
+    </figure>
+  </div>
+
+  <div class="card" style="padding: var(--space-5);">
+    <h3 style="margin: 0 0 var(--space-3); font-size: var(--text-base);">怎么用</h3>
+    <ul style="margin: 0; padding-left: var(--space-5); line-height: 2;">
+      <li><strong>一条命令出全套</strong>：<code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe tour</code> —— 图谱 + 报告，零配置走一遍</li>
+      <li><strong>或者读自己的真库</strong>：<code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe ingest</code>（微信只读解析）+ <code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe graph --share</code>（脱敏后可分享）</li>
+      <li><strong>接进你现有的笔记系统</strong>：<code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe export-vault</code> —— 导出成 Obsidian vault 里的笔记 + 双链，直接用现成的图谱插件渲染</li>
+      <li><strong>让 AI 工具直接取数</strong>：<code style="background: var(--ink-100); padding: 2px 6px; border-radius: 4px;">renpu-cli.exe serve</code> —— 本地 15 个只读端点，绑 127.0.0.1</li>
+    </ul>
+    <p class="muted" style="font-size: var(--text-sm); margin: var(--space-3) 0 0;">纯 Python 零编译 · 单文件 EXE 双击即用（不用装 Python）· 桌面工作台 + CLI + 本地 API 三个入口 · 分享模式一键把姓名、群名、账号标识全替换掉</p>
+    <p style="margin: var(--space-3) 0 0;">
+      <a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener"><strong>源码仓库 ↗</strong></a> ·
+      <a href="docs/renpu/README.md">安装与使用文档 ↗</a> ·
+      <a href="docs/renpu/QUICKSTART.md">五分钟上手 ↗</a>
+    </p>
+  </div>
+</section>
+
+<hr>
+
 <section id="research">
   <h2>研究</h2>
 
@@ -617,8 +677,8 @@
     </div>
     <div class="card">
       <h3>renpu（仁谱）</h3>
-      <p><em>Owner: @jackyjinggit · 本地人脉关系图谱引擎 · AGPL-3.0-only.</em> 本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API；纯 Python 零编译，<strong>数据不出本机</strong>。</p>
-      <p class="muted">Repository 仓库公开中（发布后即挂链）</p>
+      <p><em>Owner: @jackyjinggit · 本地人脉关系图谱引擎 · AGPL-3.0-only.</em> 本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 21 子命令 CLI / 本地 API；纯 Python 零编译，<strong>数据不出本机</strong>。</p>
+      <p class="muted"><a href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">github.com/jackyjinggit/renpu ↗</a> · <a href="docs/renpu/README.md">文档 ↗</a></p>
     </div>
     <div class="card">
       <h3>personal-home（个人主页）</h3>
