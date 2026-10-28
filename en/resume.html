@@ -366,7 +366,7 @@
       <div class="tl-when">April 2026</div>
       <div class="tl-what">AI as a daily workstation</div>
       <p class="tl-turn">Long-form writing, batch jobs, knowledge-base upkeep, distribution — <strong>and three months later the bill was more honest than intuition</strong>: falling AI prices are arithmetic, not sentiment.</p>
-      <p class="tl-why">This stage produced the <strong>data substrate</strong> for everything since: ~13B tokens / ~80k turns of real collaboration — not read, but used.</p>
+      <p class="tl-why">This stage produced the <strong>data substrate</strong> for everything since: ~13B tokens / ~80k turns of real collaboration — not read, but used. That averages <strong>~160k tokens per turn</strong>, because every turn loads the full context, runs multiple correction passes, and governance-checks the result.</p>
     </div>
 
     <div class="tl-item">
@@ -582,7 +582,7 @@
 <hr>
 
 <section id="numbers">
-  <h2>Usage &amp; Self-Evidence</h2>
+  <h2>Governance Density &amp; Self-Evidence</h2>
   <p class="muted">These numbers are not achievements — they are sample size. FEE's quantification, the protocol's iterations, the white paper's methodological basis all rest on these real turns. A methodology without real usage is only a claim on paper.</p>
   <div class="kpis">
     <div class="kpi">
@@ -594,6 +594,16 @@
       <div class="kpi-n">~80k</div>
       <div class="kpi-l">real collaboration turns</div>
       <div class="kpi-s">Apr 2026 → now</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">~160k</div>
+      <div class="kpi-l">tokens per turn</div>
+      <div class="kpi-s">full context load + multiple correction passes + governance check — governance costs this much by nature</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n">7.5%</div>
+      <div class="kpi-l">billable share</div>
+      <div class="kpi-s">of all processed tokens, only 7.5% were charged (input+output) — long context reused, high density ≠ high cost</div>
     </div>
     <div class="kpi">
       <div class="kpi-n">95%</div>
@@ -609,6 +619,9 @@
   <p class="muted" style="margin-top: var(--space-4);">
     Channel mix: agent window 95% · web deepseek 3.5% · other 1.5%. Rhythm: Apr start → Jul shift to agent windows → Oct long-context as the main workhorse.<br>
     Proof-driven · the remonstrating advisor, not the flatterer · mirror by another · <em>live my life on my way · leave a trail</em>
+  </p>
+  <p class="muted" style="margin-top: var(--space-3);">
+    Usage volume alone proves nothing; <strong>density does</strong>. Each turn carries the full context, multiple correction passes and a governance check — and the compute side runs against a <strong>monthly budget (¥1,100) that hard-stops at the cap</strong>. A ceiling is what makes "not wasted" a claim you can actually make: this density was produced <em>under</em> a budget, not by spending without limit.
   </p>
 </section>
 

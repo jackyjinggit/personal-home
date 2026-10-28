@@ -318,7 +318,7 @@
       <div class="tl-when">2026 · 4 月</div>
       <div class="tl-what">把 AI 当日用工位</div>
       <p class="tl-turn">写长文、跑批处理、维护知识库、做分发——<strong>三个月后账单比直觉更诚实</strong>：AI 费率的下降是算术题，不是情绪。</p>
-      <p class="tl-why">这一阶段的产物是后来所有方法论的<strong>数据底座</strong>：~130 亿 token / ~8 万轮真实协作，不是读出来的，是用出来的。</p>
+      <p class="tl-why">这一阶段的产物是后来所有方法论的<strong>数据底座</strong>：~130 亿 token / ~8 万轮真实协作，不是读出来的，是用出来的——<strong>每轮均耗 ~16 万 token</strong>，因为每轮都要装载完整上下文、多轮纠偏、并对结果做治理校验。</p>
     </div>
 
     <div class="tl-item">
@@ -630,13 +630,28 @@
 <hr>
 
 <section id="data">
-  <h2>数据</h2>
-  <p class="muted">独立研究者的 AI 协作基础设施用量 · 自 2026 年 4 月起持续累计</p>
+  <h2>治理密度</h2>
+  <p class="muted">独立研究者的 AI 协作基础设施 · 自 2026 年 4 月起持续累计</p>
   <div class="grid">
     <div class="card">
       <h3>总量</h3>
       <p><strong>~130 亿</strong> token / <strong>~8 万</strong> 轮</p>
       <p class="muted">≈ 8.4 万部《红楼梦》</p>
+    </div>
+    <div class="card">
+      <h3>单位密度</h3>
+      <p>每轮均耗 <strong>~16 万</strong> token</p>
+      <p class="muted">装载完整上下文 + 多轮纠偏 + 治理校验，治理本身就要这个量级</p>
+    </div>
+    <div class="card">
+      <h3>硬预算</h3>
+      <p>GPU 算力额度 <strong>¥1100 / 月</strong>，<strong>用完即拦截</strong></p>
+      <p class="muted">有上限才有「没浪费」这个说法</p>
+    </div>
+    <div class="card">
+      <h3>密度 ≠ 花费</h3>
+      <p>计费 token <strong>只占处理量的 7.5%</strong></p>
+      <p class="muted">长上下文反复复用，缓存命中后近乎免费 —— 高密度不是高开销</p>
     </div>
     <div class="card">
       <h3>渠道</h3>
@@ -655,6 +670,7 @@
   </div>
   <p class="muted">数据来源：客户端用量统计 + 网页端 export；<a href="https://github.com/jackyjinggit">GitHub</a> / <a href="https://gitee.com/jacky_jiang_gitee">Gitee</a> 双同步</p>
   <p class="muted">这些数字<strong>不是成就，是样本量</strong>——FEE 的量化、协作协议的迭代、白皮书的方法论基础，都建立在这些真实轮次之上。一个没有真实使用量的方法论，只是纸面主张。</p>
+  <p class="muted">但用量大本身不构成能力：<strong>治理密度才是</strong>——每轮 16 万 token 换回来的是可复用的方法论，而不是一次性的产出；算力额度封顶、用完即停，也说明这份密度是<strong>在硬预算下跑出来的，不是无限堆出来的</strong>。</p>
 </section>
 
 <hr>
