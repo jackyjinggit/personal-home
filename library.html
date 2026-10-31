@@ -94,6 +94,7 @@
     <li><a href="index.html">首页</a></li>
     <li><a href="#research">研究与方法论</a></li>
     <li><a href="#code">开源与工具</a></li>
+    <li><a href="#competition">竞赛与实战</a></li>
     <li><a href="#delivery">现场交付物</a></li>
     <li><a href="#demo">演示与作品</a></li>
     <li><a href="#profile">个人档案</a></li>
@@ -150,15 +151,15 @@
   <p class="sec-note">代码是可以被验证的东西——能 clone 下来跑，才算数。</p>
   <div class="grid">
     <div class="card g">
-      <h3>仁谱 renpu <span class="state ok">文档可读 · 仓库待授权</span></h3>
-      <p>本地人脉关系图谱引擎。本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API，纯 Python 零编译，<strong>数据不出本机</strong>。开放核心 AGPL-3.0-only。</p>
+      <h3>仁谱 renpu <span class="state ok">公开</span></h3>
+      <p>本地人脉关系图谱引擎。本地 SQLite + 六域模型 + 关系边推导 + 微信只读解析 + 15 子命令 CLI / 本地 API，纯 Python 零编译，<strong>数据不出本机</strong>。开放核心：<strong>AGPL-3.0-only，可付费获得商业授权</strong>（闭源集成 / 白标 / 私有化交付）。</p>
       <p class="meta">README / INSTALL / QUICKSTART / SKILL / TROUBLESHOOT 全部可在线读 · 有 v0.2.0 / v0.2.1 版本标签 · 演示数据全为合成（姓名虚构、wxid 带 demo 前缀），不含任何真实联系人</p>
       <div class="links">
         <a href="docs/renpu/README.md">README ↗</a>
         <a href="docs/renpu/QUICKSTART.md">快速开始 ↗</a>
         <a href="docs/renpu/INSTALL.md">安装 ↗</a>
         <a href="docs/renpu/SKILL.md">Skill 接入 ↗</a>
-        <a class="ext" href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">仓库（当前对访客不可见）↗</a>
+        <a class="ext" href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">源码仓库 ↗</a>
       </div>
     </div>
     <div class="card g">
@@ -175,6 +176,38 @@
       <p class="meta">210 项 pytest 通过 · 13 个后端路由 · Vue 3 用户端 + 原生管理端 · 5 分钟文件自动删除且删除可查</p>
       <div class="links">
         <a class="ext" href="https://silnk.cn" target="_blank" rel="noopener">silnk.cn ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competition">
+  <h2>竞赛与实战</h2>
+  <p class="sec-note">比赛是少数有硬截止、有对手、有一群人不许你作弊的场景——能跑通的方案，都是被逼出来的。</p>
+  <div class="grid">
+    <div class="card w">
+      <h3>屿伴 · AI 桌面陪伴终端 <span class="state ok">原型可运行</span></h3>
+      <p>一台放在桌上的 AI 陪伴终端：语音对话 + 可控长期记忆（可查看 / 修改 / 删除）+ 护肤作息打卡 + 语音播报 + 隐私面板（数据导出与一键删除）。感知走 ASR，决策走 Agent 分层编排，生成优先本地模型、云端仅兜底。</p>
+      <p class="meta">参加珀莱雅 Blue Buff 科技创新大赛（AI 应用赛道）· 已完成可运行本地原型并通过工程冒烟测试（<strong>非用户测试</strong>）· 本地 3B 模型驻留后首字 0.11—0.26s · 用户测试与量化指标仍为待验证</p>
+      <div class="links">
+        <a class="ext" href="https://bluebuff.proya-group.com/projects/5a2d6072-215a-4523-95da-bd53072b5ff2" target="_blank" rel="noopener">赛事项目页 ↗</a>
+      </div>
+    </div>
+    <div class="card w">
+      <h3>大模型幻觉挑战赛 · i厦门 <span class="state ok">参赛</span></h3>
+      <p>技术赛核心是压住<strong>事实性幻觉率</strong>——让「不确定」成为一个合格的输出，而不是编一个像样的答案。参赛队自备算力，以官方指定基座（Qwen3-8B）做幻觉抑制加固，对外暴露 OpenAI 格式端点，由组委会以幻觉率 HR 统一评测。</p>
+      <p class="meta">第七届中国人工智能大赛 · 国家网信办 / 公安部指导 · 厦门市人民政府主办 · 147 支参赛队 · 正式赛仅 1 次提交机会，端点不可达即该题 0 分 · 我方为参赛队</p>
+      <div class="links">
+        <a class="ext" href="https://www.ixiamen.org.cn/zxzx/rd/detail.htm?id=2026c40item0002" target="_blank" rel="noopener">赛项页 ↗</a>
+      </div>
+    </div>
+    <div class="card w">
+      <h3>仁谱接入 ClawHunt · Agent 上线 <span class="state ok">已注册</span></h3>
+      <p>把本地开源工具做成能在公开平台上接活的 Agent：注册上线、按需求关键词匹配任务、投标必须带方案（纯报价会被过滤）、交付必须附可复核证据（哈希 / 测试输出 / 文件）。</p>
+      <p class="meta">ClawHunt 平台 <strong>renpu-agent</strong>（admission: approved）· 策略：<strong>AGPL 开源核心做获客漏斗，平台做结算闭环</strong>，不靠抢长尾小单</p>
+      <div class="links">
+        <a class="ext" href="https://clawhunt.store" target="_blank" rel="noopener">平台 ↗</a>
+        <a class="ext" href="https://github.com/jackyjinggit/renpu" target="_blank" rel="noopener">仁谱仓库 ↗</a>
       </div>
     </div>
   </div>
