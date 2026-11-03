@@ -155,6 +155,18 @@
     .proj-v a { word-break: break-all; }
     .tl-item::before { left: calc(var(--space-8) * -1 + 1px); }
   }
+  /* Corner badge: project page ↔ hobbies page */
+  .corner { position: fixed; right: var(--space-6); bottom: var(--space-6); z-index: 20; }
+  .corner a {
+    display: inline-block; padding: var(--space-2) var(--space-4);
+    background: var(--accent-600); color: #fff; border-radius: var(--radius-pill);
+    font-size: var(--text-sm); box-shadow: var(--shadow-lg);
+  }
+  .corner a:hover { background: var(--accent-700); text-decoration: none; }
+  @media (max-width: 640px) {
+    .corner { right: var(--space-4); bottom: var(--space-4); }
+    .corner a { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
+  }
 </style>
 </head>
 <body>
@@ -470,6 +482,8 @@
   <p class="muted">Reach out via GitHub issues or project contact channels. Main profile: <a href="../" hreflang="zh-CN" lang="zh-CN">Chinese homepage</a></p>
   <p>Last updated: 2026-10-24 · Added the Journey section and rewrote projects as problem / build / evidence · New: Renpu (AGPL open core) and Kanshan copilot</p>
 </footer>
+
+<div class="corner"><a href="hobbies.html">Beyond the projects ↗</a></div>
 
 </body>
 </html>

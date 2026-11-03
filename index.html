@@ -268,6 +268,18 @@
     .thesis { padding: var(--space-4); }
     .thesis p { font-size: var(--text-base); }
   }
+  /* 角落浮标：项目页 ↔ 兴趣页互跳 */
+  .corner { position: fixed; right: var(--space-6); bottom: var(--space-6); z-index: 20; }
+  .corner a {
+    display: inline-block; padding: var(--space-2) var(--space-4);
+    background: var(--accent-600); color: #fff; border-radius: var(--radius-pill);
+    font-size: var(--text-sm); box-shadow: var(--shadow-lg);
+  }
+  .corner a:hover { background: var(--accent-700); text-decoration: none; }
+  @media (max-width: 640px) {
+    .corner { right: var(--space-4); bottom: var(--space-4); }
+    .corner a { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
+  }
 </style>
 </head>
 <body>
@@ -284,6 +296,7 @@
     <li><a href="#about">关于</a></li>
     <li><a href="#contact">联系</a></li>
     <li><a href="#wechat">公众号</a></li>
+    <li><a href="hobbies.html">兴趣</a></li>
     <li><a href="library.html">扩展阅读库</a></li>
     <li><a href="en/index.html" hreflang="en" lang="en" style="border-left: 1px solid var(--line); padding-left: var(--space-3); margin-left: var(--space-1);">English</a></li>
   </ul>
@@ -802,6 +815,8 @@
   <p>作者保留所有权利。白皮书发布前已通过联合信任可信时间戳认证。</p>
   <p>最后更新：2026-10-26（数据段新增「MiniMax 开放平台用量」入口，独立页 minimax-usage.html · 10-24 新增「足迹」节与项目三段式改写）</p>
 </footer>
+
+<div class="corner"><a href="hobbies.html">项目之外 · 兴趣 ↗</a></div>
 
 </body>
 </html>

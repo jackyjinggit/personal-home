@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兴趣 · 蒋平</title>
+<meta name="description" content="项目之外：游戏、阅读、写作、影像。蒋平的个人兴趣页。">
+<style>
+  :root {
+    --accent-50: #e8f0fe; --accent-100: #d2e3fc; --accent-200: #aecbfa; --accent-300: #8ab4f8;
+    --accent-400: #669df6; --accent-500: #4285f4; --accent-600: #1a73e8; --accent-700: #1967d2;
+    --accent-800: #185abc; --accent-900: #174ea6;
+    --ink-50: #fafafa; --ink-100: #f5f5f5; --ink-200: #eeeeee; --ink-300: #e0e0e0;
+    --ink-400: #bdbdbd; --ink-500: #9e9e9e; --ink-600: #757575; --ink-700: #616161;
+    --ink-800: #424242; --ink-900: #212121;
+    --success: #2e7d32; --warning: #e65100; --error: #c62828; --info: #0277bd;
+    --accent: var(--accent-600); --ink: var(--ink-900); --sub: var(--ink-600);
+    --line: var(--ink-300); --bg: var(--ink-50);
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px;
+    --space-8: 32px; --space-12: 48px; --space-16: 64px;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-pill: 999px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+    --shadow-md: 0 1px 4px rgba(0,0,0,.08);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.10);
+    --text-xs: 12px; --text-sm: 14px; --text-base: 16px; --text-md: 18px; --text-lg: 20px;
+    --text-xl: 24px; --text-2xl: 32px; --text-3xl: 48px;
+    --font-sans-cn: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    --duration-fast: 120ms; --duration-base: 200ms;
+    --easing-out: cubic-bezier(0.2, 0.8, 0.4, 1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-sans-cn); font-size: var(--text-base);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: var(--space-16) var(--space-6) var(--space-12); }
+  h1 { font-size: var(--text-3xl); line-height: 1.2; margin: 0 0 var(--space-3); letter-spacing: -0.02em; }
+  h2 { font-size: var(--text-2xl); margin: var(--space-12) 0 var(--space-4); letter-spacing: -0.01em; }
+  h3 { font-size: var(--text-lg); margin: var(--space-6) 0 var(--space-2); }
+  p { margin: var(--space-3) 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: var(--space-12) 0; }
+  a { color: var(--accent-600); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .subtitle { color: var(--sub); font-size: var(--text-md); margin: 0 0 var(--space-6); }
+  .lede { font-size: var(--text-md); color: var(--ink-800); margin-bottom: var(--space-8); }
+  .muted { color: var(--sub); }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: var(--space-6); margin: var(--space-4) 0; box-shadow: var(--shadow-sm);
+  }
+  .card h3 { margin-top: 0; }
+  .grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .grid .card { margin: 0; }
+  .stat { display: flex; gap: var(--space-8); flex-wrap: wrap; margin: var(--space-6) 0; }
+  .stat-num { font-size: var(--text-2xl); font-weight: 700; color: var(--accent-700); line-height: 1.1; }
+  .stat-label { font-size: var(--text-sm); color: var(--sub); }
+  .tag {
+    display: inline-block; padding: 2px var(--space-3); border-radius: var(--radius-pill);
+    background: var(--accent-50); color: var(--accent-800); font-size: var(--text-xs);
+    margin: var(--space-1) var(--space-1) 0 0;
+  }
+  .tag-line { display: block; margin-top: var(--space-2); }
+  .tag-line .tag { display: inline-block; margin-right: var(--space-2); }
+  .quote {
+    border-left: 4px solid var(--accent-600); background: var(--accent-50);
+    padding: var(--space-4) var(--space-6); border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin: var(--space-4) 0; font-style: normal;
+  }
+  .back {
+    display: inline-block; margin-bottom: var(--space-8); padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--line); border-radius: var(--radius-pill);
+    color: var(--sub); font-size: var(--text-sm); background: #fff;
+  }
+  .back:hover { text-decoration: none; border-color: var(--accent-400); color: var(--accent-700); }
+  .corner { position: fixed; right: var(--space-6); bottom: var(--space-6); z-index: 20; }
+  .corner a {
+    display: inline-block; padding: var(--space-2) var(--space-4);
+    background: var(--accent-600); color: #fff; border-radius: var(--radius-pill);
+    font-size: var(--text-sm); box-shadow: var(--shadow-lg);
+  }
+  .corner a:hover { background: var(--accent-700); text-decoration: none; }
+  footer { margin-top: var(--space-16); padding-top: var(--space-6); border-top: 1px solid var(--line); color: var(--sub); font-size: var(--text-sm); }
+  .lang { position: fixed; top: var(--space-4); right: var(--space-6); font-size: var(--text-sm); }
+  .lang a { color: var(--sub); }
+  @media (max-width: 640px) {
+    main { padding: var(--space-8) var(--space-4); }
+    h1 { font-size: var(--text-2xl); }
+    .corner { right: var(--space-4); bottom: var(--space-4); }
+  }
+</style>
+</head>
+<body>
+
+<p class="lang">🌐 <a href="en/hobbies.html" hreflang="en" lang="en">English</a></p>
+
+<main>
+
+<a class="back" href="index.html">← 回到主页</a>
+
+<h1>项目之外</h1>
+<p class="subtitle">一个独立研究者，工作之外剩下的那些部分。</p>
+<p class="lede">下面这些不是履历，也不是包装。它们是我在没有 deadline 的时候，会一头扎进去的事。</p>
+
+<div class="stat">
+  <div class="stat-item">
+    <div class="stat-num">279</div>
+    <div class="stat-label">款游戏 · 全成就</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">20,000+</div>
+    <div class="stat-label">小时通关时长</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">7,381h</div>
+    <div class="stat-label">MMO 单项</div>
+  </div>
+</div>
+
+<hr>
+
+<section id="games">
+  <h2>游戏</h2>
+  <p class="muted">我打游戏的方式和做研究一样：不追求快，追求全。</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>全成就党</h3>
+      <p>法环 <strong>42/42</strong>、血源 <strong>40/40</strong>、黑神话 <strong>36/36</strong>。不是随便打打就截图——每一项成就背后都是一次「我偏要把它做完」的较劲。</p>
+      <span class="tag-line"><span class="tag">魂系</span>
+      <span class="tag">开放世界</span>
+      <span class="tag">成就控</span></span>
+    </div>
+    <div class="card">
+      <h3>重度玩家</h3>
+      <p>一款 MMO 单独打了 7,381 小时；竞技类从纯 PVE 打到主动进 PVP——不是为了赢，是想知道自己到底有几斤几两。</p>
+      <span class="tag-line"><span class="tag">MMO</span>
+      <span class="tag">竞技</span></span>
+    </div>
+    <div class="card">
+      <h3>职业前置</h3>
+      <p>入行做过游戏 UX——所以我做 AI 工具时，会先问「交互爽不爽」，再问「能不能落地」。</p>
+      <span class="tag-line"><span class="tag">游戏 UX</span>
+      <span class="tag">叙事设计</span></span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="reading">
+  <h2>阅读与写字</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>古典文学</h3>
+      <p>汉语言文学在读，本科论文写的是菲利普·K·迪克《仿生人会梦见电子羊》的叙事艺术。写论文时才发现：科幻真正的难点不在设定，在人怎么被自己的设定反噬。</p>
+      <span class="tag-line"><span class="tag">叙事学</span>
+      <span class="tag">科幻</span></span>
+    </div>
+    <div class="card">
+      <h3>网文与长篇</h3>
+      <p>追长篇，也爱东方幻想那一套世界观的严密。喜欢「一个人成军」的气象——不是靠外挂，是靠把道理练成身体。</p>
+      <span class="tag-line"><span class="tag">网络文学</span>
+      <span class="tag">东方幻想</span></span>
+    </div>
+    <div class="card">
+      <h3>写作本身</h3>
+      <p>知乎专栏 19 篇、公众号持续更新。写作对我来说不是输出渠道，是把模糊的东西逼成一句话的手段——说不清就等于没想清。</p>
+      <span class="tag-line"><span class="tag">专栏</span>
+      <span class="tag">方法论写作</span></span>
+    </div>
+  </div>
+
+  <div class="quote">
+    <p>「文档压缩：砍字数不砍人。」</p>
+    <p class="muted" style="margin-bottom:0;">——我自己给自己定的规矩，也是我判断一段文字有没有被写坏的标准。</p>
+  </div>
+</section>
+
+<hr>
+
+<section id="making">
+  <h2>动手做东西</h2>
+  <p class="muted">兴趣和项目在我这儿边界很模糊——很多爱好最后都长成了作品。</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>剪辑与画面</h3>
+      <p>从三维软件出片到专业调色，自己搭了一套四层管道。为了一个「核验十部曲」系列，能为片头文字对比度从 1.32:1 调到 4.48:1 反复重渲十几遍。</p>
+      <span class="tag-line"><span class="tag">三维出片</span>
+      <span class="tag">专业调色</span>
+      <span class="tag">视频工程</span></span>
+    </div>
+    <div class="card">
+      <h3>本地跑模型</h3>
+      <p>不放心把东西交出去，所以模型自己下载、自己量化、自己部署在自己机器上。隐私对我不是立场，是习惯。</p>
+      <span class="tag-line"><span class="tag">本地部署</span>
+      <span class="tag">隐私优先</span></span>
+    </div>
+    <div class="card">
+      <h3>表达</h3>
+      <p>会写代码，会做图，会剪视频，会讲一段别人愿意听完的故事。工具是为了让表达跑得更顺，不是让表达看起来更技术。</p>
+      <span class="tag-line"><span class="tag">全栈表达</span>
+      <span class="tag">独立制作</span></span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="colophon">
+  <h2>关于这页</h2>
+  <p>上一页讲的是我在解决什么问题——那是<strong>对公的一面</strong>：方法论、作品、可验证的证据。</p>
+  <p>这一页讲的是我在解决什么问题<strong>之外</strong>的部分。你不必认同我的方法论，但至少可以知道我是个什么样的人：一个把全成就当习惯的人，一个把「说不清」当失败的人。</p>
+  <p class="muted">项目页在 <a href="index.html">这里</a>。两页之间来回跳即可，不用记地址。</p>
+</section>
+
+<footer>
+  <p>作者保留所有权利。本页内容不含家庭关系、健康细节与任何个人信息。</p>
+  <p>最后更新：2026-11-03（新增本页）</p>
+</footer>
+
+</main>
+
+<div class="corner"><a href="index.html">← 回到主页</a></div>
+
+</body>
+</html>

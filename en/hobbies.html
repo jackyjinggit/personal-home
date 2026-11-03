@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Projects · Jacky Jiang</title>
+<meta name="description" content="Games, reading, writing, making. The parts of Jacky Jiang that aren't projects.">
+<style>
+  :root {
+    --accent-50: #e8f0fe; --accent-100: #d2e3fc; --accent-200: #aecbfa; --accent-300: #8ab4f8;
+    --accent-400: #669df6; --accent-500: #4285f4; --accent-600: #1a73e8; --accent-700: #1967d2;
+    --accent-800: #185abc; --accent-900: #174ea6;
+    --ink-50: #fafafa; --ink-100: #f5f5f5; --ink-200: #eeeeee; --ink-300: #e0e0e0;
+    --ink-400: #bdbdbd; --ink-500: #9e9e9e; --ink-600: #757575; --ink-700: #616161;
+    --ink-800: #424242; --ink-900: #212121;
+    --accent: var(--accent-600); --ink: var(--ink-900); --sub: var(--ink-600);
+    --line: var(--ink-300); --bg: var(--ink-50);
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px;
+    --space-8: 32px; --space-12: 48px; --space-16: 64px;
+    --radius-md: 8px; --radius-lg: 12px; --radius-pill: 999px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.06); --shadow-lg: 0 4px 12px rgba(0,0,0,.10);
+    --text-xs: 12px; --text-sm: 14px; --text-base: 16px; --text-md: 18px; --text-lg: 20px;
+    --text-2xl: 32px; --text-3xl: 48px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-sans); font-size: var(--text-base); line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: var(--space-16) var(--space-6) var(--space-12); }
+  h1 { font-size: var(--text-3xl); line-height: 1.2; margin: 0 0 var(--space-3); letter-spacing: -0.02em; }
+  h2 { font-size: var(--text-2xl); margin: var(--space-12) 0 var(--space-4); letter-spacing: -0.01em; }
+  h3 { font-size: var(--text-lg); margin: var(--space-6) 0 var(--space-2); }
+  p { margin: var(--space-3) 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: var(--space-12) 0; }
+  a { color: var(--accent-600); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .subtitle { color: var(--sub); font-size: var(--text-md); margin: 0 0 var(--space-6); }
+  .lede { font-size: var(--text-md); color: var(--ink-800); margin-bottom: var(--space-8); }
+  .muted { color: var(--sub); }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: var(--space-6); margin: var(--space-4) 0; box-shadow: var(--shadow-sm);
+  }
+  .card h3 { margin-top: 0; }
+  .grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .grid .card { margin: 0; }
+  .stat { display: flex; gap: var(--space-8); flex-wrap: wrap; margin: var(--space-6) 0; }
+  .stat-num { font-size: var(--text-2xl); font-weight: 700; color: var(--accent-700); line-height: 1.1; }
+  .stat-label { font-size: var(--text-sm); color: var(--sub); }
+  .tag {
+    display: inline-block; padding: 2px var(--space-3); border-radius: var(--radius-pill);
+    background: var(--accent-50); color: var(--accent-800); font-size: var(--text-xs);
+    margin: var(--space-1) var(--space-1) 0 0;
+  }
+  .tag-line { display: block; margin-top: var(--space-2); }
+  .tag-line .tag { display: inline-block; margin-right: var(--space-2); }
+  .quote {
+    border-left: 4px solid var(--accent-600); background: var(--accent-50);
+    padding: var(--space-4) var(--space-6); border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin: var(--space-4) 0;
+  }
+  .back {
+    display: inline-block; margin-bottom: var(--space-8); padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--line); border-radius: var(--radius-pill);
+    color: var(--sub); font-size: var(--text-sm); background: #fff;
+  }
+  .back:hover { text-decoration: none; border-color: var(--accent-400); color: var(--accent-700); }
+  .corner { position: fixed; right: var(--space-6); bottom: var(--space-6); z-index: 20; }
+  .corner a {
+    display: inline-block; padding: var(--space-2) var(--space-4);
+    background: var(--accent-600); color: #fff; border-radius: var(--radius-pill);
+    font-size: var(--text-sm); box-shadow: var(--shadow-lg);
+  }
+  .corner a:hover { background: var(--accent-700); text-decoration: none; }
+  footer { margin-top: var(--space-16); padding-top: var(--space-6); border-top: 1px solid var(--line); color: var(--sub); font-size: var(--text-sm); }
+  .lang { position: fixed; top: var(--space-4); right: var(--space-6); font-size: var(--text-sm); }
+  .lang a { color: var(--sub); }
+  @media (max-width: 640px) {
+    main { padding: var(--space-8) var(--space-4); }
+    h1 { font-size: var(--text-2xl); }
+    .corner { right: var(--space-4); bottom: var(--space-4); }
+  }
+</style>
+</head>
+<body>
+
+<p class="lang">🌐 <a href="../hobbies.html" hreflang="zh-CN" lang="zh-CN">中文</a></p>
+
+<main>
+
+<a class="back" href="index.html">← Back to home</a>
+
+<h1>Beyond the Projects</h1>
+<p class="subtitle">What an independent researcher does when nothing is on deadline.</p>
+<p class="lede">None of this is a résumé. These are the things I disappear into when nobody is waiting on me.</p>
+
+<div class="stat">
+  <div class="stat-item">
+    <div class="stat-num">279</div>
+    <div class="stat-label">games · all achievements</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">20,000+</div>
+    <div class="stat-label">hours played</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">7,381h</div>
+    <div class="stat-label">in one MMO alone</div>
+  </div>
+</div>
+
+<hr>
+
+<section id="games">
+  <h2>Games</h2>
+  <p class="muted">I approach games the way I approach research: not fast, but complete.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>The completionist</h3>
+      <p>Elden Ring <strong>42/42</strong>, Bloodborne <strong>40/40</strong>, Black Myth <strong>36/36</strong>. Not screenshot tours — each one was a stubborn refusal to leave something half-done.</p>
+      <span class="tag-line"><span class="tag">Soulslike</span>
+      <span class="tag">Open world</span></span>
+    </div>
+    <div class="card">
+      <h3>Heavy player</h3>
+      <p>7,381 hours in one MMO. Moved from pure PvE into PvP on purpose — not to win, but to find out what I was actually made of.</p>
+      <span class="tag-line"><span class="tag">MMO</span>
+      <span class="tag">Competitive</span></span>
+    </div>
+    <div class="card">
+      <h3>Former game UX</h3>
+      <p>I designed game UX professionally before any of this. So when I build AI tools, I ask whether the interaction feels good before asking whether it works.</p>
+      <span class="tag-line"><span class="tag">Game UX</span>
+      <span class="tag">Narrative design</span></span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="reading">
+  <h2>Reading &amp; Writing</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Literary studies</h3>
+      <p>Studying Chinese language and literature; my undergraduate thesis is on narrative art in Philip K. Dick's <em>Do Androids Dream of Electric Sheep?</em> The hardest part of sci-fi turned out not to be the premise — it's how people get consumed by their own premise.</p>
+      <span class="tag-line"><span class="tag">Narratology</span>
+      <span class="tag">Sci-fi</span></span>
+    </div>
+    <div class="card">
+      <h3>Long-form &amp; Eastern fantasy</h3>
+      <p>I read serialized web novels, and I like how tightly Eastern fantasy builds its worlds. What I love is the image of one person becoming an army — not by cheats, but by grinding insight into the body.</p>
+      <span class="tag-line"><span class="tag">Web fiction</span>
+      <span class="tag">Eastern fantasy</span></span>
+    </div>
+    <div class="card">
+      <h3>Writing itself</h3>
+      <p>19 columns on Zhihu, a running WeChat publication. Writing isn't an output channel for me — it's how vague things get forced into a single sentence. If I can't say it, I haven't thought it.</p>
+      <span class="tag-line"><span class="tag">Columns</span>
+      <span class="tag">Method writing</span></span>
+    </div>
+  </div>
+
+  <div class="quote">
+    <p>"When compressing a document, cut words — never people."</p>
+    <p class="muted" style="margin-bottom:0;">— A rule I set for myself, and how I tell whether a piece of writing has been damaged.</p>
+  </div>
+</section>
+
+<hr>
+
+<section id="making">
+  <h2>Making Things</h2>
+  <p class="muted">Interests and projects blur for me — a lot of hobbies end up as finished work.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Picture &amp; edit</h3>
+      <p>I built a four-layer pipeline for producing video, from 3D rendering through professional color grading. For one short series I re-rendered the title cards a dozen times to take text contrast from 1.32:1 to 4.48:1.</p>
+      <span class="tag-line"><span class="tag">3D rendering</span>
+      <span class="tag">Color grading</span>
+      <span class="tag">Video engineering</span></span>
+    </div>
+    <div class="card">
+      <h3>Models on my own machine</h3>
+      <p>I don't like handing things over, so I download, quantize and deploy the models locally. Privacy isn't a stance for me, it's a habit.</p>
+      <span class="tag-line"><span class="tag">Local deployment</span>
+      <span class="tag">Privacy first</span></span>
+    </div>
+    <div class="card">
+      <h3>Expression</h3>
+      <p>Code, images, video, and telling a story someone actually wants to hear to the end. Tools exist to make expression flow — not to make it look technical.</p>
+      <span class="tag-line"><span class="tag">Full-stack</span>
+      <span class="tag">Independent production</span></span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="colophon">
+  <h2>About this page</h2>
+  <p>The home page covers what problem I'm trying to solve — that's the <strong>public-facing side</strong>: methodology, work, verifiable evidence.</p>
+  <p>This page covers everything <strong>outside</strong> that. You don't have to agree with my method; you should at least be able to tell what kind of person this is: someone who treats completion as a default, and "I can't explain it" as a failure.</p>
+  <p class="muted">The project page is <a href="index.html">here</a>. You can hop back and forth — no need to remember addresses.</p>
+</section>
+
+<footer>
+  <p>All rights reserved. This page contains no family relations, health details, or personal information.</p>
+  <p>Last updated: 2026-11-03</p>
+</footer>
+
+</main>
+
+<div class="corner"><a href="index.html">← Back to home</a></div>
+
+</body>
+</html>
