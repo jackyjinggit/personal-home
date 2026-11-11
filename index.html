@@ -280,6 +280,33 @@
     .corner { right: var(--space-4); bottom: var(--space-4); }
     .corner a { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
   }
+
+  /* ===== 设计统一收拢 · 2026-11-11 ===== */
+  /* 移动端导航：横向滑动免换行（14 项导航在 576px 以下单行滑动，激活项随 scrollspy 可见） */
+  @media (max-width: 767px) {
+    nav ul {
+      flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: var(--space-1);
+    }
+    nav ul::-webkit-scrollbar { display: none; }
+    nav a { white-space: nowrap; }
+  }
+  /* 卡片微交互：统一 hover 抬升（仅 transform/shadow，GPU 友好 · 克制动效） */
+  .card { transition: transform var(--duration-fast) var(--easing-out), box-shadow var(--duration-fast) var(--easing-out); }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  /* 研究区卡片：左侧色条锚点（与黑客松突出卡同语言，标记「可被引用的研究」） */
+  #research .grid .card { border-left: 3px solid var(--accent-300); }
+  #research .grid .card:hover { border-left-color: var(--accent-600); }
+  /* 导航激活态：滚动到对应区块时高亮（scrollspy 由底部 JS 驱动） */
+  nav a[aria-current="true"] {
+    background: var(--accent-600); color: #fff; text-decoration: none;
+    border-radius: var(--radius-pill); font-weight: 600;
+  }
+  /* 焦点可见性补强（WCAG 2.2 · 键盘导航） */
+  nav a:focus-visible { outline: 2px solid var(--accent-300); outline-offset: 2px; }
+  /* 全站动效 token（仅 transform/opacity，GPU 友好） */
+  :root { --duration-fast: 0.2s; --easing-out: cubic-bezier(0.33, 1, 0.68, 1); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
@@ -826,6 +853,31 @@
 </footer>
 
 <div class="corner"><a href="hobbies.html">项目之外 · 兴趣 ↗</a></div>
+
+<script>
+/* ===== Scrollspy：滚动高亮当前区块导航（2026-11-11 蒋平指令） ===== */
+(function () {
+  var links = document.querySelectorAll('nav a[href^="#"]');
+  if (!links.length) return;
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var sections = Object.keys(map).map(function (id) {
+    return document.getElementById(id);
+  }).filter(Boolean);
+  if (!('IntersectionObserver' in window)) return;
+  var current = null;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        if (current) current.removeAttribute('aria-current');
+        current = map[e.target.id];
+        if (current) current.setAttribute('aria-current', 'true');
+      }
+    });
+  }, { rootMargin: '-30% 0px -55% 0px' });
+  sections.forEach(function (s) { io.observe(s); });
+})();
+</script>
 
 </body>
 </html>
