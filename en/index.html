@@ -167,6 +167,31 @@
     .corner { right: var(--space-4); bottom: var(--space-4); }
     .corner a { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
   }
+
+  /* 导航栏（与中文版同款 sticky pill 导航 · 2026-11-11 补齐） */
+  nav {
+    position: sticky; top: 0;
+    background: rgba(250,250,250,.95);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+    margin: 0 calc(var(--space-4) * -1);
+    padding: var(--space-3) var(--space-4);
+  }
+  @media (min-width: 768px) { nav { margin: 0 calc(var(--space-6) * -1); padding: var(--space-3) var(--space-6); } }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-1); }
+  nav a {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sm);
+    color: var(--sub);
+  }
+  nav a:hover, nav a:focus-visible { background: var(--accent-50); color: var(--accent-700); text-decoration: none; }
+  @media (max-width: 640px) {
+    nav ul { gap: 0; }
+    nav a { padding: var(--space-1) var(--space-2); font-size: var(--text-xs); }
+  }
 </style>
 </head>
 <body>
@@ -187,6 +212,20 @@
     GitHub: <a href="https://github.com/jackyjinggit" target="_blank" rel="noopener">@jackyjinggit</a>
     · Gitee: <a href="https://gitee.com/jacky_jiang_gitee" target="_blank" rel="noopener">@jacky_jiang_gitee</a>
   </p>
+
+  <nav>
+    <ul>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#hackathons">Hackathons</a></li>
+      <li><a href="#renpu">Renpu</a></li>
+      <li><a href="#online">Online</a></li>
+      <li><a href="hobbies.html">Hobbies</a></li>
+      <li><a href="../" hreflang="zh-CN" lang="zh-CN" style="border-left: 1px solid var(--line); padding-left: var(--space-3); margin-left: var(--space-1);">中文主页</a></li>
+    </ul>
+  </nav>
 </header>
 
 <hr>
